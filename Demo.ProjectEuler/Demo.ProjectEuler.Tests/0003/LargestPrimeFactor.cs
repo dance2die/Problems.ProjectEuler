@@ -15,7 +15,7 @@ namespace Demo.ProjectEuler.Tests._0003
 				return result;
 			}
 
-			List<double> primeNumbers = GetPrimeNumbersUnder(value);
+			List<double> primeNumbers = GetUsablePrimeNumbersUnder(value);
 
 			double dividedValue = value;
 			foreach (var primeNumber in primeNumbers)
@@ -54,10 +54,21 @@ namespace Demo.ProjectEuler.Tests._0003
 			return result;
 		}
 
-		public List<double> GetPrimeNumbersUnder(double value)
+		/// <summary>
+		/// Get all prime numbers between 2 and half of the size of value.
+		/// When we calculate prime factors, we don't need prime numbers more than 1/2 of value.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public List<double> GetUsablePrimeNumbersUnder(double value)
 		{
 			var result = new List<double>();
-			
+			if (Math.Abs(value - 2.0D) < 0.0001 || Math.Abs(value - 3.0D) < 0.0001)
+			{
+				result.Add(2.0D);
+				return result;
+			}
+
 			for (double i = 2; i <= value / 2; i++)
 			{
 				if (IsPrimeNumber(i))
