@@ -72,6 +72,7 @@ namespace Demo.ProjectEuler.Tests._0003
 		{
 			if (value <= 1) return false;   // by definion of Prime Number
 
+			// http://stackoverflow.com/a/15743238/4035
 			double boundary = Math.Floor(Math.Sqrt(value));
 			for (int i = 2; i <= boundary; i++)
 			{
