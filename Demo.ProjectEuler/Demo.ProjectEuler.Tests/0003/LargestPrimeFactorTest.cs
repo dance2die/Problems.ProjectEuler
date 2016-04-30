@@ -41,22 +41,40 @@ namespace Demo.ProjectEuler.Tests._0003
 		}
 
 		[Theory]
-		[InlineData(13195, new[] { 5, 7, 13, 29 })]
+		[InlineData(2, new[] {2})]
+		[InlineData(3, new[] {3})]
+		[InlineData(4, new[] {2, 2})]
+		[InlineData(5, new[] {5})]
+		[InlineData(6, new[] {2, 3})]
+		[InlineData(7, new[] {7})]
+		[InlineData(8, new[] {2, 2, 2})]
+		[InlineData(9, new[] {3, 3})]
+		[InlineData(10, new[] {2, 5})]
+		//[InlineData(15, new[] { 3, 5 })]
+		//[InlineData(31, new[] { 31 })]
+		//[InlineData(13195, new[] { 5, 7, 13, 29 })]
 		public void TestGetPrimeFactors(int value, IEnumerable<int> expectedResult)
 		{
 			var sut = new LargestPrimeFactor();
 
-			HashSet<int> actualResult = sut.GetPrimeFactors(value);
+			List<int> actualResult = sut.GetPrimeFactors(value);
 
-			Assert.True(actualResult.SetEquals(expectedResult));
+			Assert.True(actualResult.SequenceEqual(expectedResult));
 		}
 	}
 
 	public class LargestPrimeFactor
 	{
-		public HashSet<int> GetPrimeFactors(int value)
+		public List<int> GetPrimeFactors(int value)
 		{
-			HashSet<int> result = new HashSet<int>();
+			var result = new List<int>();
+
+			if (IsPrimeNumber(value))
+			{
+				result.Add(value);
+				return result;
+			}
+
 
 
 			return result;
