@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -35,19 +31,24 @@ namespace Demo.ProjectEuler.Tests._0001
 			Assert.True(actualSet2.SetEquals(expectedSet2));
 		}
 
-		//[Theory]
-		//[InlineData(-1, 0)]
-		//[InlineData(0, 0)]
-		//[InlineData(3, 3)]
-		////[InlineData(5, 8)]
-		////[InlineData(6, 14)]
-		////[InlineData(9, 23)]
-		//public void TestSumUpTo(int upTo, int expectedResult)
-		//{
-		//	var sut = new MultiplesOf3And5();
-		//	var actualResult = sut.CalculateBelow(upTo);
+		[Theory]
+		[InlineData(-1, 0)]
+		[InlineData(0, 0)]
+		[InlineData(4, 3)]
+		[InlineData(6, 8)]
+		[InlineData(10, 23)]
+		public void TestSumUpTo(int below, int expectedResult)
+		{
+			var sut = new MultiplesOf3And5();
+			var actualResult = sut.CalculateBelow(below);
 
-		//	Assert.Equal(expectedResult, actualResult);
-		//}
+			Assert.Equal(expectedResult, actualResult);
+		}
+
+		[Fact]
+		public void ShowResultBelow1000()
+		{
+			
+		}
 	}
 }

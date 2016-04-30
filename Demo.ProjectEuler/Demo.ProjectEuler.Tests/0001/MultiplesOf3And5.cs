@@ -1,16 +1,20 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Demo.ProjectEuler.Tests._0001
 {
 	public class MultiplesOf3And5
 	{
-		//public int CalculateBelow(int below)
-		//{
-		//	if (below <= 0) return 0;
-		//	if (below == 3) return 3;
+		public int CalculateBelow(int below)
+		{
+			//if (below <= 0) return 0;
+			//if (below == 3) return 3;
 
-		//	return 23;
-		//}
+			//return 23;
+
+			var set = GetMultiplesOf3And5Set(below);
+			return set.Sum();
+		}
 
 		public HashSet<int> GetMultiplesOf3And5Set(int below)
 		{
