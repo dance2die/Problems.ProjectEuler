@@ -47,14 +47,7 @@ namespace Demo.ProjectEuler.Tests._0010
 
 			for (double i = 2; i <= value; i++)
 			{
-				//foreach (double primeNumber in result)
-				//{
-				//	if (i % primeNumber == 0)
-				//	{
-				//		break;
-				//	}
-				//}
-
+				//if (result.Where(primeNumber => i % primeNumber == 0).Count() < 1 && IsPrimeNumber(i))
 				if (IsPrimeNumber(i))
 					result.Add(i);
 			}
