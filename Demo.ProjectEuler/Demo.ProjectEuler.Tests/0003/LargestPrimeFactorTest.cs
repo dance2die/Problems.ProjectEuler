@@ -41,6 +41,30 @@ namespace Demo.ProjectEuler.Tests._0003
 		}
 
 		[Theory]
+		[InlineData(0, new double[] {})]
+		[InlineData(1, new double[] {})]
+		[InlineData(2, new double[] {2})]
+		[InlineData(3, new double[] {2, 3})]
+		[InlineData(4, new double[] {2, 3})]
+		[InlineData(5, new double[] {2, 3, 5})]
+		[InlineData(6, new double[] {2, 3, 5})]
+		[InlineData(7, new double[] {2, 3, 5, 7})]
+		[InlineData(8, new double[] {2, 3, 5, 7})]
+		[InlineData(9, new double[] {2, 3, 5, 7})]
+		[InlineData(10, new double[] {2, 3, 5, 7})]
+		[InlineData(11, new double[] {2, 3, 5, 7, 11})]
+		[InlineData(13, new double[] {2, 3, 5, 7, 11, 13})]
+		[InlineData(17, new double[] {2, 3, 5, 7, 11, 13, 17})]
+		public void TestUniquePrimeNumbers(int value, IEnumerable<double> expectedResult)
+		{
+			var sut = new LargestPrimeFactor();
+
+			List<double> actualResult = sut.GetPrimeNumbersUnder(value);
+
+			Assert.True(actualResult.SequenceEqual(expectedResult));
+		}
+
+		[Theory]
 		[InlineData(2, new double [] {2})]
 		[InlineData(3, new double[] {3})]
 		[InlineData(4, new double[] {2, 2})]
@@ -65,7 +89,12 @@ namespace Demo.ProjectEuler.Tests._0003
 		//[Fact]
 		//public void ShowResult()
 		//{
-		//	double testValue = 600851475143;
+		//	var sut = new LargestPrimeFactor();
+
+		//	const double testValue = 600851475143;
+		//	List<double> actualResult = sut.GetPrimeFactors(testValue);
+
+		//	_output.WriteLine("LargestPrimeFactor for {0}: {1}", testValue, actualResult);
 		//}
 	}
 }

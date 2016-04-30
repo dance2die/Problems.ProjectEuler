@@ -15,6 +15,8 @@ namespace Demo.ProjectEuler.Tests._0003
 				return result;
 			}
 
+			List<double> primeNumbers = GetPrimeNumbersUnder(value);
+
 			for (int i = 2; i < value; i++)
 			{
 				if (IsPrimeNumber(i))
@@ -30,6 +32,21 @@ namespace Demo.ProjectEuler.Tests._0003
 							result.Add(i);
 						}
 					} while (remainder % i == 0);
+				}
+			}
+
+			return result;
+		}
+
+		public List<double> GetPrimeNumbersUnder(double value)
+		{
+			var result = new List<double>();
+
+			for (int i = 2; i <= value; i++)
+			{
+				if (IsPrimeNumber(i))
+				{
+					result.Add(i);
 				}
 			}
 
