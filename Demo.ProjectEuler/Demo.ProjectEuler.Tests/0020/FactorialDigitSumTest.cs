@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace Demo.ProjectEuler.Tests._0020
@@ -30,10 +33,32 @@ namespace Demo.ProjectEuler.Tests._0020
 
 			Assert.Equal(expectedResult, actualResult);
 		}
+
+		[Theory]
+		[InlineData(0, new[] {'1'})]
+		[InlineData(1, new[] {'1'})]
+		[InlineData(2, new[] {'2'})]
+		[InlineData(3, new[] {'6'})]
+		[InlineData(4, new[] {'2', '4'})]
+		[InlineData(5, new[] {'1', '2', '0'})]
+		[InlineData(6, new[] {'7', '2', '0'})]
+		[InlineData(10, new[] { '3', '6', '2', '8', '8', '0', '0' })]
+		public void TestEachDigit(int input, IEnumerable<char> expectedResult)
+		{
+			var actualResult = _sut.GetFactorialCharArray(input);
+
+			Assert.True(actualResult.SequenceEqual(expectedResult));
+		}
 	}
 
 	public class FactorialDigitSum
 	{
+		public char[] GetFactorialCharArray(int input)
+		{
+			var factorialText = GetFactorial(input).ToString(CultureInfo.InvariantCulture);
+			return factorialText.ToCharArray(0, factorialText.Length);
+		}
+
 		public float GetFactorial(int input)
 		{
 			float result = 1;
