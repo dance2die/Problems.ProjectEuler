@@ -58,7 +58,7 @@ namespace Demo.ProjectEuler.Tests._0003
 		{
 			var result = new List<double>();
 			
-			for (int i = 2; i <= value; i++)
+			for (double i = 2; i <= value / 2; i++)
 			{
 				if (IsPrimeNumber(i))
 				{
