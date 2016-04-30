@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -30,9 +31,9 @@ namespace Demo.ProjectEuler.Tests._0020
 		[InlineData(10, 3628800)]
 		public void TestFactorials(int input, double expectedResult)
 		{
-			double actualResult = _sut.GetFactorial(input);
+			BigInteger actualResult = _sut.GetFactorial(input);
 
-			Assert.Equal(expectedResult, actualResult);
+			Assert.Equal(new BigInteger(expectedResult), actualResult);
 		}
 
 		[Theory]
@@ -93,9 +94,9 @@ namespace Demo.ProjectEuler.Tests._0020
 			return factorialText.ToCharArray(0, factorialText.Length);
 		}
 
-		public double GetFactorial(int input)
+		public BigInteger GetFactorial(int input)
 		{
-			double result = 1;
+			BigInteger result = 1;
 			if (input <= 1)
 				return 1;
 
