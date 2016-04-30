@@ -41,71 +41,31 @@ namespace Demo.ProjectEuler.Tests._0003
 		}
 
 		[Theory]
-		[InlineData(2, new[] {2})]
-		[InlineData(3, new[] {3})]
-		[InlineData(4, new[] {2, 2})]
-		[InlineData(5, new[] {5})]
-		[InlineData(6, new[] {2, 3})]
-		[InlineData(7, new[] {7})]
-		[InlineData(8, new[] {2, 2, 2})]
-		[InlineData(9, new[] {3, 3})]
-		[InlineData(10, new[] {2, 5})]
-		[InlineData(15, new[] { 3, 5 })]
-		[InlineData(31, new[] { 31 })]
-		[InlineData(13195, new[] { 5, 7, 13, 29 })]
-		public void TestGetPrimeFactors(int value, IEnumerable<int> expectedResult)
+		[InlineData(2, new double [] {2})]
+		[InlineData(3, new double[] {3})]
+		[InlineData(4, new double[] {2, 2})]
+		[InlineData(5, new double[] {5})]
+		[InlineData(6, new double[] {2, 3})]
+		[InlineData(7, new double[] {7})]
+		[InlineData(8, new double[] {2, 2, 2})]
+		[InlineData(9, new double[] {3, 3})]
+		[InlineData(10, new double[] {2, 5})]
+		[InlineData(15, new double[] { 3, 5 })]
+		[InlineData(31, new double[] { 31 })]
+		[InlineData(13195, new double[] { 5, 7, 13, 29 })]
+		public void TestGetPrimeFactors(double value, IEnumerable<double> expectedResult)
 		{
 			var sut = new LargestPrimeFactor();
 
-			List<int> actualResult = sut.GetPrimeFactors(value);
+			List<double> actualResult = sut.GetPrimeFactors(value);
 
 			Assert.True(actualResult.SequenceEqual(expectedResult));
 		}
-	}
 
-	public class LargestPrimeFactor
-	{
-		public List<int> GetPrimeFactors(int value)
-		{
-			var result = new List<int>();
-
-			if (IsPrimeNumber(value))
-			{
-				result.Add(value);
-				return result;
-			}
-
-			for (int i = 2; i < value; i++)
-			{
-				if (IsPrimeNumber(i))
-				{
-					int remainder;
-					int dividedValue = value;
-					do
-					{
-						remainder = dividedValue % i;
-						dividedValue = dividedValue / i;
-						if (remainder == 0)
-						{
-							result.Add(i);
-						}
-					} while (remainder % i == 0);
-				}
-			}
-
-			return result;
-		}
-
-		public bool IsPrimeNumber(int value)
-		{
-			if (value <= 1) return false;	// by definion of Prime Number
-
-			for (int i = 2; i < value; i++)
-			{
-				if (value % i == 0) return false;
-			}
-
-			return true;
-		}
+		//[Fact]
+		//public void ShowResult()
+		//{
+		//	double testValue = 600851475143;
+		//}
 	}
 }
