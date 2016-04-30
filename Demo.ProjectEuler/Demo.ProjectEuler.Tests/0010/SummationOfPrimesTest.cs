@@ -49,6 +49,14 @@ namespace Demo.ProjectEuler.Tests._0010
 
 			Assert.Equal(expectedResult, actualResult);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			double result = _sut.GetPrimeSumFor(2000000);
+
+			_output.WriteLine("Prime Number Sum below 2 million: {0}", result);
+		}
 	}
 
 	public class SummationOfPrimes : Prime
