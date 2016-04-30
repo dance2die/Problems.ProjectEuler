@@ -40,24 +40,28 @@ namespace Demo.ProjectEuler.Tests._0003
 			Assert.Equal(expectedResult, actualResult);
 		}
 
-		//[Theory]
-		//[InlineData(13195, new[] { 5, 7, 13, 29})]
-		//public void TestGetPrimeFactors(int value, IEnumerable<int> expectedResult)
-		//{
-		//	var sut = new LargestPrimeFactor();
+		[Theory]
+		[InlineData(13195, new[] { 5, 7, 13, 29 })]
+		public void TestGetPrimeFactors(int value, IEnumerable<int> expectedResult)
+		{
+			var sut = new LargestPrimeFactor();
 
-		//	HashSet<int> actualResult = sut.GetPrimeFactors(value);
+			HashSet<int> actualResult = sut.GetPrimeFactors(value);
 
-		//	Assert.True(actualResult.SetEquals(expectedResult));
-		//}
+			Assert.True(actualResult.SetEquals(expectedResult));
+		}
 	}
 
 	public class LargestPrimeFactor
 	{
-		//public HashSet<int> GetPrimeFactors(int value)
-		//{
-			
-		//}
+		public HashSet<int> GetPrimeFactors(int value)
+		{
+			HashSet<int> result = new HashSet<int>();
+
+
+			return result;
+		}
+
 		public bool IsPrimeNumber(int value)
 		{
 			if (value <= 1) return false;	// by definion of Prime Number
