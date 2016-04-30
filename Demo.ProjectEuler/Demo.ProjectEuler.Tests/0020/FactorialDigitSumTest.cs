@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Xunit;
@@ -76,36 +74,6 @@ namespace Demo.ProjectEuler.Tests._0020
 			var result = _sut.SumFactorialDigits(100);
 
 			_output.WriteLine("Factorial digit sum for 100!: {0}", result);
-		}
-	}
-
-	public class FactorialDigitSum
-	{
-		public int SumFactorialDigits(int input)
-		{
-			char[] digitCharacters = GetFactorialCharArray(input);
-			int[] digits = digitCharacters.Select(c => Convert.ToInt32(c.ToString())).ToArray();
-			return digits.Sum();
-		}
-
-		public char[] GetFactorialCharArray(int input)
-		{
-			var factorialText = GetFactorial(input).ToString(CultureInfo.InvariantCulture);
-			return factorialText.ToCharArray(0, factorialText.Length);
-		}
-
-		public BigInteger GetFactorial(int input)
-		{
-			BigInteger result = 1;
-			if (input <= 1)
-				return 1;
-
-			for (int i = input; i > 0; i--)
-			{
-				result *= i;
-			}
-
-			return result;
 		}
 	}
 }
