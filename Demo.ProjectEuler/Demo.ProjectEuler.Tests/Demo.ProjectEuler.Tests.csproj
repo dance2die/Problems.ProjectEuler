@@ -73,6 +73,12 @@
     <Content Include="0001\README.txt" />
     <Content Include="0003\README.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.ProjectEuler.Core\Demo.ProjectEuler.Core.csproj">
+      <Project>{a69b498d-3f9d-46b0-9704-5c4b799a653c}</Project>
+      <Name>Demo.ProjectEuler.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

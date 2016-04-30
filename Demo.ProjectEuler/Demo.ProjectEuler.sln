@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DDFF1EFA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ProjectEuler.Tests", "Demo.ProjectEuler.Tests\Demo.ProjectEuler.Tests.csproj", "{0350836E-8744-4393-AB2D-0139EC4529B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ProjectEuler.Core", "Demo.ProjectEuler.Core\Demo.ProjectEuler.Core.csproj", "{A69B498D-3F9D-46B0-9704-5C4B799A653C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{91FE2167-C4F9-418B-9150-BD5AEC974AC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +21,16 @@ Global
 		{0350836E-8744-4393-AB2D-0139EC4529B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0350836E-8744-4393-AB2D-0139EC4529B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0350836E-8744-4393-AB2D-0139EC4529B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0350836E-8744-4393-AB2D-0139EC4529B5} = {DDFF1EFA-52C7-4394-BA4F-BE1954B395B2}
+		{A69B498D-3F9D-46B0-9704-5C4B799A653C} = {91FE2167-C4F9-418B-9150-BD5AEC974AC4}
 	EndGlobalSection
 EndGlobal
