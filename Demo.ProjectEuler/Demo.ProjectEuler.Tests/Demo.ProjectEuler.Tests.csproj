@@ -63,6 +63,7 @@
     <Compile Include="0001\MultiplesOf3And5Test.cs" />
     <Compile Include="0003\LargestPrimeFactor.cs" />
     <Compile Include="0003\LargestPrimeFactorTest.cs" />
+    <Compile Include="0010\SummationOfPrimes.cs" />
     <Compile Include="0010\SummationOfPrimesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
