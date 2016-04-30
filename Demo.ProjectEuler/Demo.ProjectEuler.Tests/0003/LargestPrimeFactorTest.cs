@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,7 @@ namespace Demo.ProjectEuler.Tests._0003
 		[InlineData(10, new double[] {2, 5})]
 		[InlineData(15, new double[] { 3, 5 })]
 		[InlineData(31, new double[] { 31 })]
+		[InlineData(100, new double[] { 2, 2, 5, 5 })]
 		[InlineData(13195, new double[] { 5, 7, 13, 29 })]
 		public void TestGetPrimeFactors(double value, IEnumerable<double> expectedResult)
 		{
@@ -86,15 +88,20 @@ namespace Demo.ProjectEuler.Tests._0003
 			Assert.True(actualResult.SequenceEqual(expectedResult));
 		}
 
-		//[Fact]
-		//public void ShowResult()
-		//{
-		//	var sut = new LargestPrimeFactor();
+		[Fact]
+		public void ShowResult()
+		{
+			var sut = new LargestPrimeFactor();
 
-		//	const double testValue = 600851475143;
-		//	List<double> actualResult = sut.GetPrimeFactors(testValue);
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 
-		//	_output.WriteLine("LargestPrimeFactor for {0}: {1}", testValue, actualResult);
-		//}
+			const double testValue = 600851475143;
+			List<double> actualResult = sut.GetPrimeFactors(testValue);
+			stopwatch.Stop();
+
+			_output.WriteLine("Time spent on calculation: {0}", stopwatch.Elapsed);
+			_output.WriteLine("LargestPrimeFactor for {0}: {1}", testValue, actualResult);
+		}
 	}
 }

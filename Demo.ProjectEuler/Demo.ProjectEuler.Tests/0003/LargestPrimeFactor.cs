@@ -17,23 +17,38 @@ namespace Demo.ProjectEuler.Tests._0003
 
 			List<double> primeNumbers = GetPrimeNumbersUnder(value);
 
-			for (int i = 2; i < value; i++)
+			foreach (var primeNumber in primeNumbers)
 			{
-				if (IsPrimeNumber(i))
+				int remainder;
+				double dividedValue = value;
+				do
 				{
-					int remainder;
-					double dividedValue = value;
-					do
+					remainder = (int)(dividedValue % primeNumber);
+					dividedValue = dividedValue / primeNumber;
+					if (remainder == 0)
 					{
-						remainder = (int) (dividedValue % i);
-						dividedValue = dividedValue / i;
-						if (remainder == 0)
-						{
-							result.Add(i);
-						}
-					} while (remainder % i == 0);
-				}
+						result.Add(primeNumber);
+					}
+				} while (remainder == 0);
 			}
+
+			//for (int i = 2; i < primeNumbers; i++)
+			//{
+			//	if (IsPrimeNumber(i))
+			//	{
+			//		int remainder;
+			//		double dividedValue = value;
+			//		do
+			//		{
+			//			remainder = (int) (dividedValue % i);
+			//			dividedValue = dividedValue / i;
+			//			if (remainder == 0)
+			//			{
+			//				result.Add(i);
+			//			}
+			//		} while (remainder % i == 0);
+			//	}
+			//}
 
 			return result;
 		}
@@ -41,7 +56,7 @@ namespace Demo.ProjectEuler.Tests._0003
 		public List<double> GetPrimeNumbersUnder(double value)
 		{
 			var result = new List<double>();
-
+			
 			for (int i = 2; i <= value; i++)
 			{
 				if (IsPrimeNumber(i))
@@ -55,9 +70,10 @@ namespace Demo.ProjectEuler.Tests._0003
 
 		public bool IsPrimeNumber(double value)
 		{
-			if (value <= 1) return false;	// by definion of Prime Number
+			if (value <= 1) return false;   // by definion of Prime Number
 
-			for (int i = 2; i < value; i++)
+			double boundary = Math.Floor(Math.Sqrt(value));
+			for (int i = 2; i <= boundary; i++)
 			{
 				if (Math.Abs(value % i) < 0.001) return false;
 			}
