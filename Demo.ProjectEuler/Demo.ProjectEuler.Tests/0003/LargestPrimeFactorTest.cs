@@ -50,9 +50,9 @@ namespace Demo.ProjectEuler.Tests._0003
 		[InlineData(8, new[] {2, 2, 2})]
 		[InlineData(9, new[] {3, 3})]
 		[InlineData(10, new[] {2, 5})]
-		//[InlineData(15, new[] { 3, 5 })]
-		//[InlineData(31, new[] { 31 })]
-		//[InlineData(13195, new[] { 5, 7, 13, 29 })]
+		[InlineData(15, new[] { 3, 5 })]
+		[InlineData(31, new[] { 31 })]
+		[InlineData(13195, new[] { 5, 7, 13, 29 })]
 		public void TestGetPrimeFactors(int value, IEnumerable<int> expectedResult)
 		{
 			var sut = new LargestPrimeFactor();
@@ -75,7 +75,23 @@ namespace Demo.ProjectEuler.Tests._0003
 				return result;
 			}
 
-
+			for (int i = 2; i < value; i++)
+			{
+				if (IsPrimeNumber(i))
+				{
+					int remainder;
+					int dividedValue = value;
+					do
+					{
+						remainder = dividedValue % i;
+						dividedValue = dividedValue / i;
+						if (remainder == 0)
+						{
+							result.Add(i);
+						}
+					} while (remainder % i == 0);
+				}
+			}
 
 			return result;
 		}
