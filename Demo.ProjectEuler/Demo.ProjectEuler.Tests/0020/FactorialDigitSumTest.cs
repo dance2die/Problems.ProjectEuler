@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Xunit;
@@ -35,6 +36,7 @@ namespace Demo.ProjectEuler.Tests._0020
 		}
 
 		[Theory]
+		[InlineData(-100, new[] {'1'})]
 		[InlineData(0, new[] {'1'})]
 		[InlineData(1, new[] {'1'})]
 		[InlineData(2, new[] {'2'})]
@@ -49,10 +51,34 @@ namespace Demo.ProjectEuler.Tests._0020
 
 			Assert.True(actualResult.SequenceEqual(expectedResult));
 		}
+
+		[Theory]
+		[InlineData(-100, 1)]
+		[InlineData(0, 1)]
+		[InlineData(1, 1)]
+		[InlineData(2, 2)]
+		[InlineData(3, 6)]
+		[InlineData(4, 6)]
+		[InlineData(5, 3)]
+		[InlineData(6, 9)]
+		[InlineData(10, 27)]
+		public void SumEachDigit(int input, int expectedResult)
+		{
+			var actualResult = _sut.SumFactorialDigits(input);
+
+			Assert.Equal(expectedResult, actualResult);
+		}
 	}
 
 	public class FactorialDigitSum
 	{
+		public int SumFactorialDigits(int input)
+		{
+			char[] digitCharacters = GetFactorialCharArray(input);
+			int[] digits = digitCharacters.Select(c => Convert.ToInt32(c.ToString())).ToArray();
+			return digits.Sum();
+		}
+
 		public char[] GetFactorialCharArray(int input)
 		{
 			var factorialText = GetFactorial(input).ToString(CultureInfo.InvariantCulture);
