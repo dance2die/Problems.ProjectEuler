@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="0001\MultiplesOf3And5.cs" />
     <Compile Include="0001\MultiplesOf3And5Test.cs" />
+    <Compile Include="0003\LargestPrimeFactorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="0001\README.txt" />
+    <Content Include="0003\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
