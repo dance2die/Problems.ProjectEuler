@@ -41,30 +41,30 @@ namespace Demo.ProjectEuler.Tests._0003
 			Assert.Equal(expectedResult, actualResult);
 		}
 
-		[Theory]
-		[InlineData(0, new double[] {})]
-		[InlineData(1, new double[] {})]
-		[InlineData(2, new double[] {2})]
-		[InlineData(3, new double[] {2})]
-		[InlineData(4, new double[] {2})]
-		[InlineData(5, new double[] {2})]
-		[InlineData(6, new double[] {2, 3})]
-		[InlineData(7, new double[] {2, 3})]
-		[InlineData(8, new double[] { 2, 3 })]
-		[InlineData(9, new double[] { 2, 3})]
-		[InlineData(10, new double[] { 2, 3, 5})]
-		[InlineData(11, new double[] { 2, 3, 5})]
-		[InlineData(13, new double[] { 2, 3, 5})]
-		[InlineData(17, new double[] { 2, 3, 5, 7})]
-		[InlineData(22, new double[] { 2, 3, 5, 7, 11})]
-		public void TestHalfOfPrimeNumbers(int value, IEnumerable<double> expectedResult)
-		{
-			var sut = new LargestPrimeFactor();
+		//[Theory]
+		//[InlineData(0, new double[] {})]
+		//[InlineData(1, new double[] {})]
+		//[InlineData(2, new double[] {2})]
+		//[InlineData(3, new double[] {2})]
+		//[InlineData(4, new double[] {2})]
+		//[InlineData(5, new double[] {2})]
+		//[InlineData(6, new double[] {2, 3})]
+		//[InlineData(7, new double[] {2, 3})]
+		//[InlineData(8, new double[] { 2, 3 })]
+		//[InlineData(9, new double[] { 2, 3})]
+		//[InlineData(10, new double[] { 2, 3, 5})]
+		//[InlineData(11, new double[] { 2, 3, 5})]
+		//[InlineData(13, new double[] { 2, 3, 5})]
+		//[InlineData(17, new double[] { 2, 3, 5, 7})]
+		//[InlineData(22, new double[] { 2, 3, 5, 7, 11})]
+		//public void TestHalfOfPrimeNumbers(int value, IEnumerable<double> expectedResult)
+		//{
+		//	var sut = new LargestPrimeFactor();
 
-			List<double> actualResult = sut.GetUsablePrimeNumbersUnder(value);
+		//	List<double> actualResult = sut.GetUsablePrimeNumbersUnder(value);
 
-			Assert.True(actualResult.SequenceEqual(expectedResult));
-		}
+		//	Assert.True(actualResult.SequenceEqual(expectedResult));
+		//}
 
 		[Theory]
 		[InlineData(2, new double [] {2})]
@@ -102,7 +102,7 @@ namespace Demo.ProjectEuler.Tests._0003
 			stopwatch.Stop();
 
 			_output.WriteLine("Time spent on calculation: {0}", stopwatch.Elapsed);
-			_output.WriteLine("LargestPrimeFactor for {0}: {1}", testValue, actualResult);
+			_output.WriteLine("LargestPrimeFactor for {0}: {1}", testValue, actualResult[actualResult.Count - 1]);
 		}
 	}
 }
