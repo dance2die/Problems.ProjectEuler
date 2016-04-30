@@ -17,19 +17,20 @@ namespace Demo.ProjectEuler.Tests._0003
 
 			List<double> primeNumbers = GetPrimeNumbersUnder(value);
 
+			double dividedValue = value;
 			foreach (var primeNumber in primeNumbers)
 			{
 				int remainder;
-				double dividedValue = value;
 				do
 				{
 					remainder = (int)(dividedValue % primeNumber);
-					dividedValue = dividedValue / primeNumber;
+					double tempDividedValue = dividedValue / primeNumber;
 					if (remainder == 0)
 					{
 						result.Add(primeNumber);
+						dividedValue = tempDividedValue;
 					}
-				} while (remainder == 0);
+				} while (remainder == 0 && dividedValue > 1);
 			}
 
 			//for (int i = 2; i < primeNumbers; i++)
