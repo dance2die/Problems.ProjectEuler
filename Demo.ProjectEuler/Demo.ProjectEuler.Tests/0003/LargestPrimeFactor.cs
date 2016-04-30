@@ -31,7 +31,32 @@ namespace Demo.ProjectEuler.Tests._0003
 						dividedValue = tempDividedValue;
 					}
 				} while (remainder == 0 && dividedValue > 1);
+
+				if (dividedValue <= 1)
+					break;
 			}
+
+			//double dividedValue = value;
+			//for (int i = 2; i < value / 2; i++)
+			//{
+			//	if (IsPrimeNumber(i))
+			//	{
+			//		int remainder;
+			//		do
+			//		{
+			//			remainder = (int)(dividedValue % i);
+			//			double tempDividedValue = dividedValue / i;
+			//			if (remainder == 0)
+			//			{
+			//				result.Add(i);
+			//				dividedValue = tempDividedValue;
+			//			}
+			//		} while (remainder == 0 && dividedValue > 1);
+			//	}
+
+			//	if (dividedValue <= 1)
+			//		break;
+			//}
 
 			//for (int i = 2; i < primeNumbers; i++)
 			//{
