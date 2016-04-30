@@ -48,7 +48,9 @@ namespace Demo.ProjectEuler.Tests._0001
 		[Fact]
 		public void ShowResultBelow1000()
 		{
-			
+			var sut = new MultiplesOf3And5();
+			var actualResult = sut.CalculateBelow(1000);
+			_output.WriteLine(string.Format("Result Under 1000: {0}", actualResult));
 		}
 	}
 }
