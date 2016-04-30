@@ -28,9 +28,9 @@ namespace Demo.ProjectEuler.Tests._0020
 		[InlineData(5, 120)]
 		[InlineData(6, 720)]
 		[InlineData(10, 3628800)]
-		public void TestFactorials(int input, float expectedResult)
+		public void TestFactorials(int input, double expectedResult)
 		{
-			float actualResult = _sut.GetFactorial(input);
+			double actualResult = _sut.GetFactorial(input);
 
 			Assert.Equal(expectedResult, actualResult);
 		}
@@ -68,6 +68,14 @@ namespace Demo.ProjectEuler.Tests._0020
 
 			Assert.Equal(expectedResult, actualResult);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			var result = _sut.SumFactorialDigits(100);
+
+			_output.WriteLine("Factorial digit sum for 100!: {0}", result);
+		}
 	}
 
 	public class FactorialDigitSum
@@ -85,9 +93,9 @@ namespace Demo.ProjectEuler.Tests._0020
 			return factorialText.ToCharArray(0, factorialText.Length);
 		}
 
-		public float GetFactorial(int input)
+		public double GetFactorial(int input)
 		{
-			float result = 1;
+			double result = 1;
 			if (input <= 1)
 				return 1;
 
