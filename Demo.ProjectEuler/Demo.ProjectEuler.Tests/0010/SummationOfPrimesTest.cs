@@ -31,16 +31,33 @@ namespace Demo.ProjectEuler.Tests._0010
 		[InlineData(9, new double[] { 2, 3, 5, 7 })]
 		[InlineData(10, new double[] { 2, 3, 5, 7 })]
 		[InlineData(15, new double[] { 2, 3, 5, 7, 11, 13 })]
-		public void TestGetAllPrimesUnder(int value, IEnumerable<double> expectedResult)
+		public void TestGetAllPrimesUnder(double value, IEnumerable<double> expectedResult)
 		{
 			List<double> actualResult = _sut.GetPrimeNumbersUnder(value);
 
 			Assert.True(actualResult.SequenceEqual(expectedResult));
 		}
+
+		[Theory]
+		[InlineData(-1, 0)]
+		[InlineData(0, 0)]
+		[InlineData(1, 0)]
+		[InlineData(10, 17)]
+		public void TestSumPrimesUnder(double value, double expectedResult)
+		{
+			double actualResult = _sut.GetPrimeSumFor(value);
+
+			Assert.Equal(expectedResult, actualResult);
+		}
 	}
 
 	public class SummationOfPrimes : Prime
 	{
+		public double GetPrimeSumFor(double value)
+		{
+			return GetPrimeNumbersUnder(value).Sum();
+		}
+
 		public List<double> GetPrimeNumbersUnder(double value)
 		{
 			var result = new List<double>();
