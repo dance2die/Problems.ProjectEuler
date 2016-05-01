@@ -61,8 +61,17 @@ namespace Demo.ProjectEuler.Tests._0030
 
 			var expectedValueList = expectedValues as IList<int> ?? expectedValues.ToList();
 			var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
+
 			Assert.Equal(expectedValueList.Count, actualValueList.Count);
 			Assert.True(expectedValueList.SequenceEqual(actualValueList));
+			const int expectedValue = 19316;
+			Assert.Equal(expectedValue, actualValueList.Sum());
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			//IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
 		}
 	}
 
