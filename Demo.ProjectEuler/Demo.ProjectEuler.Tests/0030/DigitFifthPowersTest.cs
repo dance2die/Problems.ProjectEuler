@@ -71,12 +71,47 @@ namespace Demo.ProjectEuler.Tests._0030
 		[Fact]
 		public void ShowResult()
 		{
-			//IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
+			IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
+			var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
+
+			foreach (int actualValue in actualValueList)
+			{
+				Console.WriteLine("actualValue: {0}", actualValue);
+			}
+
+			_output.WriteLine("Sum of all 5th Powered Numbers: {0}", actualValueList.Sum());
 		}
 	}
 
 	public class DigitFifthPowers
 	{
+		public IEnumerable<int> GetDigitFifthPoweredNumbers()
+		{
+			const int power = 5;
+			List<int> colList = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			var query = (
+				from c1 in colList
+				from c2 in colList
+				from c3 in colList
+				from c4 in colList
+				from c5 in colList
+				select new { c1, c2, c3, c4, c5 });
+
+			foreach (var val in query)
+			{
+				Console.WriteLine("{0},{1},{2},{3},{4}", val.c1, val.c2, val.c3, val.c4, val.c5);
+
+				List<int> tempResult = new List<int> { val.c1, val.c2, val.c3, val.c4, val.c5 };
+				int poweredNumber = GetPoweredNumber(tempResult, power);
+				int combinedValue = CombineToValue(tempResult);
+				if (poweredNumber == combinedValue && IsDigitCountSameAsPower(poweredNumber, power))
+					yield return combinedValue;
+			}
+
+			yield break;
+		}
+
 		public IEnumerable<int> GetDigitFourthPoweredNumbers()
 		{
 			const int power = 4;
