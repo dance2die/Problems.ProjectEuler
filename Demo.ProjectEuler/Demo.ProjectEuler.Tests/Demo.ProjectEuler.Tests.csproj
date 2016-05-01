@@ -68,6 +68,7 @@
     <Compile Include="0010\SummationOfPrimesTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
+    <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +78,7 @@
     <Content Include="0001\README.txt" />
     <Content Include="0003\README.txt" />
     <Content Include="0020\README.txt" />
+    <Content Include="0030\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.ProjectEuler.Core\Demo.ProjectEuler.Core.csproj">
