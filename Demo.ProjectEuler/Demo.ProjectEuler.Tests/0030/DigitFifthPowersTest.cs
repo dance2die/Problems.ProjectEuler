@@ -68,19 +68,19 @@ namespace Demo.ProjectEuler.Tests._0030
 			Assert.Equal(expectedValue, actualValueList.Sum());
 		}
 
-		//[Fact]
-		//public void ShowResult()
-		//{
-		//	IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
-		//	var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
+		[Fact]
+		public void ShowResult()
+		{
+			IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
+			var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
 
-		//	foreach (int actualValue in actualValueList)
-		//	{
-		//		_output.WriteLine("actualValue: {0}", actualValue);
-		//	}
+			foreach (int actualValue in actualValueList)
+			{
+				_output.WriteLine("actualValue: {0}", actualValue);
+			}
 
-		//	_output.WriteLine("Sum of all 5th Powered Numbers: {0}", actualValueList.Sum());
-		//}
+			_output.WriteLine("Sum of all 5th Powered Numbers: {0}", actualValueList.Sum());
+		}
 
 		[Fact]
 		public void ShowResult2()
@@ -133,13 +133,14 @@ namespace Demo.ProjectEuler.Tests._0030
 				from c3 in colList
 				from c4 in colList
 				from c5 in colList
-				select new { c1, c2, c3, c4, c5 });
+				from c6 in colList
+				select new { c1, c2, c3, c4, c5, c6 });
 
 			foreach (var val in query)
 			{
-				Console.WriteLine("{0},{1},{2},{3},{4}", val.c1, val.c2, val.c3, val.c4, val.c5);
+				//Console.WriteLine("{0},{1},{2},{3},{4}", val.c1, val.c2, val.c3, val.c4, val.c5);
 
-				List<int> tempResult = new List<int> { val.c1, val.c2, val.c3, val.c4, val.c5 };
+				List<int> tempResult = new List<int> { val.c1, val.c2, val.c3, val.c4, val.c5, val.c6 };
 				int poweredNumber = GetPoweredNumber(tempResult, power);
 				int combinedValue = CombineToValue(tempResult);
 				if (poweredNumber == combinedValue && IsDigitCountSameAsPower(poweredNumber, power))
@@ -181,7 +182,7 @@ namespace Demo.ProjectEuler.Tests._0030
 		private bool IsDigitCountSameAsPower(int value, int power)
 		{
 			var length = value.ToString(CultureInfo.InvariantCulture).Length;
-			return 1 < length && length <= power;
+			return 1 < length;
 		}
 
 
