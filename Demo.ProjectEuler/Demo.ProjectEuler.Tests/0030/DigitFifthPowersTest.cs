@@ -54,10 +54,10 @@ namespace Demo.ProjectEuler.Tests._0030
 		}
 
 		[Theory]
-		[InlineData(4, new[] { 1634, 8208, 9474 })]
-		public void TestGetFourthPowerNumbers(int power, IEnumerable<int> expectedValues)
+		[InlineData(new[] { 1634, 8208, 9474 })]
+		public void TestGetFourthPowerNumbers(IEnumerable<int> expectedValues)
 		{
-			IEnumerable<int> actualValues = _sut.GetDigitPoweredNumbers(power);
+			IEnumerable<int> actualValues = _sut.GetDigitFourthPoweredNumbers();
 
 			var expectedValueList = expectedValues as IList<int> ?? expectedValues.ToList();
 			var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
@@ -68,87 +68,40 @@ namespace Demo.ProjectEuler.Tests._0030
 
 	public class DigitFifthPowers
 	{
-		public IEnumerable<int> GetDigitPoweredNumbers(int power)
+		public IEnumerable<int> GetDigitFourthPoweredNumbers()
 		{
-			int rowCount = (int)Math.Pow(10, power) - 1;
-			const int valueCount = 10;
-			int[,,] values = new int[rowCount, power, valueCount];
+			const int power = 4;
+			List<int> colList = new List<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-			for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
+			var query = (
+				from c1 in colList
+				from c2 in colList
+				from c3 in colList
+				from c4 in colList
+				select new {c1, c2, c3, c4});
+
+			foreach (var val in query)
 			{
-				for (int valIndex = 0; valIndex < valueCount; valIndex++)
-				{
-					List<int> tempResult = new List<int>(power);
-					for (int colIndex = 0; colIndex < power; colIndex++)
-					{
-						values[rowIndex, colIndex, valIndex] = valIndex;
+				Console.WriteLine("{0},{1},{2},{3}", val.c1, val.c2, val.c3, val.c4);
 
-						//tempResult.Add(valIndex);
-					}
-
-					//int poweredNumber = GetPoweredNumber(tempResult, power);
-					//int combinedValue = CombineToValue(tempResult);
-					//if (poweredNumber == combinedValue)
-					//	yield return combinedValue;
-				}
+				List<int> tempResult = new List<int> { val.c1, val.c2, val.c3, val.c4 };
+				int poweredNumber = GetPoweredNumber(tempResult, power);
+				int combinedValue = CombineToValue(tempResult);
+				if (poweredNumber == combinedValue && IsDigitCountSameAsPower(poweredNumber, power))
+					yield return combinedValue;
 			}
-
-			//Dictionary<int, IEnumerable<int>> map = new Dictionary<int, IEnumerable<int>>(rowCount);
-			//for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
-			//{
-			//	int[] mapValues = new int[power];
-			//	for (int powerIndex = 0; powerIndex < power; powerIndex++)
-			//	{
-
-			//		map.Add(rowIndex, mapValues);
-			//	}
-			//}
-
-			//var result = Permutations(Enumerable.Range(0, 4).ToArray());
-
 
 			yield break;
 		}
 
-		//// http://stackoverflow.com/a/13022090/4035
-		//public static IEnumerable<T[]> Permutations<T>(T[] values, int fromInd = 0)
-		//{
-		//	if (fromInd + 1 == values.Length)
-		//		yield return values;
-		//	else
-		//	{
-		//		foreach (var v in Permutations(values, fromInd + 1))
-		//			yield return v;
-
-		//		for (var i = fromInd + 1; i < values.Length; i++)
-		//		{
-		//			SwapValues(values, fromInd, i);
-		//			foreach (var v in Permutations(values, fromInd + 1))
-		//				yield return v;
-		//			SwapValues(values, fromInd, i);
-		//		}
-		//	}
-		//}
-
-		//private static void SwapValues<T>(T[] values, int pos1, int pos2)
-		//{
-		//	if (pos1 != pos2)
-		//	{
-		//		T tmp = values[pos1];
-		//		values[pos1] = values[pos2];
-		//		values[pos2] = tmp;
-		//	}
-		//}
-
-		//// http://stackoverflow.com/a/10630026/4035
-		//public IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> list, int length)
-		//{
-		//	if (length == 1)
-		//		return list.Select(t => new [] { t });
-
-		//	return GetPermutations(list, length - 1)
-		//		.SelectMany(t => list.Where(e => !t.Contains(e)), (t1, t2) => t1.Concat(new [] { t2 }));
-		//}
+		/// <summary>
+		/// As 1 = 1^4 is not a sum it is not included
+		/// </summary>
+		private bool IsDigitCountSameAsPower(int value, int power)
+		{
+			return value.ToString(CultureInfo.InvariantCulture).Length == power;
+		}
+		
 
 		/// <summary>
 		/// Given a list of values, convert each value to a character and then combine into string, then convert to integer.
