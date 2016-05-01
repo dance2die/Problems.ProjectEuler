@@ -38,18 +38,18 @@ namespace Demo.ProjectEuler.Tests._0030
 			Assert.Throws<ArgumentException>(() => _sut.CombineToValue(badInputs));
 		}
 
-		//[Theory]
-		//[InlineData(new[] { 8, 2 }, 82)]
-		//[InlineData(new[] { 1, 6, 3 }, 163)]
-		//[InlineData(new[] { 1, 6, 3, 4 }, 1634)]
-		//[InlineData(new[] { 9, 4, 7, 4 }, 9474)]
-		//[InlineData(new[] { 9, 4, 7, 4, 5 }, 94745)]
-		//public void TestConvertEnumValuesToStringThenNumber(IEnumerable<int> input, int expectedValue)
-		//{
-		//	int actualValue = _sut.CombineToValue(input);
+		[Theory]
+		[InlineData(new[] { 8, 2 }, 82)]
+		[InlineData(new[] { 1, 6, 3 }, 163)]
+		[InlineData(new[] { 1, 6, 3, 4 }, 1634)]
+		[InlineData(new[] { 9, 4, 7, 4 }, 9474)]
+		[InlineData(new[] { 9, 4, 7, 4, 5 }, 94745)]
+		public void TestConvertEnumValuesToStringThenNumber(IEnumerable<int> input, int expectedValue)
+		{
+			int actualValue = _sut.CombineToValue(input);
 
-		//	Assert.Equal(expectedValue, actualValue);
-		//}
+			Assert.Equal(expectedValue, actualValue);
+		}
 
 		//[Theory]
 		//[InlineData(4, new[] { 1634, 8208, 9474 })]
