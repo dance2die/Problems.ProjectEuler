@@ -68,23 +68,60 @@ namespace Demo.ProjectEuler.Tests._0030
 			Assert.Equal(expectedValue, actualValueList.Sum());
 		}
 
+		//[Fact]
+		//public void ShowResult()
+		//{
+		//	IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
+		//	var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
+
+		//	foreach (int actualValue in actualValueList)
+		//	{
+		//		_output.WriteLine("actualValue: {0}", actualValue);
+		//	}
+
+		//	_output.WriteLine("Sum of all 5th Powered Numbers: {0}", actualValueList.Sum());
+		//}
+
 		[Fact]
-		public void ShowResult()
+		public void ShowResult2()
 		{
-			IEnumerable<int> actualValues = _sut.GetDigitFifthPoweredNumbers();
-			var actualValueList = actualValues as IList<int> ?? actualValues.ToList();
+			var actualValue = _sut.GetDigitFifthPoweredNumberSum();
 
-			foreach (int actualValue in actualValueList)
-			{
-				Console.WriteLine("actualValue: {0}", actualValue);
-			}
-
-			_output.WriteLine("Sum of all 5th Powered Numbers: {0}", actualValueList.Sum());
+			_output.WriteLine("Sum of all 5th Powered Numbers: {0}", actualValue);
 		}
 	}
 
 	public class DigitFifthPowers
 	{
+		/// <summary>
+		/// Converted solution in https://duncan99.wordpress.com/2009/01/31/project-euler-problem-30/ to C#
+		/// </summary>
+		/// <returns></returns>
+		public int GetDigitFifthPoweredNumberSum()
+		{
+			List<int> powers = new List<int>();
+
+			for (int i = 2; i <= 354294; i++)
+			{
+				int total = 0;
+				foreach (char j in i.ToString())
+				{
+					total += (int) Math.Pow(Convert.ToInt32(j.ToString()), 5);
+				}
+
+				if (total == i)
+				{
+					powers.Add(i);
+				}
+			}
+
+			int grandTotal = powers.Sum();
+
+			Console.WriteLine("Powers:{0}", powers);
+
+			return grandTotal;
+		}
+
 		public IEnumerable<int> GetDigitFifthPoweredNumbers()
 		{
 			const int power = 5;
@@ -143,9 +180,10 @@ namespace Demo.ProjectEuler.Tests._0030
 		/// </summary>
 		private bool IsDigitCountSameAsPower(int value, int power)
 		{
-			return value.ToString(CultureInfo.InvariantCulture).Length == power;
+			var length = value.ToString(CultureInfo.InvariantCulture).Length;
+			return 1 < length && length <= power;
 		}
-		
+
 
 		/// <summary>
 		/// Given a list of values, convert each value to a character and then combine into string, then convert to integer.
