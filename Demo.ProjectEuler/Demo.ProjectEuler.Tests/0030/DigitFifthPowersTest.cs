@@ -28,12 +28,14 @@ namespace Demo.ProjectEuler.Tests._0030
 			Assert.Equal(expectedValue, actualValue);
 		}
 
-		[Fact]
-		public void ThrowExceptionIfCombinedValueInputContainsValueBiggerThan10()
+		[Theory]
+		[InlineData(-1)]
+		[InlineData(11)]
+		public void ThrowExceptionIfCombinedValueInputContainsValueBiggerThan10(int badInput)
 		{
-			List<int> badInput = new List<int>(1) {11};
+			List<int> badInputs = new List<int>(1) { badInput };
 
-			Assert.Throws<ArgumentException>(() => _sut.CombineToValue(badInput));
+			Assert.Throws<ArgumentException>(() => _sut.CombineToValue(badInputs));
 		}
 
 		//[Theory]
@@ -75,7 +77,7 @@ namespace Demo.ProjectEuler.Tests._0030
 		{
 			foreach (int value in values)
 			{
-				if (value > 9)
+				if (value < 0 || value > 9)
 					throw new ArgumentException();
 			}
 
