@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -75,13 +77,17 @@ namespace Demo.ProjectEuler.Tests._0030
 		/// </remarks>
 		public int CombineToValue(IEnumerable<int> values)
 		{
+			string valueBuffer = "";
 			foreach (int value in values)
 			{
 				if (value < 0 || value > 9)
 					throw new ArgumentException();
+
+				string valueText = value.ToString(CultureInfo.InvariantCulture);
+				valueBuffer += valueText;
 			}
 
-			return 0;
+			return Convert.ToInt32(valueBuffer);
 		}
 
 		public IEnumerable<int> GetDigitPoweredNumbers(int power)
