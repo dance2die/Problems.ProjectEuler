@@ -1,6 +1,6 @@
 using System;
 
-namespace Demo.ProjectEuler.Tests._0003
+namespace Demo.ProjectEuler.Core
 {
 	public class Prime
 	{
