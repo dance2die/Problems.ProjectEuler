@@ -47,49 +47,51 @@ namespace Demo.ProjectEuler.Tests._0004
 			Assert.Equal(expectedValue, actualValue);
 		}
 
-		[Theory]
-		[InlineData(1, 1, 11)]
-		[InlineData(1, 10, 110)]
-		[InlineData(12, 34, 1234)]
-		public void AppendTwoNumbersAsString(int n1, int n2, int expectedResult)
-		{
-			int actualResult = _sut.AppendTwoNumbersAsString(n1, n2);
-
-			Assert.Equal(expectedResult, actualResult);
-		}
-
-		//[Fact]
-		//public void FindLargestTwoDigitPalindromeNumbers()
+		//[Theory]
+		//[InlineData(1, 1, 11)]
+		//[InlineData(1, 10, 110)]
+		//[InlineData(12, 34, 1234)]
+		//public void AppendTwoNumbersAsString(int n1, int n2, int expectedResult)
 		//{
-		//	int actualValue = _sut.GetLargestTwoDigitPalindrome();
+		//	int actualResult = _sut.AppendTwoNumbersAsString(n1, n2);
 
-		//	Assert.Equal(9009, actualValue);
+		//	Assert.Equal(expectedResult, actualResult);
 		//}
+
+		[Fact]
+		public void FindLargestTwoDigitPalindromeNumbers()
+		{
+			int actualValue = _sut.GetLargestTwoDigitPalindrome();
+
+			Assert.Equal(9009, actualValue);
+		}
 	}
 
 	public class LargestPalindromeProduct
 	{
-		//public int GetLargestTwoDigitPalindrome()
-		//{
-		//	const int largeTwoDigitNumber = 99;
-		//	for (int i = largeTwoDigitNumber; i > 0; i--)
-		//	{
-		//		for (int j = largeTwoDigitNumber; j > 0; j--)
-		//		{
-		//			if (IsPalindrome(i*j))
-		//				return AppendTwoNumbersAsString(i, j);
-		//		}
-		//	}
-		//}
-
-		public int AppendTwoNumbersAsString(int n1, int n2)
+		public int GetLargestTwoDigitPalindrome()
 		{
-			string left = n1.ToString();
-			string right = n2.ToString();
-			return Convert.ToInt32(left + right);
+			const int largeTwoDigitNumber = 99;
+			for (int i = largeTwoDigitNumber; i > 0; i--)
+			{
+				for (int j = largeTwoDigitNumber; j > 0; j--)
+				{
+					var product = i * j;
+					if (IsPalindrome(product))
+						return product;
+				}
+			}
+
+			return -1;
 		}
 
-
+		//public int AppendTwoNumbersAsString(int n1, int n2)
+		//{
+		//	string left = n1.ToString();
+		//	string right = n2.ToString();
+		//	return Convert.ToInt32(left + right);
+		//}
+		
 		public bool IsPalindrome(int input)
 		{
 			if (input.ToString().Length == 1) return true;
