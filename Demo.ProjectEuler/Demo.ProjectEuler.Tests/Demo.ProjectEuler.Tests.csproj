@@ -67,6 +67,7 @@
     <Compile Include="0004\LargestPalindromeProduct.cs" />
     <Compile Include="0004\LargestPalindromeProductTest.cs" />
     <Compile Include="0007\10001st_prime.cs" />
+    <Compile Include="0009\SpecialPythagoreanTripletTest.cs" />
     <Compile Include="0010\SummationOfPrimes.cs" />
     <Compile Include="0010\SummationOfPrimesTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
@@ -90,6 +91,7 @@
       <Name>Demo.ProjectEuler.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
