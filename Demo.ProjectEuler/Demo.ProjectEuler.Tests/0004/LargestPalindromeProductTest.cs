@@ -53,6 +53,15 @@ namespace Demo.ProjectEuler.Tests._0004
 
 			Assert.Equal(9009, actualValue);
 		}
+
+		[Fact]
+		public void FindLargestThreeDigitPalindromeNumbers()
+		{
+			const int power = 3;
+			int actualValue = _sut.GetLargestPalindrome(power);
+
+			_output.WriteLine("Result: {0}", actualValue);
+		}
 	}
 
 	public class LargestPalindromeProduct
@@ -67,14 +76,17 @@ namespace Demo.ProjectEuler.Tests._0004
 				orderby row descending, col descending 
 				select new { row, col });
 
+			int max = 0;
 			foreach (var value in query)
 			{
 				var product = value.row * value.col;
-				if (IsPalindrome(product))
-					return product;
+				if (IsPalindrome(product) && product > max)
+				{
+					max = product;
+				}
 			}
 
-			return -1;
+			return max;
 		}
 
 	
