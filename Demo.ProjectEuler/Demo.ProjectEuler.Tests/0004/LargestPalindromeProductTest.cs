@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
@@ -47,7 +48,8 @@ namespace Demo.ProjectEuler.Tests._0004
 		[Fact]
 		public void FindLargestTwoDigitPalindromeNumbers()
 		{
-			int actualValue = _sut.GetLargestTwoDigitPalindrome();
+			const int power = 2;
+			int actualValue = _sut.GetLargestPalindrome(power);
 
 			Assert.Equal(9009, actualValue);
 		}
@@ -55,9 +57,10 @@ namespace Demo.ProjectEuler.Tests._0004
 
 	public class LargestPalindromeProduct
 	{
-		public int GetLargestTwoDigitPalindrome()
+		public int GetLargestPalindrome(int power)
 		{
-			List<int> twoDigitNumbers = Enumerable.Range(0, 100).Select(x => x++).Reverse().ToList();
+			int limit = (int) Math.Pow(10, power);
+			List<int> twoDigitNumbers = Enumerable.Range(0, limit).Select(x => x++).Reverse().ToList();
 			var query = (
 				from row in twoDigitNumbers
 				from col in twoDigitNumbers
