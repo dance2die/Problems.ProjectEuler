@@ -61,7 +61,8 @@ namespace Demo.ProjectEuler.Tests._0004
 		[Fact]
 		public void FindLargestTwoDigitPalindromeNumbers()
 		{
-			int actualValue = _sut.GetLargestTwoDigitPalindrome();
+			const int power = 2;
+			int actualValue = _sut.GetLargestPalindrome(power);
 
 			Assert.Equal(9009, actualValue);
 		}
@@ -69,12 +70,12 @@ namespace Demo.ProjectEuler.Tests._0004
 
 	public class LargestPalindromeProduct
 	{
-		public int GetLargestTwoDigitPalindrome()
+		public int GetLargestPalindrome(int power)
 		{
-			const int largeTwoDigitNumber = 99;
-			for (int i = largeTwoDigitNumber; i > 0; i--)
+			int largestNumber = (int) Math.Pow(10, power) - 1;
+			for (int i = largestNumber; i > 0; i--)
 			{
-				for (int j = largeTwoDigitNumber; j > 0; j--)
+				for (int j = largestNumber; j > 0; j--)
 				{
 					var product = i * j;
 					if (IsPalindrome(product))
