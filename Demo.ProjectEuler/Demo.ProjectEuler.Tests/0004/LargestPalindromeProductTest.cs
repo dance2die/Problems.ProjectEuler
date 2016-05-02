@@ -48,12 +48,12 @@ namespace Demo.ProjectEuler.Tests._0004
 		}
 
 		[Theory]
-		[InlineData(1, 1, "11")]
-		[InlineData(1, 10, "110")]
-		[InlineData(12, 34, "1234")]
-		public void AppendTwoNumbersAsString(int n1, int n2, string expectedResult)
+		[InlineData(1, 1, 11)]
+		[InlineData(1, 10, 110)]
+		[InlineData(12, 34, 1234)]
+		public void AppendTwoNumbersAsString(int n1, int n2, int expectedResult)
 		{
-			string actualResult = _sut.AppendTwoNumbersAsString(n1, n2);
+			int actualResult = _sut.AppendTwoNumbersAsString(n1, n2);
 
 			Assert.Equal(expectedResult, actualResult);
 		}
@@ -69,13 +69,6 @@ namespace Demo.ProjectEuler.Tests._0004
 
 	public class LargestPalindromeProduct
 	{
-		public string AppendTwoNumbersAsString(int n1, int n2)
-		{
-			string left = n1.ToString();
-			string right = n2.ToString();
-			return left + right;
-		}
-
 		//public int GetLargestTwoDigitPalindrome()
 		//{
 		//	const int largeTwoDigitNumber = 99;
@@ -83,11 +76,18 @@ namespace Demo.ProjectEuler.Tests._0004
 		//	{
 		//		for (int j = largeTwoDigitNumber; j > 0; j--)
 		//		{
-		//			if (IsPalindrome(i * j))
-		//				return 
+		//			if (IsPalindrome(i*j))
+		//				return AppendTwoNumbersAsString(i, j);
 		//		}
 		//	}
 		//}
+
+		public int AppendTwoNumbersAsString(int n1, int n2)
+		{
+			string left = n1.ToString();
+			string right = n2.ToString();
+			return Convert.ToInt32(left + right);
+		}
 
 
 		public bool IsPalindrome(int input)
