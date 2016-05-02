@@ -66,6 +66,7 @@
     <Compile Include="0003\LargestPrimeFactorTest.cs" />
     <Compile Include="0004\LargestPalindromeProduct.cs" />
     <Compile Include="0004\LargestPalindromeProductTest.cs" />
+    <Compile Include="0007\10001st_prime.cs" />
     <Compile Include="0010\SummationOfPrimes.cs" />
     <Compile Include="0010\SummationOfPrimesTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
