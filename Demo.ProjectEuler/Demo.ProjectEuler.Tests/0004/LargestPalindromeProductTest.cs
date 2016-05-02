@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -47,22 +44,10 @@ namespace Demo.ProjectEuler.Tests._0004
 			Assert.Equal(expectedValue, actualValue);
 		}
 
-		//[Theory]
-		//[InlineData(1, 1, 11)]
-		//[InlineData(1, 10, 110)]
-		//[InlineData(12, 34, 1234)]
-		//public void AppendTwoNumbersAsString(int n1, int n2, int expectedResult)
-		//{
-		//	int actualResult = _sut.AppendTwoNumbersAsString(n1, n2);
-
-		//	Assert.Equal(expectedResult, actualResult);
-		//}
-
 		[Fact]
 		public void FindLargestTwoDigitPalindromeNumbers()
 		{
-			const int power = 2;
-			int actualValue = _sut.GetLargestPalindrome(power);
+			int actualValue = _sut.GetLargestTwoDigitPalindrome();
 
 			Assert.Equal(9009, actualValue);
 		}
@@ -70,29 +55,26 @@ namespace Demo.ProjectEuler.Tests._0004
 
 	public class LargestPalindromeProduct
 	{
-		public int GetLargestPalindrome(int power)
+		public int GetLargestTwoDigitPalindrome()
 		{
-			int largestNumber = (int) Math.Pow(10, power) - 1;
-			for (int i = largestNumber; i > 0; i--)
+			List<int> twoDigitNumbers = Enumerable.Range(0, 100).Select(x => x++).Reverse().ToList();
+			var query = (
+				from row in twoDigitNumbers
+				from col in twoDigitNumbers
+				orderby row descending, col descending 
+				select new { row, col });
+
+			foreach (var value in query)
 			{
-				for (int j = largestNumber; j > 0; j--)
-				{
-					var product = i * j;
-					if (IsPalindrome(product))
-						return product;
-				}
+				var product = value.row * value.col;
+				if (IsPalindrome(product))
+					return product;
 			}
 
 			return -1;
 		}
 
-		//public int AppendTwoNumbersAsString(int n1, int n2)
-		//{
-		//	string left = n1.ToString();
-		//	string right = n2.ToString();
-		//	return Convert.ToInt32(left + right);
-		//}
-		
+	
 		public bool IsPalindrome(int input)
 		{
 			if (input.ToString().Length == 1) return true;
