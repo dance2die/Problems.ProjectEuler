@@ -8,8 +8,10 @@ namespace Demo.ProjectEuler.Tests._0004
 	{
 		public int GetLargestPalindrome(int power)
 		{
+
+			int offset = (int) Math.Pow(1, power - 1);
 			int limit = (int) Math.Pow(10, power);
-			List<int> twoDigitNumbers = Enumerable.Range(0, limit).Select(x => x++).Reverse().ToList();
+			List<int> twoDigitNumbers = Enumerable.Range(offset, limit - offset).Select(x => x++).Reverse().ToList();
 			var query = (
 				from row in twoDigitNumbers
 				from col in twoDigitNumbers
