@@ -24,15 +24,15 @@ namespace Demo.ProjectEuler.Tests._0009
 			{
 				for (int b = 3; b <= limit; b++)
 				{
-					int value = (int)(Math.Pow(a, power) + Math.Pow(b, power));
-					int c = (int)Math.Sqrt(value);
+					int value = (int) (Math.Pow(a, power) + Math.Pow(b, power));
+					int c = (int) Math.Sqrt(value);
 
-					if ((a < b && b < c) 
-						&& IsPythagoreanTriplet(a, b, c) 
-						&& (a + b + c == 1000))
+					if ((a < b && b < c)
+					    && IsPythagoreanTriplet(a, b, c)
+					    && (a + b + c == 1000))
 					{
 						_output.WriteLine("A:{0}, B:{1}, C:{2}", a, b, c);
-						_output.WriteLine("Product: {0}", a * b * c);
+						_output.WriteLine("Product: {0}", a*b*c);
 						Assert.True(true);
 						return;
 					}
@@ -46,5 +46,5 @@ namespace Demo.ProjectEuler.Tests._0009
 			const int power = 2;
 			return Math.Abs(Math.Pow(a, power) + Math.Pow(b, power) - Math.Pow(c, power)) < 0.0001;
 		}
-		
+	}
 }
