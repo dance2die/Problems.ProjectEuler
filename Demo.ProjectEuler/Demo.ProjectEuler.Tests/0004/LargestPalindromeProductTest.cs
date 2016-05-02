@@ -54,7 +54,20 @@ namespace Demo.ProjectEuler.Tests._0004
 		{
 			if (input.ToString().Length == 1) return true;
 
-			return false;
+			string inputText = input.ToString();
+			int midIndex = inputText.Length / 2;
+			int leftEndIndex = midIndex;
+			int rightStartIndex = midIndex;
+
+			if (inputText.Length > 2 && inputText.Length % 2 == 1)
+			{
+				rightStartIndex++;
+			}
+
+			string leftText = inputText.Substring(0, leftEndIndex);
+			string rightText = new string(inputText.Substring(rightStartIndex).ToCharArray().Reverse().ToArray());
+
+			return leftText == rightText;
 		}
 	}
 }
