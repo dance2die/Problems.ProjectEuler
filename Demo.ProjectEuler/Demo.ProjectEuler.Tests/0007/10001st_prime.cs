@@ -1,5 +1,4 @@
 ﻿using Demo.ProjectEuler.Core;
-using Demo.ProjectEuler.Tests._0003;
 using Xunit;
 using Xunit.Abstractions;
 
