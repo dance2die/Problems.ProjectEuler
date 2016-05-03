@@ -66,6 +66,8 @@
     <Compile Include="0003\LargestPrimeFactorTest.cs" />
     <Compile Include="0004\LargestPalindromeProduct.cs" />
     <Compile Include="0004\LargestPalindromeProductTest.cs" />
+    <Compile Include="0005\PrimeTuple.cs" />
+    <Compile Include="0005\SmallestMultiple.cs" />
     <Compile Include="0005\SmallestMultipleTest.cs" />
     <Compile Include="0007\10001st_prime.cs" />
     <Compile Include="0009\SpecialPythagoreanTripletTest.cs" />
