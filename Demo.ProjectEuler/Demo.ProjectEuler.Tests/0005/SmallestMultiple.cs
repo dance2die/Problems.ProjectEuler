@@ -57,7 +57,6 @@ namespace Demo.ProjectEuler.Tests._0005
 				select new PrimeTuple(pair.Key, 1)).ToList();
 
 			// Step 3
-			var primeSequenceCounter = new Dictionary<int, int>();
 			foreach (PrimeTuple tuple in primeNumberCount)
 			{
 				foreach (KeyValuePair<int, List<double>> factorPair in primeFactors)
