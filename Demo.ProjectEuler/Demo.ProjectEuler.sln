@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.ProjectEuler.Core", "D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{91FE2167-C4F9-418B-9150-BD5AEC974AC4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{7C0A3082-70AF-441B-BB4D-B8A62F882F4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemovingDuplicatesInList", "RemovingDuplicatesInList\RemovingDuplicatesInList.csproj", "{B4305786-4E72-49EA-B331-FE50FF39043A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,10 @@ Global
 		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A69B498D-3F9D-46B0-9704-5C4B799A653C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4305786-4E72-49EA-B331-FE50FF39043A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4305786-4E72-49EA-B331-FE50FF39043A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4305786-4E72-49EA-B331-FE50FF39043A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4305786-4E72-49EA-B331-FE50FF39043A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +40,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0350836E-8744-4393-AB2D-0139EC4529B5} = {DDFF1EFA-52C7-4394-BA4F-BE1954B395B2}
 		{A69B498D-3F9D-46B0-9704-5C4B799A653C} = {91FE2167-C4F9-418B-9150-BD5AEC974AC4}
+		{B4305786-4E72-49EA-B331-FE50FF39043A} = {7C0A3082-70AF-441B-BB4D-B8A62F882F4A}
 	EndGlobalSection
 EndGlobal
