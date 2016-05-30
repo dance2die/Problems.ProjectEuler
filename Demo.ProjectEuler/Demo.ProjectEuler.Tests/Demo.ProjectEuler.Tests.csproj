@@ -86,6 +86,7 @@
     <Content Include="0003\README.txt" />
     <Content Include="0004\README.txt" />
     <Content Include="0005\README.txt" />
+    <Content Include="0006\README.txt" />
     <Content Include="0020\README.txt" />
     <Content Include="0030\README.txt" />
   </ItemGroup>
