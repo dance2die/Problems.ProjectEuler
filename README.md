@@ -1,2 +1,3 @@
-# Demo.ProjectEuler
-To solve ProjectEuler.net problems
+# Solutions for problems on [ProjectEuler.net](https://projecteuler.net/archives)
+
+Solutions are written in C#.
