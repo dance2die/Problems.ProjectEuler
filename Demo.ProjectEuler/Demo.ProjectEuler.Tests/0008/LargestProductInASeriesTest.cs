@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -24,36 +20,18 @@ namespace Demo.ProjectEuler.Tests._0008
 			const int expected = 5832;
 
 			const int adjacentDigitCount = 4;
-			int actual = _sut.GetGreatestProduct(INPUT, adjacentDigitCount);
+			BigInteger actual = _sut.GetGreatestProduct(INPUT, adjacentDigitCount);
 
 			Assert.Equal(expected, actual);
 		}
-	}
 
-	internal class LargestProductInASeries
-	{
-		public int GetGreatestProduct(string input, int adjacentDigitCount)
+		[Fact]
+		public void TestThirteenAdjacentDigitsForGreatestProduct()
 		{
-			int maxProduct = 0;
+			const int adjacentDigitCount = 13;
+			BigInteger result = _sut.GetGreatestProduct(INPUT, adjacentDigitCount);
 
-			for (int i = 0; i < input.Length - adjacentDigitCount; i++)
-			{
-				// get a string with length of adjacentDigitCount
-				string numberString = input.Substring(i, adjacentDigitCount);
-
-				// Calculate current product.
-				int currentProduct = 1;
-				foreach (int number in numberString.Select(c => Convert.ToInt32(c.ToString())))
-				{
-					currentProduct *= number;
-				}
-
-				// if current product is greater than the maxProduct, set the maxProduct to the current product.
-				if (currentProduct > maxProduct)
-					maxProduct = currentProduct;
-			}
-
-			return maxProduct;
+			_output.WriteLine(result.ToString());
 		}
 	}
 }

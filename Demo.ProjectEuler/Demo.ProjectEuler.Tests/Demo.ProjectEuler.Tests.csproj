@@ -72,6 +72,7 @@
     <Compile Include="0006\SumSquareDifference.cs" />
     <Compile Include="0006\SumSquareDifferenceTest.cs" />
     <Compile Include="0007\10001st_prime.cs" />
+    <Compile Include="0008\LargestProductInASeries.cs" />
     <Compile Include="0008\LargestProductInASeriesTest.cs" />
     <Compile Include="0009\SpecialPythagoreanTripletTest.cs" />
     <Compile Include="0010\SummationOfPrimes.cs" />
