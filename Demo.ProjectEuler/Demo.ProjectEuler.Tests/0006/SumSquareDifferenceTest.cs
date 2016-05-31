@@ -38,12 +38,16 @@ namespace Demo.ProjectEuler.Tests._0006
 		[Fact]
 		public void TestDifferenceBetweenSumOfSquaresAndSquareOfSums()
 		{
-			BigInteger sumOfSquares = _sut.GetSumOfSquares(_testInput);
-			BigInteger squareOfSums = _sut.GetSquareOfSums(_testInput);
-			BigInteger actual = squareOfSums - sumOfSquares;
+			BigInteger actual = _sut.GetDifferenceBetweenSqaureOfSumsAndSumOfSquares(_testInput);
 
 			const int expected = 2640;
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			
 		}
 	}
 
@@ -68,6 +72,15 @@ namespace Demo.ProjectEuler.Tests._0006
 			}
 
 			return result;
+		}
+
+		public BigInteger GetDifferenceBetweenSqaureOfSumsAndSumOfSquares(IEnumerable<int> numbers)
+		{
+			var list = numbers.ToList();
+			BigInteger sumOfSquares = GetSumOfSquares(list);
+			BigInteger squareOfSums = GetSquareOfSums(list);
+
+			return squareOfSums - sumOfSquares;
 		}
 	}
 }
