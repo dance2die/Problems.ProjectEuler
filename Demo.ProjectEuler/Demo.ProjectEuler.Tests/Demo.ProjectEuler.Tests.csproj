@@ -69,6 +69,7 @@
     <Compile Include="0005\PrimeTuple.cs" />
     <Compile Include="0005\SmallestMultiple.cs" />
     <Compile Include="0005\SmallestMultipleTest.cs" />
+    <Compile Include="0006\SumSquareDifferenceTest.cs" />
     <Compile Include="0007\10001st_prime.cs" />
     <Compile Include="0009\SpecialPythagoreanTripletTest.cs" />
     <Compile Include="0010\SummationOfPrimes.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
+    <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
