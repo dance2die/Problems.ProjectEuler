@@ -11,6 +11,7 @@ namespace Demo.ProjectEuler.Tests._0006
 	public class SumSquareDifferenceTest : BaseTest
 	{
 		private readonly SumSquareDifference _sut = new SumSquareDifference();
+		private readonly IEnumerable<int> _testInput = Enumerable.Range(1, 10);
 
 		public SumSquareDifferenceTest(ITestOutputHelper output) : base(output)
 		{
@@ -19,9 +20,7 @@ namespace Demo.ProjectEuler.Tests._0006
 		[Fact]
 		public void TestSampleInputForSumOfSquares()
 		{
-			var numbers = Enumerable.Range(1, 10);
-
-			BigInteger actual = _sut.GetSumOfSquares(numbers);
+			BigInteger actual = _sut.GetSumOfSquares(_testInput);
 
 			const int expected = 385;
 			Assert.Equal(expected, actual);
@@ -30,11 +29,20 @@ namespace Demo.ProjectEuler.Tests._0006
 		[Fact]
 		public void TestSampleInputForSquareOfSums()
 		{
-			var numbers = Enumerable.Range(1, 10);
-
-			BigInteger actual = _sut.GetSquareOfSums(numbers);
+			BigInteger actual = _sut.GetSquareOfSums(_testInput);
 
 			const int expected = 3025;
+			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void TestDifferenceBetweenSumOfSquaresAndSquareOfSums()
+		{
+			BigInteger sumOfSquares = _sut.GetSumOfSquares(_testInput);
+			BigInteger squareOfSums = _sut.GetSquareOfSums(_testInput);
+			BigInteger actual = squareOfSums - sumOfSquares;
+
+			const int expected = 2640;
 			Assert.Equal(expected, actual);
 		}
 	}
