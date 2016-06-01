@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
@@ -61,7 +62,7 @@ namespace Demo.ProjectEuler.Tests._0012
 		[InlineData(5, 28)]
 		public void TestNumberOfDivisors(int minimumDivisorCount, int expected)
 		{
-			BigInteger actual = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
+			double actual = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
 
 			Assert.Equal(expected, actual);
 		}
@@ -70,7 +71,7 @@ namespace Demo.ProjectEuler.Tests._0012
 		public void ShowResult()
 		{
 			const int minimumDivisorCount = 500;
-			BigInteger result = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
+			double result = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
 
 			_output.WriteLine(result.ToString());
 		}
@@ -78,15 +79,16 @@ namespace Demo.ProjectEuler.Tests._0012
 
 	internal class HighlyDivisibleTriangularNumber
 	{
-		public BigInteger GetTriangularNumberForDivisorCount(int minimumDivisorCount)
+		public double GetTriangularNumberForDivisorCount(int minimumDivisorCount)
 		{
 			int level = 1;
-			BigInteger triangularNumber = 0;
+			double triangularNumber = 0;
 			int currentDivisorCount = 0;
 			do
 			{
 				triangularNumber = GetTriangularNumbers(level);
-				currentDivisorCount = GetDivisors(triangularNumber).Count();
+				//currentDivisorCount = GetDivisors(triangularNumber).Count();
+				currentDivisorCount = GetFactorCount(triangularNumber);
 
 				if (currentDivisorCount >= minimumDivisorCount)
 					return triangularNumber;
@@ -95,6 +97,30 @@ namespace Demo.ProjectEuler.Tests._0012
 			} while (minimumDivisorCount >= currentDivisorCount);
 
 			return triangularNumber;
+		}
+
+		// http://stackoverflow.com/a/4549500/4035
+		public int GetFactorCount(double numberToCheck)
+		{
+			int factorCount = 0;
+			int sqrt = (int)Math.Ceiling(Math.Sqrt(numberToCheck));
+
+			// Start from 1 as we want our method to also work when numberToCheck is 0 or 1.
+			for (int i = 1; i < sqrt; i++)
+			{
+				if (numberToCheck % i == 0)
+				{
+					factorCount += 2; //  We found a pair of factors.
+				}
+			}
+
+			// Check if our number is an exact square.
+			if (sqrt * sqrt == numberToCheck)
+			{
+				factorCount++;
+			}
+
+			return factorCount;
 		}
 
 		public IEnumerable<int> GetDivisors(BigInteger value)
