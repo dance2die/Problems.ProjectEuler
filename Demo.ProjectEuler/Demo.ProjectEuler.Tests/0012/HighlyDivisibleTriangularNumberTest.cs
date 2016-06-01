@@ -48,10 +48,45 @@ namespace Demo.ProjectEuler.Tests._0012
 
 			Assert.True(expected.SequenceEqual(actual));
 		}
+
+		/// <summary>
+		/// Get the tringular number which matches number of divisors
+		/// </summary>
+		/// <param name="minimumDivisorCount">Minimum number of divisors to compare</param>
+		/// <param name="expected">Minimum tringular number that has at least the miminum divisor count</param>
+		[Theory]
+		[InlineData(2, 3)]
+		[InlineData(4, 6)]
+		[InlineData(5, 28)]
+		public void TestNumberOfDivisors(int minimumDivisorCount, int expected)
+		{
+			int actual = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	internal class HighlyDivisibleTriangularNumber
 	{
+		public int GetTriangularNumberForDivisorCount(int minimumDivisorCount)
+		{
+			int level = 1;
+			int triangularNumber = 0;
+			int currentDivisorCount = 0;
+			do
+			{
+				triangularNumber = GetTriangularNumbers(level);
+				currentDivisorCount = GetDivisors(triangularNumber).Count();
+
+				if (currentDivisorCount >= minimumDivisorCount)
+					return triangularNumber;
+
+				level++;
+			} while (minimumDivisorCount >= currentDivisorCount);
+
+			return triangularNumber;
+		}
+
 		public IEnumerable<int> GetDivisors(int value)
 		{
 			for (int i = 1; i <= value; i++)
