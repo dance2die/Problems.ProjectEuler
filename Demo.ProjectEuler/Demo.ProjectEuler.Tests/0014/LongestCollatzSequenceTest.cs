@@ -18,20 +18,22 @@ namespace Demo.ProjectEuler.Tests._0014
 		}
 
 		[Fact]
-		public void TestShortLongestCollatzSequenceCount()
+		public void TestCollatzSequenceCount()
 		{
 			const int expected = 10;
 
 			const int input = 13;
-			int actual = _sut.GetLongestCollatzSequenceCount(input);
+			int actual = _sut.GetCollatzSequenceCount(input);
 
 			Assert.Equal(expected, actual);
 		}
+
+
 	}
 
 	public class LongestCollatzSequence
 	{
-		public int GetLongestCollatzSequenceCount(int input)
+		public int GetCollatzSequenceCount(int input)
 		{
 			int sequence = input;
 			int count = 1;
