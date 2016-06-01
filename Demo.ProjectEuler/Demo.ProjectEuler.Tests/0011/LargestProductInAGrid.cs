@@ -63,55 +63,15 @@ namespace Demo.ProjectEuler.Tests._0011
 
 			return maxProduct;
 		}
-
-		//private int GetMaxRowProduct(int[,] matrix)
-		//{
-		//	int maxProduct = 0;
-		//	for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
-		//	{
-		//		int product = 1;
-		//		for (int colIndex = 0; colIndex < LIMIT; colIndex++)
-		//		{
-		//			product *= matrix[rowIndex, colIndex];
-		//		}
-
-		//		if (product > maxProduct)
-		//			maxProduct = product;
-		//	}
-
-		//	return maxProduct;
-		//}
-
-		//private int GetMaxColumnProduct(int[,] matrix)
-		//{
-		//	int maxProduct = 0;
-		//	for (int colIndex = 0; colIndex < LIMIT; colIndex++)
-		//	{
-		//		int product = 1;
-		//		for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
-		//		{
-		//			product *= matrix[colIndex, rowIndex];
-		//		}
-
-		//		if (product > maxProduct)
-		//			maxProduct = product;
-		//	}
-
-		//	return maxProduct;
-		//}
-
+		
 		private int GetMaxDiagonalProduct(int[,] matrix)
 		{
 			int rightDiagonalProduct = 1;
+			int leftDiagonalProduct = 1;
 			for (int i = 0; i < LIMIT; i++)
 			{
 				rightDiagonalProduct *= matrix[i, i];
-			}
-
-			int leftDiagonalProduct = 1;
-			for (int i = LIMIT - 1; i >= 0; i--)
-			{
-				leftDiagonalProduct *= matrix[i, LIMIT - i - 1];
+				leftDiagonalProduct *= matrix[LIMIT - i - 1, i];
 			}
 
 			return Math.Max(rightDiagonalProduct, leftDiagonalProduct);
