@@ -65,9 +65,46 @@ namespace Demo.ProjectEuler.Tests._0011
 			string[] rows = input.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 			int maxRowLength = rows.Length;
 			int maxColLength = rows[0].Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries).Length;
-			var matrices = GetMatrices(input, maxRowLength, maxColLength).ToList();
+			List<int[,]> matrices = GetMatrices(input, maxRowLength, maxColLength).ToList();
 
-			return -1;
+			int maxProduct = 0;
+			foreach (int[,] matrix in matrices)
+			{
+				int maxMatrixProduct = GetMaxMatrixProduct(matrix);
+				if (maxMatrixProduct > maxProduct)
+					maxProduct = maxMatrixProduct;
+			}
+
+			return maxProduct;
+		}
+
+		private int GetMaxMatrixProduct(int[,] matrix)
+		{
+			// Get max row product
+			int maxRowProduct = GetMaxRowProduct(matrix);
+
+			// Get max column product
+			int maxColumnProduct = GetMaxColumnProduct(matrix);
+
+			// Get max diagonal product
+			int maxDiagonalProduct = GetMaxDiagonalProduct(matrix);
+
+			return Math.Max(maxRowProduct, Math.Max(maxColumnProduct, maxDiagonalProduct));
+		}
+
+		private int GetMaxRowProduct(int[,] matrix)
+		{
+			
+		}
+
+		private int GetMaxColumnProduct(int[,] matrix)
+		{
+			
+		}
+
+		private int GetMaxDiagonalProduct(int[,] matrix)
+		{
+			
 		}
 
 		private IEnumerable<int[,]> GetMatrices(string input, int rowLength, int colLength)
