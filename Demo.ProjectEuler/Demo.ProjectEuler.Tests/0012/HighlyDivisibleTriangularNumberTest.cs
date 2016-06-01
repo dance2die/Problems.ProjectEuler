@@ -1,4 +1,6 @@
-﻿using Demo.ProjectEuler.Tests.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -31,10 +33,34 @@ namespace Demo.ProjectEuler.Tests._0012
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(1, new [] {1})]
+		[InlineData(3, new [] {1, 3})]
+		[InlineData(6, new [] {1, 2, 3, 6})]
+		[InlineData(10, new [] {1, 2, 5, 10})]
+		[InlineData(15, new [] {1, 3, 5, 15})]
+		[InlineData(21, new [] {1, 3, 7, 21})]
+		[InlineData(28, new [] {1, 2, 4, 7, 14, 28})]
+		public void TestGeneratingDivisors(int value, IEnumerable<int> expected)
+		{
+			IEnumerable<int> actual = _sut.GetDivisors(value);
+
+			Assert.True(expected.SequenceEqual(actual));
+		}
 	}
 
 	internal class HighlyDivisibleTriangularNumber
 	{
+		public IEnumerable<int> GetDivisors(int value)
+		{
+			for (int i = 1; i <= value; i++)
+			{
+				if (value % i == 0)
+					yield return i;
+			}
+		}
+
 		/// <remarks>
 		/// Formula on <see cref="https://en.wikipedia.org/wiki/Triangular_number"/>
 		/// </remarks>
