@@ -77,6 +77,7 @@
     <Compile Include="0009\SpecialPythagoreanTripletTest.cs" />
     <Compile Include="0010\SummationOfPrimes.cs" />
     <Compile Include="0010\SummationOfPrimesTest.cs" />
+    <Compile Include="0011\LargestProductInAGridTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
@@ -93,6 +94,7 @@
     <Content Include="0005\README.txt" />
     <Content Include="0006\README.txt" />
     <Content Include="0008\README.txt" />
+    <Content Include="0011\README.txt" />
     <Content Include="0020\README.txt" />
     <Content Include="0030\README.txt" />
   </ItemGroup>
