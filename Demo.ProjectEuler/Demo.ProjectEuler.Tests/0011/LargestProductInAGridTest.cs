@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.Threading.Tasks;
-using Demo.ProjectEuler.Tests.Core;
+﻿using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -46,6 +44,16 @@ namespace Demo.ProjectEuler.Tests._0011
 			const int expected = 24468444;
 
 			int actual = _sut.GetLargestFourByFourProduct(input);
+
+			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void TestRealInput()
+		{
+			const int expected = 70600674;
+
+			int actual = _sut.GetLargestFourByFourProduct(INPUT);
 
 			Assert.Equal(expected, actual);
 		}

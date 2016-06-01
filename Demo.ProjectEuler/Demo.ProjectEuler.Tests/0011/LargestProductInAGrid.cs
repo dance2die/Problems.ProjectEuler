@@ -28,53 +28,77 @@ namespace Demo.ProjectEuler.Tests._0011
 
 		private int GetMaxMatrixProduct(int[,] matrix)
 		{
-			// Get max row product
-			int maxRowProduct = GetMaxRowProduct(matrix);
+			//// Get max row product
+			//int maxRowProduct = GetMaxRowProduct(matrix);
 
-			// Get max column product
-			int maxColumnProduct = GetMaxColumnProduct(matrix);
+			//// Get max column product
+			//int maxColumnProduct = GetMaxColumnProduct(matrix);
+
+			int maxRowColProduct = GetMaxRowColProduct(matrix);
 
 			// Get max diagonal product
 			int maxDiagonalProduct = GetMaxDiagonalProduct(matrix);
 
-			return Math.Max(maxRowProduct, Math.Max(maxColumnProduct, maxDiagonalProduct));
+			//return Math.Max(maxRowProduct, Math.Max(maxColumnProduct, maxDiagonalProduct));
+			return Math.Max(maxRowColProduct, maxDiagonalProduct);
 		}
 
-		private int GetMaxRowProduct(int[,] matrix)
+		private int GetMaxRowColProduct(int[,] matrix)
 		{
 			int maxProduct = 0;
 			for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
 			{
-				int product = 1;
+				int rowProduct = 1;
+				int colProduct = 1;
 				for (int colIndex = 0; colIndex < LIMIT; colIndex++)
 				{
-					product *= matrix[rowIndex, colIndex];
+					rowProduct *= matrix[rowIndex, colIndex];
+					colProduct *= matrix[colIndex, rowIndex];
 				}
 
-				if (product > maxProduct)
-					maxProduct = product;
+				var currentMaxProduct = Math.Max(rowProduct, colProduct);
+				if (currentMaxProduct > maxProduct)
+					maxProduct = currentMaxProduct;
 			}
 
 			return maxProduct;
 		}
 
-		private int GetMaxColumnProduct(int[,] matrix)
-		{
-			int maxProduct = 0;
-			for (int colIndex = 0; colIndex < LIMIT; colIndex++)
-			{
-				int product = 1;
-				for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
-				{
-					product *= matrix[colIndex, rowIndex];
-				}
+		//private int GetMaxRowProduct(int[,] matrix)
+		//{
+		//	int maxProduct = 0;
+		//	for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
+		//	{
+		//		int product = 1;
+		//		for (int colIndex = 0; colIndex < LIMIT; colIndex++)
+		//		{
+		//			product *= matrix[rowIndex, colIndex];
+		//		}
 
-				if (product > maxProduct)
-					maxProduct = product;
-			}
+		//		if (product > maxProduct)
+		//			maxProduct = product;
+		//	}
 
-			return maxProduct;
-		}
+		//	return maxProduct;
+		//}
+
+		//private int GetMaxColumnProduct(int[,] matrix)
+		//{
+		//	int maxProduct = 0;
+		//	for (int colIndex = 0; colIndex < LIMIT; colIndex++)
+		//	{
+		//		int product = 1;
+		//		for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
+		//		{
+		//			product *= matrix[colIndex, rowIndex];
+		//		}
+
+		//		if (product > maxProduct)
+		//			maxProduct = product;
+		//	}
+
+		//	return maxProduct;
+		//}
 
 		private int GetMaxDiagonalProduct(int[,] matrix)
 		{
