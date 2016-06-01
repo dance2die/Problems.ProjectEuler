@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -60,18 +61,27 @@ namespace Demo.ProjectEuler.Tests._0012
 		[InlineData(5, 28)]
 		public void TestNumberOfDivisors(int minimumDivisorCount, int expected)
 		{
-			int actual = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
+			BigInteger actual = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
 
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int minimumDivisorCount = 500;
+			BigInteger result = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
+
+			_output.WriteLine(result.ToString());
 		}
 	}
 
 	internal class HighlyDivisibleTriangularNumber
 	{
-		public int GetTriangularNumberForDivisorCount(int minimumDivisorCount)
+		public BigInteger GetTriangularNumberForDivisorCount(int minimumDivisorCount)
 		{
 			int level = 1;
-			int triangularNumber = 0;
+			BigInteger triangularNumber = 0;
 			int currentDivisorCount = 0;
 			do
 			{
@@ -87,7 +97,7 @@ namespace Demo.ProjectEuler.Tests._0012
 			return triangularNumber;
 		}
 
-		public IEnumerable<int> GetDivisors(int value)
+		public IEnumerable<int> GetDivisors(BigInteger value)
 		{
 			for (int i = 1; i <= value; i++)
 			{
