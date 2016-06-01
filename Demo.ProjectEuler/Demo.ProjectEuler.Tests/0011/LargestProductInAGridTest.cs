@@ -40,19 +40,19 @@ namespace Demo.ProjectEuler.Tests._0011
 		}
 
 		[Fact]
-		public void GetLargestProductInAGrid()
+		public void TestGetLargestProductInAGrid()
 		{
-			//const string input = @"08 02 22 97
-			//					   49 49 99 40
-			//					   81 49 31 73
-			//					   52 70 95 23";
-			//const int expected = 24468444;
+			const string input = @"08 02 22 97
+								   49 49 99 40
+								   81 49 31 73
+								   52 70 95 23";
+			const int expected = 24468444;
 
-			int result = _sut.GetLargestFourByFourProduct(INPUT);
+			int actual = _sut.GetLargestFourByFourProduct(input);
 
-			//Assert.Equal(expected, actual);
+			Assert.Equal(expected, actual);
 
-			_output.WriteLine(result.ToString());
+			//_output.WriteLine(result.ToString());
 		}
 	}
 
@@ -94,17 +94,55 @@ namespace Demo.ProjectEuler.Tests._0011
 
 		private int GetMaxRowProduct(int[,] matrix)
 		{
-			
+			int maxProduct = 0;
+			for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
+			{
+				int product = 1;
+				for (int colIndex = 0; colIndex < LIMIT; colIndex++)
+				{
+					product *= matrix[rowIndex, colIndex];
+				}
+
+				if (product > maxProduct)
+					maxProduct = product;
+			}
+
+			return maxProduct;
 		}
 
 		private int GetMaxColumnProduct(int[,] matrix)
 		{
-			
+			int maxProduct = 0;
+			for (int colIndex = 0; colIndex < LIMIT; colIndex++)
+			{
+				int product = 1;
+				for (int rowIndex = 0; rowIndex < LIMIT; rowIndex++)
+				{
+					product *= matrix[colIndex, rowIndex];
+				}
+
+				if (product > maxProduct)
+					maxProduct = product;
+			}
+
+			return maxProduct;
 		}
 
 		private int GetMaxDiagonalProduct(int[,] matrix)
 		{
-			
+			int rightDiagonalProduct = 1;
+			for (int i = 0; i < LIMIT; i++)
+			{
+				rightDiagonalProduct *= matrix[i, i];
+			}
+
+			int leftDiagonalProduct = 1;
+			for (int i = LIMIT - 1; i >= 0; i--)
+			{
+				leftDiagonalProduct *= matrix[i, LIMIT - i - 1];
+			}
+
+			return Math.Max(rightDiagonalProduct, leftDiagonalProduct);
 		}
 
 		private IEnumerable<int[,]> GetMatrices(string input, int rowLength, int colLength)
@@ -112,9 +150,9 @@ namespace Demo.ProjectEuler.Tests._0011
 			var lines = input.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 			int[,] matrix = BuildMatrix(input);
 
-			for (int rowIndex = 0; rowIndex < rowLength - LIMIT; rowIndex++)
+			for (int rowIndex = 0; rowIndex <= rowLength - LIMIT; rowIndex++)
 			{
-				for (int colIndex = 0; colIndex < colLength - LIMIT; colIndex++)
+				for (int colIndex = 0; colIndex <= colLength - LIMIT; colIndex++)
 				{
 					int[,] smallMatrix = new int[LIMIT, LIMIT];
 					for (int matrixRowIndex = 0; matrixRowIndex < LIMIT; matrixRowIndex++)
@@ -138,7 +176,7 @@ namespace Demo.ProjectEuler.Tests._0011
 			for (int rowIndex = 0; rowIndex < lines.Length; rowIndex++)
 			{
 				string line = lines[rowIndex];
-				string[] columns = line.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+				string[] columns = line.Split(new[] {" ", "\t"}, StringSplitOptions.RemoveEmptyEntries);
 				for (int colIndex = 0; colIndex < columns.Length; colIndex++)
 				{
 					string value = columns[colIndex];
