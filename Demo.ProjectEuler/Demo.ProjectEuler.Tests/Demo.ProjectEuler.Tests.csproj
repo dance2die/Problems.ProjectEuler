@@ -77,6 +77,7 @@
     <Compile Include="0009\SpecialPythagoreanTripletTest.cs" />
     <Compile Include="0010\SummationOfPrimes.cs" />
     <Compile Include="0010\SummationOfPrimesTest.cs" />
+    <Compile Include="0011\LargestProductInAGrid.cs" />
     <Compile Include="0011\LargestProductInAGridTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
