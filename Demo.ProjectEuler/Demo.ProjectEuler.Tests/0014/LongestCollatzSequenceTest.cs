@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Demo.ProjectEuler.Tests.Core;
@@ -65,7 +66,7 @@ namespace Demo.ProjectEuler.Tests._0014
 
 		public int GetCollatzSequenceCount(int input)
 		{
-			int sequence = input;
+			BigInteger sequence = input;
 			int count = 1;
 
 			do
@@ -81,7 +82,7 @@ namespace Demo.ProjectEuler.Tests._0014
 			return count;
 		}
 
-		private bool IsEven(int input)
+		private bool IsEven(BigInteger input)
 		{
 			return input % 2 == 0;
 		}
