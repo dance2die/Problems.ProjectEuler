@@ -82,6 +82,7 @@
     <Compile Include="0012\HighlyDivisibleTriangularNumberTest.cs" />
     <Compile Include="0013\LargeSum.cs" />
     <Compile Include="0013\LargeSumTest.cs" />
+    <Compile Include="0014\LongestCollatzSequence.cs" />
     <Compile Include="0014\LongestCollatzSequenceTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
