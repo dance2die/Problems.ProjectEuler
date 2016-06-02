@@ -29,7 +29,7 @@ namespace Demo.ProjectEuler.Tests._0014
 		[InlineData(13, 10)]
 		public void TestCollatzSequenceCount(int input, int expected)
 		{
-			int actual = _sut.GetCollatzSequenceCount(input);
+			int actual = _sut.GetCollatzSequenceCount(input, new Dictionary<BigInteger, int>());
 
 			Assert.Equal(expected, actual);
 		}
@@ -51,9 +51,13 @@ namespace Demo.ProjectEuler.Tests._0014
 			int maximumSequenceCount = 0;
 			int maxInput = 0;
 
+			var lookupDictionary = new Dictionary<BigInteger, int>();
 			for (int input = 1; input <= maxNumber; input++)
 			{
-				var sequenceCount = GetCollatzSequenceCount(input);
+				var sequenceCount = GetCollatzSequenceCount(input, lookupDictionary);
+				if (!lookupDictionary.ContainsKey(sequenceCount))
+					lookupDictionary.Add(input, sequenceCount);
+
 				if (sequenceCount > maximumSequenceCount)
 				{
 					maximumSequenceCount = sequenceCount;
@@ -64,13 +68,16 @@ namespace Demo.ProjectEuler.Tests._0014
 			return maxInput;
 		}
 
-		public int GetCollatzSequenceCount(int input)
+		public int GetCollatzSequenceCount(int input, IDictionary<BigInteger, int> lookupDictionary)
 		{
 			BigInteger sequence = input;
 			int count = 1;
 
 			do
 			{
+				if (lookupDictionary.ContainsKey(sequence))
+					return lookupDictionary[sequence] + count;
+
 				if (IsEven(sequence))
 					sequence /= 2;
 				else
