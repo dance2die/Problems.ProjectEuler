@@ -84,6 +84,7 @@
     <Compile Include="0013\LargeSumTest.cs" />
     <Compile Include="0014\LongestCollatzSequence.cs" />
     <Compile Include="0014\LongestCollatzSequenceTest.cs" />
+    <Compile Include="0015\LatticePaths.cs" />
     <Compile Include="0015\LatticePathsTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
