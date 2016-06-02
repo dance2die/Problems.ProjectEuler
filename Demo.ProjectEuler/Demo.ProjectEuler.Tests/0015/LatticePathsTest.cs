@@ -1,4 +1,5 @@
-﻿using Demo.ProjectEuler.Tests.Core;
+﻿using System.Numerics;
+using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -18,9 +19,18 @@ namespace Demo.ProjectEuler.Tests._0015
 		[InlineData(3, 20)]
 		public void TestCombinations(int size, ulong expected)
 		{
-			ulong actual = _sut.GetLatticePaths(size);
+			BigInteger actual = _sut.GetLatticePaths(size);
 
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int input = 20;
+			BigInteger result = _sut.GetLatticePaths(input);
+
+			_output.WriteLine(result.ToString());
 		}
 	}
 
@@ -32,16 +42,16 @@ namespace Demo.ProjectEuler.Tests._0015
 		/// <remarks>
 		/// http://math.stackexchange.com/a/636133
 		/// </remarks>
-		public ulong GetLatticePaths(int size)
+		public BigInteger GetLatticePaths(int size)
 		{
 			int topValue = size * 2;
 			int bottomValue = size;
 
 			// Get factorial until size is reached.
-			ulong result = 1;
+			BigInteger result = 1;
 			for (int i = topValue; i > size; i--)
 			{
-				result *= (ulong)i;
+				result *= i;
 			}
 
 			var bottomFactorial = GetFactorial(bottomValue);
@@ -50,12 +60,12 @@ namespace Demo.ProjectEuler.Tests._0015
 			return result;
 		}
 
-		private ulong GetFactorial(int value)
+		private BigInteger GetFactorial(int value)
 		{
-			ulong result = 1;
+			BigInteger result = 1;
 			for (int i = value; i > 1; i--)
 			{
-				result *= (ulong) i;
+				result *= i;
 			}
 
 			return result;
