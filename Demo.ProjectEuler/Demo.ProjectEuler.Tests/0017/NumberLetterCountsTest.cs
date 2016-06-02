@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -51,6 +52,26 @@ namespace Demo.ProjectEuler.Tests._0017
 
 		public string GetNumberString(int number)
 		{
+			// Parse number into a $t = Tuple<int?, int?, int>
+
+			// if $t.Item1 (hundredth digit) exists,
+			//		Look up [1-9] and Append
+			//		Append "Hundred"
+			//
+			//	if $t.Item2 (tenth digit) == 0
+			//		Don't append anything
+			//	else if (10 <= $t.Item2 <= 19) then 
+			//		Append values between [10-19]
+			//	else if (20 <= $t.Item2 <= 99) then
+			//		Append $t.Item2 + "0"
+			//		Append values between [20-90]
+			//	
+			//	if $t.Item3 == 0
+			//		Don't append anything
+			//	else
+			//		Append values between [1-9]
+
+
 			return string.Empty;
 		}
 	}
