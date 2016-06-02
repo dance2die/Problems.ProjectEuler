@@ -29,15 +29,17 @@ namespace Demo.ProjectEuler.Tests._0017
 		[InlineData(555, "Five Hundred And Fifty Five")]
 		[InlineData(999, "Nine Hundred And Ninety Nine")]
 		[InlineData(1000, "One Thousand")]
-		public void TestGeneratingNumberString(int number, int expected)
+		public void TestGeneratingNumberString(int number, string expected)
 		{
-			
+			string actual = _sut.GetNumberString(number);
+
+			Assert.Equal(expected, actual);
 		}
 	}
 
 	internal class NumberLetterCounts
 	{
-		private readonly Dictionary<int, string> numberDictionary= new Dictionary<int, string>
+		private readonly Dictionary<int, string> _numberDictionary= new Dictionary<int, string>
 		{
 			[1] = "One", [2] = "Two", [3] = "Three", [4] = "Four", [5] = "Five",
 			[6] = "Six", [7] = "Seven", [8] = "Eight", [9] = "Nine", [10] = "Ten",
@@ -46,5 +48,10 @@ namespace Demo.ProjectEuler.Tests._0017
 			[20] = "Twenty", [30] = "Thirty", [40] = "Forty", [50] = "Fifty", [60] = "Sixty",
 			[70] = "Seventy", [80] = "Eighty", [90] = "Ninety", [100] = "Hundred", [1000] = "Thousand",
 		};
+
+		public string GetNumberString(int number)
+		{
+			return string.Empty;
+		}
 	}
 }
