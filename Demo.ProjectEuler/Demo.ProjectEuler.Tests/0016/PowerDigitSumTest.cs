@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -34,18 +32,6 @@ namespace Demo.ProjectEuler.Tests._0016
 			BigInteger result = _sut.GetPowerDigitSum(power);
 
 			_output.WriteLine(result.ToString(CultureInfo.InvariantCulture));
-		}
-	}
-
-	internal class PowerDigitSum
-	{
-		public BigInteger GetPowerDigitSum(int power)
-		{
-			BigInteger product = (BigInteger) Math.Pow(2, power);
-			string productString = product.ToString(CultureInfo.InvariantCulture);
-			var result = productString.Select(c => Convert.ToInt32(c.ToString())).Sum();
-
-			return result;
 		}
 	}
 }
