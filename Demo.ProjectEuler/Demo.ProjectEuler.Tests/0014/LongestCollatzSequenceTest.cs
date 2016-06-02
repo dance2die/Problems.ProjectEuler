@@ -17,22 +17,52 @@ namespace Demo.ProjectEuler.Tests._0014
 		{
 		}
 
-		[Fact]
-		public void TestCollatzSequenceCount()
+		[Theory]
+		[InlineData(3, 8)]
+		[InlineData(4, 3)]
+		[InlineData(5, 6)]
+		[InlineData(6, 9)]
+		[InlineData(7, 17)]
+		[InlineData(8, 4)]
+		[InlineData(9, 20)]
+		[InlineData(13, 10)]
+		public void TestCollatzSequenceCount(int input, int expected)
 		{
-			const int expected = 10;
-
-			const int input = 13;
 			int actual = _sut.GetCollatzSequenceCount(input);
 
 			Assert.Equal(expected, actual);
 		}
 
+		[Fact]
+		public void ShowCollatzSequences()
+		{
+			const int maxNumber = 1000000;
 
+			int sequences = _sut.GetLargestCollatzSequenceCount(maxNumber);
+			_output.WriteLine(sequences.ToString());
+		}
 	}
 
 	public class LongestCollatzSequence
 	{
+		public int GetLargestCollatzSequenceCount(int maxNumber)
+		{
+			int maximumSequenceCount = 0;
+			int maxInput = 0;
+
+			for (int input = 1; input <= maxNumber; input++)
+			{
+				var sequenceCount = GetCollatzSequenceCount(input);
+				if (sequenceCount > maximumSequenceCount)
+				{
+					maximumSequenceCount = sequenceCount;
+					maxInput = input;
+				}
+			}
+
+			return maxInput;
+		}
+
 		public int GetCollatzSequenceCount(int input)
 		{
 			int sequence = input;
@@ -55,6 +85,5 @@ namespace Demo.ProjectEuler.Tests._0014
 		{
 			return input % 2 == 0;
 		}
-
 	}
 }
