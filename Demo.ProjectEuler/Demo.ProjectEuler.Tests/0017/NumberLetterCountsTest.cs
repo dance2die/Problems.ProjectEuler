@@ -42,22 +42,6 @@ namespace Demo.ProjectEuler.Tests._0017
 		}
 
 		[Theory]
-		[InlineData(1, "One")]
-		[InlineData(2, "One, Two")]
-		[InlineData(3, "One, Two, Three")]
-		[InlineData(4, "One, Two, Three, Four")]
-		[InlineData(5, "One, Two, Three, Four, Five")]
-		[InlineData(10, "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten")]
-		[InlineData(11, "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven")]
-		[InlineData(21, "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty, Twenty One")]
-		public void TestNumberString(int numberUpto, string expected)
-		{
-			string actual = _sut.GetNumberStringUpto(numberUpto);
-
-			Assert.Equal(expected, actual);
-		}
-
-		[Theory]
 		[InlineData(1, new[] { "One" })]
 		[InlineData(2, new[] { "One", "Two" })]
 		[InlineData(3, new[] { "One", "Two", "Three" })]
@@ -113,23 +97,6 @@ namespace Demo.ProjectEuler.Tests._0017
 				string numberString = GetNumberString(number);
 				yield return numberString;
 			}
-		}
-
-		public string GetNumberStringUpto(int numberUpto)
-		{
-			StringBuilder buffer = new StringBuilder();
-			for (int number = 1; number < numberUpto; number++)
-			{
-				string numberString = GetNumberString(number);
-				buffer.AppendFormat("{0}, ", numberString);
-			}
-
-			// This removes the need for doing string manipulation for the last ", "
-			string lastNumberSTring = GetNumberString(numberUpto);
-			buffer.Append(lastNumberSTring);
-
-			string result = buffer.ToString();
-			return result;
 		}
 
 		/// <summary>
