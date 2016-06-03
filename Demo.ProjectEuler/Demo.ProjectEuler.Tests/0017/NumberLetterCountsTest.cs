@@ -104,8 +104,9 @@ namespace Demo.ProjectEuler.Tests._0017
 				int tenthDigitValue = Convert.ToInt32(string.Format("{0}{1}",
 					numberTuple.Item2 ?? 0, numberTuple.Item3));
 
-				if (numberTuple.Item1.HasValue && numberTuple.Item3 != 0 &&
-					(10 > tenthDigitValue || tenthDigitValue > 19))
+				if (numberTuple.Item1.HasValue && 
+					numberTuple.Item3 != 0 && 
+					tenthDigitValue < 10)
 					buffer.Append(" And ");
 				else
 					buffer.Append(" ");
