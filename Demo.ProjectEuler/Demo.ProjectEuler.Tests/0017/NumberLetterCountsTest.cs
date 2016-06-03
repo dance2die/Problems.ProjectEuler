@@ -57,6 +57,22 @@ namespace Demo.ProjectEuler.Tests._0017
 			Assert.Equal(expected, actual);
 		}
 
+		[Theory]
+		[InlineData(1, new[] { "One" })]
+		[InlineData(2, new[] { "One", "Two" })]
+		[InlineData(3, new[] { "One", "Two", "Three" })]
+		[InlineData(4, new[] { "One", "Two", "Three", "Four" })]
+		[InlineData(5, new[] { "One", "Two", "Three", "Four", "Five" })]
+		[InlineData(10,new[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" })]
+		[InlineData(11,new[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven" })]
+		[InlineData(21, new[] {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty One" })]
+		public void TestNumberStringList(int numberUpto, IEnumerable<string> expected)
+		{
+			var actual = _sut.GetNumberStringListUpto(numberUpto);
+
+			Assert.True(expected.SequenceEqual(actual));
+		}
+
 		//[Theory]
 		//[InlineData(5, 19)]
 		//public void TestNumberStringCount(int numberUpto, int expected)
@@ -79,6 +95,20 @@ namespace Demo.ProjectEuler.Tests._0017
 			[70] = "Seventy", [80] = "Eighty", [90] = "Ninety", [100] = "Hundred", [1000] = "Thousand",
 		};
 
+		public IEnumerable<string> GetNumberStringListUpto(int numberUpto)
+		{
+			for (int number = 1; number <= numberUpto; number++)
+			{
+				string numberString = GetNumberString(number);
+				yield return numberString;
+			}
+		}
+
+		//public BigInteger GetNumberStringCountUpto(int numberUpto)
+		//{
+
+		//}
+
 		public string GetNumberStringUpto(int numberUpto)
 		{
 			StringBuilder buffer = new StringBuilder();
@@ -95,13 +125,6 @@ namespace Demo.ProjectEuler.Tests._0017
 			string result = buffer.ToString();
 			return result;
 		}
-
-		//public BigInteger GetNumberStringCountUpto(int numberUpto)
-		//{
-
-		//}
-
-
 
 		/// <summary>
 		/// Converts the number between 1 and 1000 to a pronouncable string.
