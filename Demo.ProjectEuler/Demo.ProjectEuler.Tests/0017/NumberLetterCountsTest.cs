@@ -84,46 +84,55 @@ namespace Demo.ProjectEuler.Tests._0017
 			StringBuilder buffer = new StringBuilder();
 
 			if (numberTuple.Item1.HasValue)
-				buffer.AppendFormat("{0} {1}", _numberDictionary[numberTuple.Item1.Value], _numberDictionary[100]);
+				AppendHundredDigit(buffer, numberTuple);
 
 			if (numberTuple.Item2.HasValue)
-			{
-				if (numberTuple.Item1.HasValue && numberTuple.Item2 != 0)
-					buffer.Append(" And ");
-
-				int tenthDigitValue = Convert.ToInt32(string.Format("{0}{1}",
-					numberTuple.Item2.Value, numberTuple.Item3));
-				if (10 <= tenthDigitValue && tenthDigitValue <= 19)
-				{
-					buffer.Append(_numberDictionary[tenthDigitValue]);
-				}
-				else if (20 <= tenthDigitValue && tenthDigitValue <= 99)
-				{
-					int flattenedTenthDigitValue = Convert.ToInt32(numberTuple.Item2.Value + "0");
-					buffer.Append(_numberDictionary[flattenedTenthDigitValue]);
-				}
-			}
+				AppendTenthDigitString(numberTuple, buffer);
 
 			if (numberTuple.Item3 != 0)
-			{
-				int tenthDigitValue = Convert.ToInt32(string.Format("{0}{1}",
-					numberTuple.Item2 ?? 0, numberTuple.Item3));
-
-				if (numberTuple.Item1.HasValue && 
-					numberTuple.Item3 != 0 && 
-					tenthDigitValue < 10)
-					buffer.Append(" And ");
-				else
-					buffer.Append(" ");
-
-				if (10 > tenthDigitValue || tenthDigitValue > 19)
-				{
-					buffer.Append(_numberDictionary[numberTuple.Item3]);
-				}
-			}
+				AppendZeroDigitString(numberTuple, buffer);
 
 			string result = buffer.ToString().Trim();
 			return result;
+		}
+
+		private void AppendHundredDigit(StringBuilder buffer, Tuple<int?, int?, int> numberTuple)
+		{
+			buffer.AppendFormat("{0} {1}", _numberDictionary[numberTuple.Item1.Value], _numberDictionary[100]);
+		}
+
+		private void AppendTenthDigitString(Tuple<int?, int?, int> numberTuple, StringBuilder buffer)
+		{
+			if (numberTuple.Item1.HasValue && numberTuple.Item2 != 0)
+				buffer.Append(" And ");
+
+			int tenthDigitValue = Convert.ToInt32(string.Format("{0}{1}",
+				numberTuple.Item2.Value, numberTuple.Item3));
+			if (10 <= tenthDigitValue && tenthDigitValue <= 19)
+			{
+				buffer.Append(_numberDictionary[tenthDigitValue]);
+			}
+			else if (20 <= tenthDigitValue && tenthDigitValue <= 99)
+			{
+				int flattenedTenthDigitValue = Convert.ToInt32(numberTuple.Item2.Value + "0");
+				buffer.Append(_numberDictionary[flattenedTenthDigitValue]);
+			}
+		}
+
+		private void AppendZeroDigitString(Tuple<int?, int?, int> numberTuple, StringBuilder buffer)
+		{
+			int tenthDigitValue = Convert.ToInt32(string.Format("{0}{1}",
+				numberTuple.Item2 ?? 0, numberTuple.Item3));
+
+			if (numberTuple.Item1.HasValue &&
+			    numberTuple.Item3 != 0 &&
+			    tenthDigitValue < 10)
+				buffer.Append(" And ");
+			else
+				buffer.Append(" ");
+
+			if (10 > tenthDigitValue || tenthDigitValue > 19)
+				buffer.Append(_numberDictionary[numberTuple.Item3]);
 		}
 
 		private Tuple<int?, int?, int> ParseNumber(int number)
