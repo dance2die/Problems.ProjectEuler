@@ -53,6 +53,27 @@ namespace Demo.ProjectEuler.Tests._0017
 			[70] = "Seventy", [80] = "Eighty", [90] = "Ninety", [100] = "Hundred", [1000] = "Thousand",
 		};
 
+		/// <summary>
+		/// Converts the number between 1 and 1000 to a pronouncable string.
+		/// </summary>
+		/// <remarks>
+		/// if $t.Item1 (hundredth digit) exists,
+		///		Look up [1-9] and Append
+		///		Append "Hundred"
+		///
+		///	if $t.Item2 (tenth digit) == 0
+		///		Don't append anything
+		///	else if (10 &lt;= $t.Item2 &lt;= 19) then 
+		///		Append values between [10-19]
+		///	else if (20 &lt;= $t.Item2 &lt;= 99) then
+		///		Append t.Item2 + "0"
+		///		Append values between [20-90]
+		///	
+		///	if $t.Item3 == 0
+		///		Don't append anything
+		///	else
+		///		Append values between [1-9]
+		/// </remarks>
 		public string GetNumberString(int number)
 		{
 			if (number == 1000)
@@ -62,21 +83,9 @@ namespace Demo.ProjectEuler.Tests._0017
 			Tuple<int?, int?, int> numberTuple = ParseNumber(number);
 			StringBuilder buffer = new StringBuilder();
 
-			// if $t.Item1 (hundredth digit) exists,
-			//		Look up [1-9] and Append
-			//		Append "Hundred"
-			//
 			if (numberTuple.Item1.HasValue)
 				buffer.AppendFormat("{0} {1}", _numberDictionary[numberTuple.Item1.Value], _numberDictionary[100]);
 
-			//	if $t.Item2 (tenth digit) == 0
-			//		Don't append anything
-			//	else if (10 <= $t.Item2 <= 19) then 
-			//		Append values between [10-19]
-			//	else if (20 <= $t.Item2 <= 99) then
-			//		Append $t.Item2 + "0"
-			//		Append values between [20-90]
-			//	
 			if (numberTuple.Item2.HasValue)
 			{
 				if (numberTuple.Item1.HasValue && numberTuple.Item2 != 0)
@@ -94,11 +103,7 @@ namespace Demo.ProjectEuler.Tests._0017
 					buffer.Append(_numberDictionary[flattenedTenthDigitValue]);
 				}
 			}
-			
-			//	if $t.Item3 == 0
-			//		Don't append anything
-			//	else
-			//		Append values between [1-9]
+
 			if (numberTuple.Item3 != 0)
 			{
 				int tenthDigitValue = Convert.ToInt32(string.Format("{0}{1}",
