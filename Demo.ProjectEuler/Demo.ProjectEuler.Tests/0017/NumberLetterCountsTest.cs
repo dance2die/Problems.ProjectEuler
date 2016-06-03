@@ -65,6 +65,27 @@ namespace Demo.ProjectEuler.Tests._0017
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(342, 23)]
+		[InlineData(115, 20)]
+		public void TestStringCountForOneNumber(int number, int expected)
+		{
+			string numberString = _sut.GetNumberString(number);
+			_output.WriteLine("numberString:'{0}'", numberString);
+			int actual = string.Join("", numberString.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)).Length;
+
+			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int numberUpto = 1000;
+			BigInteger result = _sut.GetNumberStringCountUpto(numberUpto);
+
+			_output.WriteLine(result.ToString());
+		}
 	}
 
 	internal class NumberLetterCounts
