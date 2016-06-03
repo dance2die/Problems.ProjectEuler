@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -39,6 +40,31 @@ namespace Demo.ProjectEuler.Tests._0017
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(1, "One")]
+		[InlineData(2, "One, Two")]
+		[InlineData(3, "One, Two, Three")]
+		[InlineData(4, "One, Two, Three, Four")]
+		[InlineData(5, "One, Two, Three, Four, Five")]
+		[InlineData(10, "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten")]
+		[InlineData(11, "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven")]
+		[InlineData(21, "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty, Twenty One")]
+		public void TestNumberString(int numberUpto, string expected)
+		{
+			string actual = _sut.GetNumberStringUpto(numberUpto);
+
+			Assert.Equal(expected, actual);
+		}
+
+		//[Theory]
+		//[InlineData(5, 19)]
+		//public void TestNumberStringCount(int numberUpto, int expected)
+		//{
+		//	BigInteger actual = _sut.GetNumberStringCountUpto(numberUpto);
+
+		//	Assert.Equal(expected, actual);
+		//}
 	}
 
 	internal class NumberLetterCounts
@@ -52,6 +78,30 @@ namespace Demo.ProjectEuler.Tests._0017
 			[20] = "Twenty", [30] = "Thirty", [40] = "Forty", [50] = "Fifty", [60] = "Sixty",
 			[70] = "Seventy", [80] = "Eighty", [90] = "Ninety", [100] = "Hundred", [1000] = "Thousand",
 		};
+
+		public string GetNumberStringUpto(int numberUpto)
+		{
+			StringBuilder buffer = new StringBuilder();
+			for (int number = 1; number < numberUpto; number++)
+			{
+				string numberString = GetNumberString(number);
+				buffer.AppendFormat("{0}, ", numberString);
+			}
+
+			// This removes the need for doing string manipulation for the last ", "
+			string lastNumberSTring = GetNumberString(numberUpto);
+			buffer.Append(lastNumberSTring);
+
+			string result = buffer.ToString();
+			return result;
+		}
+
+		//public BigInteger GetNumberStringCountUpto(int numberUpto)
+		//{
+
+		//}
+
+
 
 		/// <summary>
 		/// Converts the number between 1 and 1000 to a pronouncable string.
