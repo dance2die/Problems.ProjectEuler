@@ -105,7 +105,7 @@ namespace Demo.ProjectEuler.Tests._0017
 			BigInteger result = 0;
 			foreach (string numberString in GetNumberStringListUpto(numberUpto))
 			{
-				result += numberString.Length;
+				result += string.Join("", numberString.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)).Length;
 			}
 
 			return result;
