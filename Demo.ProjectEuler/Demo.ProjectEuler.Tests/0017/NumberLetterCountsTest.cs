@@ -73,14 +73,14 @@ namespace Demo.ProjectEuler.Tests._0017
 			Assert.True(expected.SequenceEqual(actual));
 		}
 
-		//[Theory]
-		//[InlineData(5, 19)]
-		//public void TestNumberStringCount(int numberUpto, int expected)
-		//{
-		//	BigInteger actual = _sut.GetNumberStringCountUpto(numberUpto);
+		[Theory]
+		[InlineData(5, 19)]
+		public void TestNumberStringCount(int numberUpto, int expected)
+		{
+			BigInteger actual = _sut.GetNumberStringCountUpto(numberUpto);
 
-		//	Assert.Equal(expected, actual);
-		//}
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	internal class NumberLetterCounts
@@ -95,6 +95,17 @@ namespace Demo.ProjectEuler.Tests._0017
 			[70] = "Seventy", [80] = "Eighty", [90] = "Ninety", [100] = "Hundred", [1000] = "Thousand",
 		};
 
+		public BigInteger GetNumberStringCountUpto(int numberUpto)
+		{
+			BigInteger result = 0;
+			foreach (string numberString in GetNumberStringListUpto(numberUpto))
+			{
+				result += numberString.Length;
+			}
+
+			return result;
+		}
+
 		public IEnumerable<string> GetNumberStringListUpto(int numberUpto)
 		{
 			for (int number = 1; number <= numberUpto; number++)
@@ -103,11 +114,6 @@ namespace Demo.ProjectEuler.Tests._0017
 				yield return numberString;
 			}
 		}
-
-		//public BigInteger GetNumberStringCountUpto(int numberUpto)
-		//{
-
-		//}
 
 		public string GetNumberStringUpto(int numberUpto)
 		{
