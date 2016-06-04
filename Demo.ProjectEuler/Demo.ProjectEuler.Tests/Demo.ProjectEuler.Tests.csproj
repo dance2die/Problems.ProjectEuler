@@ -90,6 +90,7 @@
     <Compile Include="0016\PowerDigitSumTest.cs" />
     <Compile Include="0017\NumberLetterCounts.cs" />
     <Compile Include="0017\NumberLetterCountsTest.cs" />
+    <Compile Include="0018\MaximumPathSum.cs" />
     <Compile Include="0018\MaximumPathSumOneTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
