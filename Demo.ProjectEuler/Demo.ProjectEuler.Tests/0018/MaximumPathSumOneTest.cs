@@ -51,10 +51,25 @@ namespace Demo.ProjectEuler.Tests._0018
 
 			Assert.True(IsMultidimensionalArraySequenceEqual<int>(expected, actual));
 		}
+
+		[Fact]
+		public void TestGettingMaximumValueForSampleData()
+		{
+			const int expected = 23;
+
+			int actual = _sut.GetMximumPathSum(SAMPLE_DATA);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class MaximumPathSum
 	{
+		public int GetMximumPathSum(string input)
+		{
+			return -1;
+		}
+
 		public IEnumerable<IEnumerable<int>> ParseInput(string input)
 		{
 			var lines = input.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
