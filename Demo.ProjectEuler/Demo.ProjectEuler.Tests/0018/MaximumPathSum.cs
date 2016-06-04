@@ -28,14 +28,14 @@ namespace Demo.ProjectEuler.Tests._0018
 		/// </summary>
 		public int GetMximumPathSum(string input)
 		{
-			List<IEnumerable<int>> matrix = ParseInput(input).ToList();
+			List<IEnumerable<int>> triangle = ParseInput(input).ToList();
 
 			var currentLastRow = new List<int>();
-			for (int i = matrix.Count - 1; i >= 1; i--)
+			for (int i = triangle.Count - 1; i >= 1; i--)
 			{
 				var currentLastRowCopy = currentLastRow.ToList();
-				var lastRow = currentLastRow.Count > 0 ? currentLastRowCopy : matrix[i].ToList();
-				var prevRow = matrix[i - 1].ToList();
+				var lastRow = currentLastRow.Count > 0 ? currentLastRowCopy : triangle[i].ToList();
+				var prevRow = triangle[i - 1].ToList();
 				currentLastRow.Clear();
 
 				for (int j = 0; j < prevRow.Count; j++)
