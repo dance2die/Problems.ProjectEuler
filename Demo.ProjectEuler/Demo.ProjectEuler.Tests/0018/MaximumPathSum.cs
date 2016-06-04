@@ -8,7 +8,7 @@ namespace Demo.ProjectEuler.Tests._0018
 	/// Get the maximum sum from a triangular tree
 	/// </summary>
 	/// <remarks>
-	/// Algorithm
+	/// Pseudo code
 	/// 
 	/// nlr (new last row) = List
 	/// for i = rows length = 1 to >= 1 i--
