@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit.Abstractions;
 
 namespace Demo.ProjectEuler.Tests.Core
@@ -17,6 +18,24 @@ namespace Demo.ProjectEuler.Tests.Core
 		{
 			return expected.Where(c => !char.IsWhiteSpace(c))
 			   .SequenceEqual(actual.Where(c => !char.IsWhiteSpace(c)));
+		}
+
+		/// <summary>
+		/// Compare two list of list sequences.
+		/// </summary>
+		protected bool IsMultidimensionalArraySequenceEqual<T>(
+			IEnumerable<IEnumerable<int>> enumerable1, IEnumerable<IEnumerable<int>> enumerable2)
+		{
+			var list1 = enumerable1.ToList();
+			var list2 = enumerable2.ToList();
+
+			for (int i = 0; i < list1.Count; i++)
+			{
+				if (!list1[i].SequenceEqual(list2[i]))
+					return false;
+			}
+
+			return true;
 		}
 	}
 }
