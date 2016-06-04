@@ -17,7 +17,8 @@ namespace Demo.ProjectEuler.Tests._0018
 	/// for i = rows length = 1 to >= 1 i--
 	///		lr (last row) = if nlr length > 0 then nlr else rows[i]
 	///		pr (previous row) = row[i - 1]
-	///
+	///		Clear nlr
+	/// 
 	///		for j = 0; j = pr length; j++
 	///			nlr[j] = Max( (lr[j] + pr[j], (lr[j+1] + pr[j]) )
 	/// 
@@ -67,7 +68,26 @@ namespace Demo.ProjectEuler.Tests._0018
 	{
 		public int GetMximumPathSum(string input)
 		{
-			return -1;
+			List<IEnumerable<int>> matrix = ParseInput(input).ToList();
+
+			var currentLastRow = new List<int>();
+			for (int i = matrix.Count - 1; i >= 1; i--)
+			{
+				var currentLastRowCopy = currentLastRow.ToList();
+				var lastRow = currentLastRow.Count > 0 ? currentLastRowCopy : matrix[i].ToList();
+				var prevRow = matrix[i - 1].ToList();
+				currentLastRow.Clear();
+
+				for (int j = 0; j < prevRow.Count; j++)
+				{
+					var leftValue = lastRow[j] + prevRow[j];
+					var rightValue = lastRow[j + 1] + prevRow[j];
+
+					currentLastRow.Add(Math.Max(leftValue, rightValue));
+				}
+			}
+
+			return currentLastRow.Sum();
 		}
 
 		public IEnumerable<IEnumerable<int>> ParseInput(string input)
