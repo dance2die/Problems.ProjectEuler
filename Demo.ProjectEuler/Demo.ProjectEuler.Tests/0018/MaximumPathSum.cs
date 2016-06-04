@@ -23,6 +23,9 @@ namespace Demo.ProjectEuler.Tests._0018
 	/// </remarks>
 	public class MaximumPathSum
 	{
+		/// <summary>
+		/// Work from bottom up instead of top to bottom.
+		/// </summary>
 		public int GetMximumPathSum(string input)
 		{
 			List<IEnumerable<int>> matrix = ParseInput(input).ToList();
