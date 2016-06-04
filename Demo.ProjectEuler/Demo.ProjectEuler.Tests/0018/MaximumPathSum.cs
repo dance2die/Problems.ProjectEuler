@@ -4,6 +4,23 @@ using System.Linq;
 
 namespace Demo.ProjectEuler.Tests._0018
 {
+	/// <summary>
+	/// Get the maximum sum from a triangular tree
+	/// </summary>
+	/// <remarks>
+	/// Algorithm
+	/// 
+	/// nlr (new last row) = List
+	/// for i = rows length = 1 to >= 1 i--
+	///		lr (last row) = if nlr length > 0 then nlr else rows[i]
+	///		pr (previous row) = row[i - 1]
+	///		Clear nlr
+	/// 
+	///		for j = 0; j = pr length; j++
+	///			nlr[j] = Max( (lr[j] + pr[j], (lr[j+1] + pr[j]) )
+	/// 
+	/// return nlr.sum() // even though there is only one number
+	/// </remarks>
 	public class MaximumPathSum
 	{
 		public int GetMximumPathSum(string input)
