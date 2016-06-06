@@ -79,6 +79,7 @@
     <Compile Include="0010\SummationOfPrimesTest.cs" />
     <Compile Include="0011\LargestProductInAGrid.cs" />
     <Compile Include="0011\LargestProductInAGridTest.cs" />
+    <Compile Include="0012\HighlyDivisibleTriangularNumber.cs" />
     <Compile Include="0012\HighlyDivisibleTriangularNumberTest.cs" />
     <Compile Include="0013\LargeSum.cs" />
     <Compile Include="0013\LargeSumTest.cs" />

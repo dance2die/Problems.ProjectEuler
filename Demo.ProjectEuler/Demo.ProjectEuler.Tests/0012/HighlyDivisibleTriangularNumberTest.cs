@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -74,70 +72,6 @@ namespace Demo.ProjectEuler.Tests._0012
 			double result = _sut.GetTriangularNumberForDivisorCount(minimumDivisorCount);
 
 			_output.WriteLine(result.ToString());
-		}
-	}
-
-	internal class HighlyDivisibleTriangularNumber
-	{
-		public double GetTriangularNumberForDivisorCount(int minimumDivisorCount)
-		{
-			int level = 1;
-			double triangularNumber = 0;
-			int currentDivisorCount = 0;
-			do
-			{
-				triangularNumber = GetTriangularNumbers(level);
-				//currentDivisorCount = GetDivisors(triangularNumber).Count();
-				currentDivisorCount = GetFactorCount(triangularNumber);
-
-				if (currentDivisorCount >= minimumDivisorCount)
-					return triangularNumber;
-
-				level++;
-			} while (minimumDivisorCount >= currentDivisorCount);
-
-			return triangularNumber;
-		}
-
-		// http://stackoverflow.com/a/4549500/4035
-		public int GetFactorCount(double numberToCheck)
-		{
-			int factorCount = 0;
-			int sqrt = (int)Math.Ceiling(Math.Sqrt(numberToCheck));
-
-			// Start from 1 as we want our method to also work when numberToCheck is 0 or 1.
-			for (int i = 1; i < sqrt; i++)
-			{
-				if (numberToCheck % i == 0)
-				{
-					factorCount += 2; //  We found a pair of factors.
-				}
-			}
-
-			// Check if our number is an exact square.
-			if (sqrt * sqrt == numberToCheck)
-			{
-				factorCount++;
-			}
-
-			return factorCount;
-		}
-
-		public IEnumerable<int> GetDivisors(BigInteger value)
-		{
-			for (int i = 1; i <= value; i++)
-			{
-				if (value % i == 0)
-					yield return i;
-			}
-		}
-
-		/// <remarks>
-		/// Formula on <see cref="https://en.wikipedia.org/wiki/Triangular_number"/>
-		/// </remarks>
-		public int GetTriangularNumbers(int level)
-		{
-			return (level * (level + 1)) / 2;
 		}
 	}
 }
