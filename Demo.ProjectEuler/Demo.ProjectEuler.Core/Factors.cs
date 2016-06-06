@@ -44,9 +44,6 @@ namespace Demo.ProjectEuler.Core
 			List<int[]> primeFactorPermutations = GetCombinations(primeFactors.Select(n => (int)n).ToArray()).ToList();
 
 			yield return 1;
-			
-
-
 		}
 
 		private IEnumerable<int[]> GetCombinations(int[] array)
