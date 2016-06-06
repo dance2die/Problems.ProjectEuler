@@ -33,31 +33,38 @@ namespace Demo.ProjectEuler.Core
 
 		public IEnumerable<int> GetDivisors(int value)
 		{
-			//for (int i = 1; i <= value; i++)
-			//{
-			//	if (value % i == 0)
-			//		yield return i;
-			//}
-
 			int sqrt = (int)Math.Ceiling(Math.Sqrt(value));
 			List<double> primeFactors = new Prime().GetPrimeFactors(value).ToList();
-			List<int[]> primeFactorPermutations = GetCombinations(primeFactors.Select(n => (int)n).ToArray()).ToList();
+			IEnumerable<IEnumerable<double>> primeFactorPermutations = GetCombinations(primeFactors);
 
-			yield return 1;
+			List<double> divisors = new List<double> { 1 };	// everything's divisible by 1
+			foreach (IEnumerable<double> primeFactorPermutation in primeFactorPermutations)
+			{
+				double product = primeFactorPermutation.Aggregate((acct, val) => acct * val);
+				if (!divisors.Contains(product))
+					divisors.Add(product);
+			}
+
+			return divisors.Select(num => (int) num);
 		}
 
-		private IEnumerable<int[]> GetCombinations(int[] array)
+		// http://stackoverflow.com/a/7802892/4035
+		private static IEnumerable<IEnumerable<T>> GetCombinations<T>(List<T> list)
 		{
-			int count = 2 << array.Length;	// combination count
-			for (int i = 1; i < count; i++)
+			double count = Math.Pow(2, list.Count);
+			for (int i = 1; i <= count - 1; i++)
 			{
-				var itemString = Convert.ToString(i, 2).PadLeft(array.Length - 1, '0');
-				for (int j = 0; j < itemString.Length; j++)
-				{
-					if (itemString[j] == '1')
-						//yield return itemString.Select(c => Convert.ToInt32(c.ToString())).ToArray();
-						yield return array[j];
-				}
+				yield return GetNumbers(list, i);
+			}
+		}
+
+		private static IEnumerable<T> GetNumbers<T>(List<T> list, int index)
+		{
+			for (int j = 0; j < list.Count; j++)
+			{
+				// http://stackoverflow.com/a/19891145/4035
+				if ((index & (1 << j)) > 0)
+					yield return list[j];
 			}
 		}
 
