@@ -38,5 +38,21 @@ namespace Demo.ProjectEuler.Core
 					yield return i;
 			}
 		}
+
+		/// <summary>
+		/// Divisors excluding itself (value)
+		/// </summary>
+		/// <remarks>
+		/// For value 220,
+		/// 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110 (which excludes 220 from divisor)
+		/// </remarks>
+		public IEnumerable<int> GetProperDivisors(BigInteger value)
+		{
+			for (int i = 1; i <= value; i++)
+			{
+				if (value % i == 0 && value != i)
+					yield return i;
+			}
+		}
 	}
 }
