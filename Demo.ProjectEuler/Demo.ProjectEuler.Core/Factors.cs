@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 
 namespace Demo.ProjectEuler.Core
 {
@@ -29,6 +28,19 @@ namespace Demo.ProjectEuler.Core
 			}
 
 			return factorCount;
+		}
+
+		/// <summary>
+		/// Divisors excluding itself (value)
+		/// </summary>
+		/// <remarks>
+		/// For value 220,
+		/// 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110 (which excludes 220 from divisor)
+		/// </remarks>
+		public IEnumerable<int> GetProperDivisors(int value)
+		{
+			var divisors = GetDivisors(value).ToList();
+			return divisors.Take(divisors.Count - 1);
 		}
 
 		public IEnumerable<int> GetDivisors(int value)
@@ -65,22 +77,6 @@ namespace Demo.ProjectEuler.Core
 				// http://stackoverflow.com/a/19891145/4035
 				if ((index & (1 << j)) > 0)
 					yield return list[j];
-			}
-		}
-
-		/// <summary>
-		/// Divisors excluding itself (value)
-		/// </summary>
-		/// <remarks>
-		/// For value 220,
-		/// 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110 (which excludes 220 from divisor)
-		/// </remarks>
-		public IEnumerable<int> GetProperDivisors(BigInteger value)
-		{
-			for (int i = 1; i <= value; i++)
-			{
-				if (value % i == 0 && value != i)
-					yield return i;
 			}
 		}
 	}
