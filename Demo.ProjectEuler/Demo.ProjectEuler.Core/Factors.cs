@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace Demo.ProjectEuler.Core
@@ -30,12 +31,36 @@ namespace Demo.ProjectEuler.Core
 			return factorCount;
 		}
 
-		public IEnumerable<int> GetDivisors(BigInteger value)
+		public IEnumerable<int> GetDivisors(int value)
 		{
-			for (int i = 1; i <= value; i++)
+			//for (int i = 1; i <= value; i++)
+			//{
+			//	if (value % i == 0)
+			//		yield return i;
+			//}
+
+			int sqrt = (int)Math.Ceiling(Math.Sqrt(value));
+			List<double> primeFactors = new Prime().GetPrimeFactors(value).ToList();
+			List<int[]> primeFactorPermutations = GetCombinations(primeFactors.Select(n => (int)n).ToArray()).ToList();
+
+			yield return 1;
+			
+
+
+		}
+
+		private IEnumerable<int[]> GetCombinations(int[] array)
+		{
+			int count = 2 << array.Length;	// combination count
+			for (int i = 1; i < count; i++)
 			{
-				if (value % i == 0)
-					yield return i;
+				var itemString = Convert.ToString(i, 2).PadLeft(array.Length - 1, '0');
+				for (int j = 0; j < itemString.Length; j++)
+				{
+					if (itemString[j] == '1')
+						//yield return itemString.Select(c => Convert.ToInt32(c.ToString())).ToArray();
+						yield return array[j];
+				}
 			}
 		}
 

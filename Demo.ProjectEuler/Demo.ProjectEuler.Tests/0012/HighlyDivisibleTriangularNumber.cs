@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Core;
 
@@ -35,9 +36,9 @@ namespace Demo.ProjectEuler.Tests._0012
 			return _factors.GetFactorCount(numberToCheck);
 		}
 
-		public IEnumerable<int> GetDivisors(BigInteger value)
+		public IEnumerable<int> GetDivisors(int value)
 		{
-			return _factors.GetDivisors(value);
+			return _factors.GetDivisors(value).ToList();
 		}
 
 		/// <remarks>
