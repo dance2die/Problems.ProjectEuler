@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -54,11 +56,44 @@ namespace Demo.ProjectEuler.Tests._0021
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			int result = _sut.GetAmicableNumberSum();
+
+			_output.WriteLine(result.ToString());
+		}
 	}
 
 	public class AmicableNumbers
 	{
 		private readonly Factors _factors = new Factors();
+		private const int LIMIT = 10000;
+
+		public int GetAmicableNumberSum()
+		{
+			checked
+			{
+				int result = 0;
+				var lookup = GetDivisorSumDictionary(Enumerable.Range(1, LIMIT));
+
+				var query = from pair1 in lookup
+							from pair2 in lookup
+							where pair1.Key != pair2.Key
+								&& pair1.Key == pair2.Value
+								&& pair1.Value == pair2.Key
+							select pair1;
+				foreach (KeyValuePair<int, int> pair in query)
+				{
+					result += pair.Key + pair.Value;
+				}
+
+				result /= 2;
+
+				return result;
+			}
+		}
 
 		public Dictionary<int, int> GetDivisorSumDictionary(IEnumerable<int> values)
 		{
