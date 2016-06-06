@@ -95,6 +95,7 @@
     <Compile Include="0018\MaximumPathSumOneTest.cs" />
     <Compile Include="0020\FactorialDigitSum.cs" />
     <Compile Include="0020\FactorialDigitSumTest.cs" />
+    <Compile Include="0021\AmicableNumbers.cs" />
     <Compile Include="0021\AmicableNumbersTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
