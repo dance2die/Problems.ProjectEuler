@@ -79,5 +79,40 @@ namespace Demo.ProjectEuler.Core
 					yield return list[j];
 			}
 		}
+
+		public IEnumerable<IEnumerable<int>> GetPermutations(IEnumerable<int> enumerable)
+		{
+			var list = enumerable.ToList();
+			return GetPermutations(list, 0, list.Count - 1).ToList();
+		}
+
+		private IEnumerable<IEnumerable<int>> GetPermutations(
+			IList<int> list, int startIndex, int permutationCount)
+		{
+			if (startIndex == permutationCount)
+			{
+				yield return list;
+			}
+			else
+			{
+				for (int i = startIndex; i <= permutationCount; i++)
+				{
+					Swap(list, startIndex, i);
+
+					List<int> listCopy = list.ToList();
+					foreach (IEnumerable<int> permutation in GetPermutations(listCopy, startIndex + 1, permutationCount))
+					{
+						yield return permutation;
+					}
+				}
+			}
+		}
+
+		private void Swap(IList<int> list, int index1, int index2)
+		{
+			var temp = list[index1];
+			list[index1] = list[index2];
+			list[index2] = temp;
+		}
 	}
 }
