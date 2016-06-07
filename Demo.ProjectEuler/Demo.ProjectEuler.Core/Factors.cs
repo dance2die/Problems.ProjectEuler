@@ -80,13 +80,13 @@ namespace Demo.ProjectEuler.Core
 			}
 		}
 
-		public IEnumerable<IEnumerable<int>> GetPermutations(IList<int> list)
+		public IEnumerable<IEnumerable<T>> GetPermutations<T>(IList<T> list)
 		{
 			return GetPermutations(list, 0, list.Count - 1).ToList();
 		}
 
-		private IEnumerable<IEnumerable<int>> GetPermutations(
-			IList<int> list, int startIndex, int permutationCount)
+		private IEnumerable<IEnumerable<T>> GetPermutations<T>(
+			IList<T> list, int startIndex, int permutationCount)
 		{
 			if (startIndex == permutationCount)
 			{
@@ -98,8 +98,8 @@ namespace Demo.ProjectEuler.Core
 				{
 					Swap(list, startIndex, i);
 
-					List<int> listCopy = list.ToList();
-					foreach (IEnumerable<int> permutation in GetPermutations(listCopy, startIndex + 1, permutationCount))
+					List<T> listCopy = list.ToList();
+					foreach (IEnumerable<T> permutation in GetPermutations(listCopy, startIndex + 1, permutationCount))
 					{
 						yield return permutation;
 					}
@@ -107,7 +107,7 @@ namespace Demo.ProjectEuler.Core
 			}
 		}
 
-		private void Swap(IList<int> list, int index1, int index2)
+		private void Swap<T>(IList<T> list, int index1, int index2)
 		{
 			var temp = list[index1];
 			list[index1] = list[index2];
