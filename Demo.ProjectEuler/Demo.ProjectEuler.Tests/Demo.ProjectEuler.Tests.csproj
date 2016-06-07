@@ -98,6 +98,7 @@
     <Compile Include="0021\AmicableNumbers.cs" />
     <Compile Include="0021\AmicableNumbersTest.cs" />
     <Compile Include="0022\NamesScoresTest.cs" />
+    <Compile Include="0024\LexicographicPermutationsTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
