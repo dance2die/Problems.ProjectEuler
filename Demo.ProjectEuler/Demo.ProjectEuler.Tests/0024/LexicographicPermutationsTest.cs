@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -12,7 +9,6 @@ namespace Demo.ProjectEuler.Tests._0024
 {
 	public class LexicographicPermutationsTest : BaseTest
 	{
-		private readonly LexicographicPermutations _sut = new LexicographicPermutations();
 		private readonly Factors _factors = new Factors();
 
 		public LexicographicPermutationsTest(ITestOutputHelper output) : base(output)
@@ -36,9 +32,20 @@ namespace Demo.ProjectEuler.Tests._0024
 
 			Assert.True(IsMultidimensionalArraySequenceEqual<int>(expected, actual));
 		}
-	}
 
-	public class LexicographicPermutations
-	{
+		[Fact]
+		public void ShowResult()
+		{
+			var permutations = _factors.GetPermutations(Enumerable.Range(0, 10).ToList());
+			List<IEnumerable<int>> list = permutations.Skip(999999).Take(1).ToList();
+
+			string result = "";
+			foreach (int value in list[0])
+			{
+				result += value.ToString();
+			}
+
+			_output.WriteLine(result);
+		}
 	}
 }
