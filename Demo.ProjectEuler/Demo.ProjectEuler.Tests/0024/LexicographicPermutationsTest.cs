@@ -9,7 +9,7 @@ namespace Demo.ProjectEuler.Tests._0024
 {
 	public class LexicographicPermutationsTest : BaseTest
 	{
-		private readonly Factors _factors = new Factors();
+		private readonly Permutation _permutation = new Permutation();
 
 		public LexicographicPermutationsTest(ITestOutputHelper output) : base(output)
 		{
@@ -28,7 +28,7 @@ namespace Demo.ProjectEuler.Tests._0024
 				new List<int> {2, 1, 0}
 			};
 
-			var actual = _factors.GetPermutations(new List<int> {0, 1, 2});
+			var actual = _permutation.GetPermutations(new List<int> {0, 1, 2});
 
 			Assert.True(IsMultidimensionalArraySequenceEqual<int>(expected, actual));
 		}
@@ -36,7 +36,7 @@ namespace Demo.ProjectEuler.Tests._0024
 		[Fact]
 		public void ShowResult()
 		{
-			var permutations = _factors.GetPermutations(Enumerable.Range(0, 10).ToList());
+			var permutations = _permutation.GetPermutations(Enumerable.Range(0, 10).ToList());
 			List<IEnumerable<int>> list = permutations.Skip(999999).Take(1).ToList();
 
 			string result = "";
