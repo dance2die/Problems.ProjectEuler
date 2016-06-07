@@ -80,9 +80,8 @@ namespace Demo.ProjectEuler.Core
 			}
 		}
 
-		public IEnumerable<IEnumerable<int>> GetPermutations(IEnumerable<int> enumerable)
+		public IEnumerable<IEnumerable<int>> GetPermutations(IList<int> list)
 		{
-			var list = enumerable.ToList();
 			return GetPermutations(list, 0, list.Count - 1).ToList();
 		}
 

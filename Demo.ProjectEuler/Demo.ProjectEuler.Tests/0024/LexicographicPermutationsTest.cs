@@ -32,7 +32,7 @@ namespace Demo.ProjectEuler.Tests._0024
 				new List<int> {2, 1, 0}
 			};
 
-			var actual = _factors.GetPermutations(new List<int> {0, 1, 2}).ToList();
+			var actual = _factors.GetPermutations(new List<int> {0, 1, 2});
 
 			Assert.True(IsMultidimensionalArraySequenceEqual<int>(expected, actual));
 		}
