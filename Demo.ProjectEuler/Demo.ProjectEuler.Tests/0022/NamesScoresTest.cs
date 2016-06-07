@@ -51,15 +51,15 @@ namespace Demo.ProjectEuler.Tests._0022
 			Assert.Equal(expected, actual);
 		}
 
-		//[Fact]
-		//public void TestNameWorth()
-		//{
-		//	const int expected = 53;    // COLIN 3 + 15 + 12 + 9 + 14 = 53
+		[Fact]
+		public void TestNameWorth()
+		{
+			const int expected = 53;    // COLIN 3 + 15 + 12 + 9 + 14 = 53
 
-		//	int actual = _sut.GetNameWorth("COLIN");
+			int actual = _sut.GetNameWorth("COLIN");
 
-		//	Assert.Equal(expected, actual);
-		//}
+			Assert.Equal(expected, actual);
+		}
 
 		//[Fact]
 		//public void TestParsedCOLINScore()
@@ -82,20 +82,20 @@ namespace Demo.ProjectEuler.Tests._0022
 
 	public class NamesScores
 	{
-		private const int OFFSET = 64;	// "A" is 65.
+		private const int OFFSET = 64;  // "A" is 65.
 
 		//public int GetNameScore(List<string> names)
 		//{
 		//	for (int i = 0; i < names.Count; i++)
 		//	{
-				
+
 		//	}
 		//}
 
-		//public int GetNameWorth(string name)
-		//{
-			
-		//}
+		public int GetNameWorth(string name)
+		{
+			return name.Sum(GetLetterNumber);
+		}
 
 		public int GetLetterNumber(char letter)
 		{
