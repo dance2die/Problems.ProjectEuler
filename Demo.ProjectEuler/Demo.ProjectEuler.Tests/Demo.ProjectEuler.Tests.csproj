@@ -97,6 +97,7 @@
     <Compile Include="0020\FactorialDigitSumTest.cs" />
     <Compile Include="0021\AmicableNumbers.cs" />
     <Compile Include="0021\AmicableNumbersTest.cs" />
+    <Compile Include="0022\NamesScoresTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,6 +122,10 @@
     <Content Include="0018\README.txt" />
     <Content Include="0020\README.txt" />
     <Content Include="0021\README.txt" />
+    <Content Include="0022\p022_names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="0022\README.txt" />
     <Content Include="0030\README.txt" />
   </ItemGroup>
   <ItemGroup>
