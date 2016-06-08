@@ -99,6 +99,7 @@
     <Compile Include="0021\AmicableNumbersTest.cs" />
     <Compile Include="0022\NamesScoresTest.cs" />
     <Compile Include="0024\LexicographicPermutationsTest.cs" />
+    <Compile Include="0025\ThousandDigitFibonacciTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +129,7 @@
     </Content>
     <Content Include="0022\README.txt" />
     <Content Include="0024\README.txt" />
+    <Content Include="0025\README.txt" />
     <Content Include="0030\README.txt" />
   </ItemGroup>
   <ItemGroup>
