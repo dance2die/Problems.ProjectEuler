@@ -37,17 +37,42 @@ namespace Demo.ProjectEuler.Tests._0025
 			Assert.Equal(expected, actual);
 		}
 
-		//[Fact]
-		//public void ShowResult()
-		//{
-		//	const int digits = 1000;
+		[Theory]
+		[InlineData(1, 1)]
+		[InlineData(2, 7)]
+		[InlineData(3, 12)]
+		public void TestGettingFirstIndexOfSpecifiedDigitLength(int digits, int expected)
+		{
+			int actual = _sut.GetFirstIndexOfFibonacciDigit(digits);
 
-
-		//}
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class ThousandDigitFibonacci
 	{
+		public int GetFirstIndexOfFibonacciDigit(int targetDigitLength)
+		{
+			if (targetDigitLength == 1)
+				return 1;
+
+			int[] previousNumbers = { 1, 1 };
+
+			int currentDigitLength = 0;
+			int index = 2;
+			while (currentDigitLength < targetDigitLength)
+			{
+				var fibonacciNumber = previousNumbers[0] + previousNumbers[1];
+				previousNumbers[0] = previousNumbers[1];
+				previousNumbers[1] = fibonacciNumber;
+
+				currentDigitLength = fibonacciNumber.ToString().Length;
+				index++;
+			}
+
+			return index;
+		}
+
 		public int GetFibonacciNumberAt(int term)
 		{
 			if (term == 1 || term == 2)
