@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Demo.ProjectEuler.Tests.Core;
@@ -47,6 +48,16 @@ namespace Demo.ProjectEuler.Tests._0025
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int digitLength = 1000;
+
+			int result = _sut.GetFirstIndexOfFibonacciDigit(digitLength);
+
+			_output.WriteLine(result.ToString());
+		}
 	}
 
 	public class ThousandDigitFibonacci
@@ -56,21 +67,40 @@ namespace Demo.ProjectEuler.Tests._0025
 			if (targetDigitLength == 1)
 				return 1;
 
-			int[] previousNumbers = { 1, 1 };
-
 			int currentDigitLength = 0;
-			int index = 2;
+			int index = 1;
 			while (currentDigitLength < targetDigitLength)
 			{
-				var fibonacciNumber = previousNumbers[0] + previousNumbers[1];
-				previousNumbers[0] = previousNumbers[1];
-				previousNumbers[1] = fibonacciNumber;
+				var fibonacciNumber = Fibonacci(index);
 
 				currentDigitLength = fibonacciNumber.ToString().Length;
 				index++;
 			}
 
-			return index;
+			return index - 1;
+		}
+
+		// Fast doubling algorithm
+		// https://www.nayuki.io/page/fast-fibonacci-algorithms
+		// https://www.nayuki.io/res/fast-fibonacci-algorithms/fastfibonacci.cs
+		private static BigInteger Fibonacci(int n)
+		{
+			BigInteger a = BigInteger.Zero;
+			BigInteger b = BigInteger.One;
+			for (int i = 31; i >= 0; i--)
+			{
+				BigInteger d = a * (b * 2 - a);
+				BigInteger e = a * a + b * b;
+				a = d;
+				b = e;
+				if ((((uint)n >> i) & 1) != 0)
+				{
+					BigInteger c = a + b;
+					a = b;
+					b = c;
+				}
+			}
+			return a;
 		}
 
 		public int GetFibonacciNumberAt(int term)
