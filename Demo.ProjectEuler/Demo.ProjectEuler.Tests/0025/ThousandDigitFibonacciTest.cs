@@ -42,7 +42,18 @@ namespace Demo.ProjectEuler.Tests._0025
 	{
 		public int GetFibonacciNumberAt(int term)
 		{
-			return -1;
+			if (term == 1 || term == 2)
+				return 1;
+
+			int result = 0;
+			var numbers = new List<int> { 1, 1 };
+			for (int i = 2; i < term; i++)
+			{
+				result = numbers[i - 1] + numbers[i - 2];
+				numbers.Add(result);
+			}
+
+			return result;
 		}
 	}
 }
