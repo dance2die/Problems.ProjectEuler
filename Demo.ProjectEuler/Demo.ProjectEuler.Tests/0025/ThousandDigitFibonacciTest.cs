@@ -44,7 +44,7 @@ namespace Demo.ProjectEuler.Tests._0025
 		[InlineData(3, 12)]
 		public void TestGettingFirstIndexOfSpecifiedDigitLength(int digits, int expected)
 		{
-			int actual = _sut.GetFirstIndexOfFibonacciDigit(digits);
+			int actual = _sut.GetFirstIndexOfFibonacciDigit2(digits);
 
 			Assert.Equal(expected, actual);
 		}
@@ -54,7 +54,7 @@ namespace Demo.ProjectEuler.Tests._0025
 		{
 			const int digitLength = 1000;
 
-			BigInteger result = _sut.GetFirstIndexOfFibonacciDigit(digitLength);
+			BigInteger result = _sut.GetFirstIndexOfFibonacciDigit2(digitLength);
 
 			_output.WriteLine(result.ToString());
 		}
@@ -62,6 +62,27 @@ namespace Demo.ProjectEuler.Tests._0025
 
 	public class ThousandDigitFibonacci
 	{
+		public int GetFirstIndexOfFibonacciDigit2(int targetDigitLength)
+		{
+			if (targetDigitLength == 1)
+				return 1;
+
+			int currentDigitLength = 0;
+			int index = 2;
+			BigInteger[] previousNumbers = { 1, 1 };
+			while (currentDigitLength < targetDigitLength)
+			{
+				var fibonacciNumber = previousNumbers[0] + previousNumbers[1];
+				previousNumbers[0] = previousNumbers[1];
+				previousNumbers[1] = fibonacciNumber;
+
+				currentDigitLength = fibonacciNumber.ToString().Length;
+				index++;
+			}
+
+			return index;
+		}
+
 		public int GetFirstIndexOfFibonacciDigit(int targetDigitLength)
 		{
 			if (targetDigitLength == 1)
