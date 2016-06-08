@@ -36,6 +36,14 @@ namespace Demo.ProjectEuler.Tests._0025
 
 			Assert.Equal(expected, actual);
 		}
+
+		//[Fact]
+		//public void ShowResult()
+		//{
+		//	const int digits = 1000;
+
+
+		//}
 	}
 
 	public class ThousandDigitFibonacci
@@ -46,11 +54,12 @@ namespace Demo.ProjectEuler.Tests._0025
 				return 1;
 
 			int result = 0;
-			var numbers = new List<int> { 1, 1 };
+			int[] previousNumbers = {1, 1};
 			for (int i = 2; i < term; i++)
 			{
-				result = numbers[i - 1] + numbers[i - 2];
-				numbers.Add(result);
+				result = previousNumbers[0] + previousNumbers[1];
+				previousNumbers[0] = previousNumbers[1];
+				previousNumbers[1] = result;
 			}
 
 			return result;
