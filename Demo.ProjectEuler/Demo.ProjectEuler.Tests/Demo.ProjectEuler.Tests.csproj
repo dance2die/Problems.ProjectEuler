@@ -99,6 +99,7 @@
     <Compile Include="0021\AmicableNumbersTest.cs" />
     <Compile Include="0022\NamesScoresTest.cs" />
     <Compile Include="0024\LexicographicPermutationsTest.cs" />
+    <Compile Include="0025\ThousandDigitFibonacci.cs" />
     <Compile Include="0025\ThousandDigitFibonacciTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
