@@ -101,6 +101,7 @@
     <Compile Include="0024\LexicographicPermutationsTest.cs" />
     <Compile Include="0025\ThousandDigitFibonacci.cs" />
     <Compile Include="0025\ThousandDigitFibonacciTest.cs" />
+    <Compile Include="0026\ReciprocalCyclesTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
