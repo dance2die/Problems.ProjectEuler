@@ -45,6 +45,17 @@ namespace Demo.ProjectEuler.Tests._0028
 
 			Assert.True(expected.SequenceEqual(actual));
 		}
+
+		[Fact]
+		public void TestSumOfDiagonalNumbersFromSpiralList()
+		{
+			const int expected = 101;
+
+			const int dimension = 5;
+			int actual = _sut.GetDiagonalNumbers(dimension).Sum();
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class NumberSpiralDiagonals
