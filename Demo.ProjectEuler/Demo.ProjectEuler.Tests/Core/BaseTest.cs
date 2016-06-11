@@ -23,6 +23,27 @@ namespace Demo.ProjectEuler.Tests.Core
 		/// <summary>
 		/// Compare two list of list sequences.
 		/// </summary>
+		protected bool IsMultidimensionalArrayEqual<T>(
+			T[,] array1, T[,] array2)
+		{
+			if (array1.Length != array2.Length)
+				return false;
+
+			for (int i = 0; i < array1.Length; i++)
+			{
+				for (int j = 0; j < array1.Length; j++)
+				{
+					if (!array1[i, j].Equals(array2[i, j]))
+						return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Compare two list of list sequences.
+		/// </summary>
 		protected bool IsMultidimensionalArraySequenceEqual<T>(
 			IEnumerable<IEnumerable<int>> enumerable1, IEnumerable<IEnumerable<int>> enumerable2)
 		{
