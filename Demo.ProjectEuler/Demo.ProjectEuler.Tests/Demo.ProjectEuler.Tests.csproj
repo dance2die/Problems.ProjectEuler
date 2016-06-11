@@ -128,6 +128,7 @@
     <Content Include="0024\README.txt" />
     <Content Include="0025\README.txt" />
     <Content Include="0028\README.txt" />
+    <Content Include="0029\README.txt" />
     <Content Include="0030\README.txt" />
   </ItemGroup>
   <ItemGroup>
