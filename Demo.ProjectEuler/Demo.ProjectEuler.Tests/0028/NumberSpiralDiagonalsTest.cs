@@ -56,6 +56,15 @@ namespace Demo.ProjectEuler.Tests._0028
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int dimension = 1001;
+			int result = _sut.GetDiagonalNumbers(dimension).Sum();
+
+			_output.WriteLine(result.ToString());
+		}
 	}
 
 	public class NumberSpiralDiagonals
