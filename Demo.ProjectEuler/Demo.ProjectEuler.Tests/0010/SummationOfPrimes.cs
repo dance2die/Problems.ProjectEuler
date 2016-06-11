@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Demo.ProjectEuler.Core;
-using Demo.ProjectEuler.Tests._0003;
 
 namespace Demo.ProjectEuler.Tests._0010
 {

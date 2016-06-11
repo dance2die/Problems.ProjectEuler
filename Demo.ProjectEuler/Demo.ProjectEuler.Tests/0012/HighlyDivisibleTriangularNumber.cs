@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Demo.ProjectEuler.Core;
 
 namespace Demo.ProjectEuler.Tests._0012
