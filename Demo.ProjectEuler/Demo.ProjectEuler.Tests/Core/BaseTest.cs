@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit.Abstractions;
 
@@ -29,9 +30,11 @@ namespace Demo.ProjectEuler.Tests.Core
 			if (array1.Length != array2.Length)
 				return false;
 
-			for (int i = 0; i < array1.Length; i++)
+			const int firstRowIndex = 0;
+			int width = array1.GetLength(firstRowIndex);
+			for (int i = 0; i < width; i++)
 			{
-				for (int j = 0; j < array1.Length; j++)
+				for (int j = 0; j < width; j++)
 				{
 					if (!array1[i, j].Equals(array2[i, j]))
 						return false;

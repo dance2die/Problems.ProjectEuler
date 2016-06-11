@@ -53,35 +53,35 @@ namespace Demo.ProjectEuler.Tests._0028
 
 			do
 			{
-				// +x until prevRowLength - 1
-				for (int i = 0; i < prevRowLength - 1; i++)
+				// +col until prevRowLength - 1
+				for (int i = 0; i < prevColLength - 1; i++)
 				{
-					++rowIndex;
-					if (rowIndex >= dimension) return result;
+					++colIndex;
+					if (colIndex >= dimension) return result;
 					result[rowIndex, colIndex] = ++currentValue;
-				}
-				prevRowLength++;
-
-				// +y until prevColLength - 1
-				for (int j = 0; j < prevColLength - 1; j++)
-				{
-					result[rowIndex, ++colIndex] = ++currentValue;
 				}
 				prevColLength++;
 
-				// -x until prevRowLength - 1
-				for (int i2 = 0; i2 < prevRowLength - 1; i2++)
+				// +row until prevColLength - 1
+				for (int j = 0; j < prevRowLength - 1; j++)
 				{
-					result[--rowIndex, colIndex] = ++currentValue;
+					result[++rowIndex, colIndex] = ++currentValue;
 				}
 				prevRowLength++;
 
-				// -y until prevColLength - 1
-				for (int j2 = 0; j2 < prevColLength - 1; j2++)
+				// -col until prevRowLength - 1
+				for (int i2 = 0; i2 < prevColLength - 1; i2++)
 				{
 					result[rowIndex, --colIndex] = ++currentValue;
 				}
 				prevColLength++;
+
+				// -row until prevColLength - 1
+				for (int j2 = 0; j2 < prevRowLength - 1; j2++)
+				{
+					result[--rowIndex, colIndex] = ++currentValue;
+				}
+				prevRowLength++;
 			} while (prevRowLength <= dimension + 1 && prevColLength <= dimension + 1);
 
 			return result;
