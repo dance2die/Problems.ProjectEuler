@@ -34,10 +34,54 @@ namespace Demo.ProjectEuler.Tests._0028
 
 			Assert.True(IsMultidimensionalArrayEqual(expected, actual));
 		}
+
+		[Fact]
+		public void TestGettingDiagonalNumbersFromSpiralList()
+		{
+			var expected = new List<int>{1, 3, 5, 7, 9, 13, 17, 21, 25};
+
+			const int dimension = 5;
+			var actual = _sut.GetDiagonalNumbers(dimension);
+
+			Assert.True(expected.SequenceEqual(actual));
+		}
 	}
 
 	public class NumberSpiralDiagonals
 	{
+		public List<int> GetDiagonalNumbers(int dimension)
+		{
+			int[,] sprialNumbers = GetSpiralNumbers(dimension);
+			List<int> result = new List<int>();
+
+			const int firstRowIndex = 0;
+			int width = sprialNumbers.GetLength(firstRowIndex);
+
+			for (int i = 0; i < width; i++)
+			{
+				// Get left to right (\) diagonal numbers
+				var left = sprialNumbers[i, i];
+
+				// Get Right to left (/) diagonal numbers
+				var right = sprialNumbers[i, width - i - 1];
+
+				if (left == right) // add only one middle index number
+				{
+					result.Add(left);
+				}
+				else
+				{
+					result.Add(left);
+					result.Add(right);
+				}
+			}
+
+			// Sort numbers
+			result.Sort();
+
+			return result;
+		}
+
 		public int[,] GetSpiralNumbers(int dimension)
 		{
 			int[,] result = new int[dimension, dimension];
