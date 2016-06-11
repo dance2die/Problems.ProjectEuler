@@ -4,6 +4,23 @@ namespace Demo.ProjectEuler.Tests._0028
 {
 	public class NumberSpiralDiagonals
 	{
+		public int GetDiagonalSum(int dimension)
+		{
+			int nextNumber = 1;
+			int result = 1;
+
+			for (int i = 2; i <= dimension; i += 2)
+			{
+				for (int j = 0; j <= 3; j++)
+				{
+					nextNumber += i;
+					result += nextNumber;
+				}
+			}
+
+			return result;
+		}
+
 		public List<int> GetDiagonalNumbers(int dimension)
 		{
 			int[,] sprialNumbers = GetSpiralNumbers(dimension);

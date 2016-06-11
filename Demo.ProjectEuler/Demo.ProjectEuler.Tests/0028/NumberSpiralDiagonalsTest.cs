@@ -54,11 +54,31 @@ namespace Demo.ProjectEuler.Tests._0028
 			Assert.Equal(expected, actual);
 		}
 
+		[Theory]
+		[InlineData(3, 25)]
+		[InlineData(5, 101)]
+		[InlineData(1001, 669171001)]
+		public void TestGetDiagonalSumFromFormula(int dimension, int expected)
+		{
+			int actual = _sut.GetDiagonalSum(dimension);
+
+			Assert.Equal(expected, actual);
+		}
+
 		[Fact]
 		public void ShowResult()
 		{
 			const int dimension = 1001;
 			int result = _sut.GetDiagonalNumbers(dimension).Sum();
+
+			_output.WriteLine(result.ToString());
+		}
+
+		[Fact]
+		public void ShowResultUsingFormula()
+		{
+			const int dimension = 1001;
+			int result = _sut.GetDiagonalSum(dimension);
 
 			_output.WriteLine(result.ToString());
 		}
