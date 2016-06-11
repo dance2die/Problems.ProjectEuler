@@ -38,7 +38,7 @@ namespace Demo.ProjectEuler.Tests._0028
 		[Fact]
 		public void TestGettingDiagonalNumbersFromSpiralList()
 		{
-			var expected = new List<int>{1, 3, 5, 7, 9, 13, 17, 21, 25};
+			var expected = new List<int>{21, 25, 7, 9, 1, 3, 5, 13, 17};
 
 			const int dimension = 5;
 			var actual = _sut.GetDiagonalNumbers(dimension);
@@ -75,9 +75,6 @@ namespace Demo.ProjectEuler.Tests._0028
 					result.Add(right);
 				}
 			}
-
-			// Sort numbers
-			result.Sort();
 
 			return result;
 		}
