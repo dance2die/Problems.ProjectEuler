@@ -70,6 +70,46 @@ namespace Demo.ProjectEuler.Tests._0032
 		//	}
 		//}
 
+		[Fact]
+		public void ShowResult()
+		{
+			Permutation permutation = new Permutation();
+			const string pandigital = "123456789";
+			IEnumerable<IEnumerable<char>> permutations = permutation.GetPermutations(pandigital.ToCharArray().ToList());
+			Tuple<int, int, int>[] pandigitalSlicingIndexes = _sut.GetPandigitalSlicingIndexes(pandigital.Length);
+
+			List<int> products = new List<int>();
+			Dictionary<Tuple<int, int>, int> distinctCombinations = new Dictionary<Tuple<int, int>, int>();
+			foreach (IEnumerable<char> chars in permutations)
+			{
+				string text = new string(chars.ToArray());
+				foreach (Tuple<int, int, int> indexes in pandigitalSlicingIndexes)
+				{
+					int multiplicand = Convert.ToInt32(text.Substring(0, indexes.Item1));
+					int multiplier = Convert.ToInt32(text.Substring(indexes.Item1, indexes.Item2));
+					int product = Convert.ToInt32(text.Substring(indexes.Item2, indexes.Item3));
+
+					if (multiplicand * multiplier == product)
+					{
+						var key = new Tuple<int, int>(multiplicand, multiplier);
+						if (!distinctCombinations.ContainsKey(key))
+							distinctCombinations.Add(key, product);
+
+						//_output.WriteLine("{0} x {1} = {2}", multiplicand, multiplier, product);
+						//products.Add(product);
+					}
+				}
+			}
+
+			foreach (KeyValuePair<Tuple<int, int>, int> distinctCombination in distinctCombinations)
+			{
+				_output.WriteLine("{0} x {1} = {2}", distinctCombination.Key.Item1, distinctCombination.Key.Item2, distinctCombination.Value);
+			}
+
+			//_output.WriteLine("Product sum: {0}", products.Sum());
+			_output.WriteLine("Product sum: {0}", distinctCombinations.Values.Sum());
+		}
+
 		private bool CompareTupleList(Tuple<int, int, int>[] expected, Tuple<int, int, int>[] actual)
 		{
 			for (int i = 0; i < expected.Length; i++)
