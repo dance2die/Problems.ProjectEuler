@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -51,41 +49,6 @@ namespace Demo.ProjectEuler.Tests._0029
 			var result = _sut.GetDistinctPowers(from, to).Count;
 
 			_output.WriteLine(result.ToString());
-		}
-	}
-
-	public class DistinctPowers
-	{
-		public List<BigInteger> GetDistinctPowers(int from, int to)
-		{
-			List<BigInteger> list = new List<BigInteger>();
-			for (int i = from; i <= to; i++)
-			{
-				for (int j = from; j <= to; j++)
-				{
-					list.Add((BigInteger) Math.Pow(i, j));
-				}
-			}
-
-			var result = list.Distinct(new BigIntegerComparer()).ToList();
-			result.Sort();
-
-			return result;
-		}
-
-
-	}
-
-	public class BigIntegerComparer : IEqualityComparer<BigInteger>
-	{
-		public bool Equals(BigInteger x, BigInteger y)
-		{
-			return x.Equals(y);
-		}
-
-		public int GetHashCode(BigInteger obj)
-		{
-			return obj.GetHashCode();
 		}
 	}
 }
