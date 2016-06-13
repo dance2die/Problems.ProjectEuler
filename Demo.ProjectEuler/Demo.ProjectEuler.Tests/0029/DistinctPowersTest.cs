@@ -42,6 +42,16 @@ namespace Demo.ProjectEuler.Tests._0029
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResultUsingBruteForceMethod()
+		{
+			const int from = 2;
+			const int to = 100;
+			var result = _sut.GetDistinctPowers(from, to).Count;
+
+			_output.WriteLine(result.ToString());
+		}
 	}
 
 	public class DistinctPowers
