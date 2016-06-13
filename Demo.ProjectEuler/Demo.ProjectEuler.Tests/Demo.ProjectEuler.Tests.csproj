@@ -97,7 +97,6 @@
     <Compile Include="0025\ThousandDigitFibonacciTest.cs" />
     <Compile Include="0028\NumberSpiralDiagonals.cs" />
     <Compile Include="0028\NumberSpiralDiagonalsTest.cs" />
-    <Compile Include="0029\BigIntegerComparer.cs" />
     <Compile Include="0029\DistinctPowers.cs" />
     <Compile Include="0029\DistinctPowersTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
