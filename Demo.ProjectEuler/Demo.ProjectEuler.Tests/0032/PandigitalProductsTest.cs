@@ -80,6 +80,8 @@ namespace Demo.ProjectEuler.Tests._0032
 
 			List<int> products = new List<int>();
 			Dictionary<Tuple<int, int>, int> distinctCombinations = new Dictionary<Tuple<int, int>, int>();
+
+			int counter = 0;
 			foreach (IEnumerable<char> chars in permutations)
 			{
 				string text = new string(chars.ToArray());
@@ -87,7 +89,13 @@ namespace Demo.ProjectEuler.Tests._0032
 				{
 					int multiplicand = Convert.ToInt32(text.Substring(0, indexes.Item1));
 					int multiplier = Convert.ToInt32(text.Substring(indexes.Item1, indexes.Item2));
-					int product = Convert.ToInt32(text.Substring(indexes.Item2, indexes.Item3));
+					int product = Convert.ToInt32(text.Substring(indexes.Item2 + 1, indexes.Item3));
+
+					//if (multiplicand == 39 && multiplier == 186 && product == 7254)
+					if (counter == 116611 && indexes.Item1 == 2 && indexes.Item2 == 3 && indexes.Item3 == 4)
+					{
+						_output.WriteLine("here");
+					}
 
 					if (multiplicand * multiplier == product)
 					{
@@ -99,6 +107,8 @@ namespace Demo.ProjectEuler.Tests._0032
 						//products.Add(product);
 					}
 				}
+
+				counter++;
 			}
 
 			foreach (KeyValuePair<Tuple<int, int>, int> distinctCombination in distinctCombinations)
