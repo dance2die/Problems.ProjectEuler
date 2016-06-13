@@ -20,13 +20,27 @@ namespace Demo.ProjectEuler.Tests._0029
 		/// Test using brute force method.
 		/// </summary>
 		[Fact]
-		public void TestSampleData()
+		public void TestSampleDataSequence()
 		{
 			BigInteger[] expected = {4, 8, 9, 16, 25, 27, 32, 64, 81, 125, 243, 256, 625, 1024, 3125};
 
-			var actual = _sut.GetDistinctPowers(2, 5);
+			const int from = 2;
+			const int to = 5;
+			var actual = _sut.GetDistinctPowers(from, to);
 
 			Assert.True(expected.SequenceEqual(actual));
+		}
+
+		[Fact]
+		public void TestSampleDataSequenceCount()
+		{
+			const int expected = 15;
+
+			const int from = 2;
+			const int to = 5;
+			var actual = _sut.GetDistinctPowers(from, to).Count;
+
+			Assert.Equal(expected, actual);
 		}
 	}
 
