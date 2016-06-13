@@ -55,20 +55,20 @@ namespace Demo.ProjectEuler.Tests._0032
 			Assert.True(CompareTupleList(expected, actual));
 		}
 
-		/// <remarks>
-		/// Takes about 0.5 seconds to permutate 9 digit number
-		/// </remarks>
-		[Fact]
-		public void TestPermutations()
-		{
-			Permutation permutation = new Permutation();
-			IEnumerable<IEnumerable<char>> permutations = permutation.GetPermutations("123456789".ToCharArray().ToList());
+		///// <remarks>
+		///// Takes about 0.5 seconds to permutate 9 digit number
+		///// </remarks>
+		//[Fact]
+		//public void TestPermutations()
+		//{
+		//	Permutation permutation = new Permutation();
+		//	IEnumerable<IEnumerable<char>> permutations = permutation.GetPermutations("123456789".ToCharArray().ToList());
 
-			foreach (IEnumerable<char> chars in permutations)
-			{
-				string text = new string(chars.ToArray());
-			}
-		}
+		//	foreach (IEnumerable<char> chars in permutations)
+		//	{
+		//		string text = new string(chars.ToArray());
+		//	}
+		//}
 
 		private bool CompareTupleList(Tuple<int, int, int>[] expected, Tuple<int, int, int>[] actual)
 		{
