@@ -7,18 +7,18 @@ namespace Demo.ProjectEuler.Tests._0029
 {
 	public class DistinctPowers
 	{
-		public List<BigInteger> GetDistinctPowers(int from, int to)
+		public List<double> GetDistinctPowers(int from, int to)
 		{
-			List<BigInteger> list = new List<BigInteger>();
+			List<double> list = new List<double>();
 			for (int i = from; i <= to; i++)
 			{
 				for (int j = from; j <= to; j++)
 				{
-					list.Add((BigInteger) Math.Pow(i, j));
+					list.Add((double) Math.Pow(i, j));
 				}
 			}
 
-			var result = list.Distinct(new BigIntegerComparer()).ToList();
+			var result = list.Distinct().ToList();
 			result.Sort();
 
 			return result;
