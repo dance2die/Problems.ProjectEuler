@@ -39,6 +39,8 @@ namespace Demo.ProjectEuler.Tests._0035
 		[InlineData(5, 5, true)]
 		[InlineData(7, 7, true)]
 		[InlineData(11, 11, true)]
+		[InlineData(11, 13, false)]
+		[InlineData(13, 11, false)]
 		[InlineData(13, 31, true)]
 		[InlineData(17, 71, true)]
 		[InlineData(37, 73, true)]
@@ -140,8 +142,8 @@ namespace Demo.ProjectEuler.Tests._0035
 			if (circularPrimeCandidateText.Length != primeText.Length)
 				return false;
 
-			bool any = circularPrimeCandidateText.All(c => primeText.Contains(c));
-
+			bool any = circularPrimeCandidateText.All(c => primeText.Contains(c))
+				&& primeText.All(c => circularPrimeCandidateText.Contains(c));
 			return any;
 		}
 
