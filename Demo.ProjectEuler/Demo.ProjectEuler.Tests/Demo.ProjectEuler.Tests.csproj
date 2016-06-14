@@ -100,6 +100,7 @@
     <Compile Include="0029\DistinctPowers.cs" />
     <Compile Include="0029\DistinctPowersTest.cs" />
     <Compile Include="0030\DigitFifthPowersTest.cs" />
+    <Compile Include="0032\PandigitalProducts.cs" />
     <Compile Include="0032\PandigitalProductsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
