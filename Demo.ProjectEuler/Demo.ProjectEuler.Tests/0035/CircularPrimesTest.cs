@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -65,6 +64,15 @@ namespace Demo.ProjectEuler.Tests._0035
 			const int expected = 13;
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestPrimesUnder1000000()
+		{
+			const int limit = 1000000;
+			var result = _sut.GetCircularPrimeCountUnder(limit);
+
+			_output.WriteLine(result.ToString());
+		}
 	}
 
 	public class CircularPrimes
@@ -75,7 +83,8 @@ namespace Demo.ProjectEuler.Tests._0035
 			//for (int i = 0; i < primes.Count; i++){}
 
 			var allCircularPrimes = new List<int>();
-			foreach (int prime in primes.ToList())
+			var primesCopy = primes.ToList();
+			foreach (int prime in primesCopy)
 			{
 				if (prime < 10)
 					allCircularPrimes.Add(prime);
@@ -95,7 +104,6 @@ namespace Demo.ProjectEuler.Tests._0035
 				}
 			}
 
-			allCircularPrimes.Sort();
 			return allCircularPrimes.Count;
 		}
 
@@ -113,8 +121,10 @@ namespace Demo.ProjectEuler.Tests._0035
 			var circularPrimeCandidateText = circularPrimeCandidate.ToString();
 			var primeText = prime.ToString();
 
-			bool any = circularPrimeCandidateText.Length == primeText.Length &&
-				circularPrimeCandidateText.All(c => primeText.Contains(c));
+			if (circularPrimeCandidateText.Length != primeText.Length)
+				return false;
+
+			bool any = circularPrimeCandidateText.All(c => primeText.Contains(c));
 
 			return any;
 		}
