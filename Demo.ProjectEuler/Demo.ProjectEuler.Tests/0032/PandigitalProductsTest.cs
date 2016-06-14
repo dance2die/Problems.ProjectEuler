@@ -55,21 +55,6 @@ namespace Demo.ProjectEuler.Tests._0032
 			Assert.True(CompareTupleList(expected, actual));
 		}
 
-		///// <remarks>
-		///// Takes about 0.5 seconds to permutate 9 digit number
-		///// </remarks>
-		//[Fact]
-		//public void TestPermutations()
-		//{
-		//	Permutation permutation = new Permutation();
-		//	IEnumerable<IEnumerable<char>> permutations = permutation.GetPermutations("123456789".ToCharArray().ToList());
-
-		//	foreach (IEnumerable<char> chars in permutations)
-		//	{
-		//		string text = new string(chars.ToArray());
-		//	}
-		//}
-
 		[Fact]
 		public void ShowResult()
 		{
@@ -91,21 +76,11 @@ namespace Demo.ProjectEuler.Tests._0032
 					int multiplier = Convert.ToInt32(text.Substring(indexes.Item1, indexes.Item2));
 					int product = Convert.ToInt32(text.Substring(indexes.Item2 + indexes.Item1, indexes.Item3));
 
-					//if (multiplicand == 39 && multiplier == 186 && product == 7254)
-					//if (counter == 116611 && indexes.Item1 == 2 && indexes.Item2 == 3 && indexes.Item3 == 4)
-					if (multiplicand == 483 && multiplier == 12 && product == 5796)
-					{
-						_output.WriteLine("here");
-					}
-
 					if (multiplicand * multiplier == product)
 					{
 						var key = new Tuple<int, int>(multiplicand, multiplier);
 						if (!distinctCombinations.ContainsKey(key))
 							distinctCombinations.Add(key, product);
-
-						//_output.WriteLine("{0} x {1} = {2}", multiplicand, multiplier, product);
-						//products.Add(product);
 					}
 				}
 
@@ -117,8 +92,7 @@ namespace Demo.ProjectEuler.Tests._0032
 				_output.WriteLine("{0} x {1} = {2}", distinctCombination.Key.Item1, distinctCombination.Key.Item2, distinctCombination.Value);
 			}
 
-			//_output.WriteLine("Product sum: {0}", products.Sum());
-			_output.WriteLine("Product sum: {0}", distinctCombinations.Values.Sum());
+			_output.WriteLine("Product sum: {0}", distinctCombinations.Values.Distinct().Sum());
 		}
 
 		private bool CompareTupleList(Tuple<int, int, int>[] expected, Tuple<int, int, int>[] actual)
