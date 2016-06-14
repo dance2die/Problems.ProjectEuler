@@ -74,22 +74,23 @@ namespace Demo.ProjectEuler.Tests._0035
 			var primes = GetPrimesUnder(limit).ToList();
 			//for (int i = 0; i < primes.Count; i++){}
 
-			var distinctPrimes = new List<int>();
 			var allCircularPrimes = new List<int>();
 			foreach (int prime in primes.ToList())
 			{
 				if (prime < 10)
-					distinctPrimes.Add(prime);
+					allCircularPrimes.Add(prime);
 				else
 				{
 					var circularPrimes = GetCircularPrimes(prime, primes).ToList();
 					//allCircularPrimes.AddRange(circularPrimes);
-					foreach (int circularPrime in circularPrimes)
+					if (circularPrimes.Count > 1)
 					{
-						if (!allCircularPrimes.Contains(circularPrime))
-							allCircularPrimes.Add(circularPrime);
+						foreach (int circularPrime in circularPrimes)
+						{
+							if (!allCircularPrimes.Contains(circularPrime))
+								allCircularPrimes.Add(circularPrime);
+						}
 					}
-
 					primes.RemoveAll(p => circularPrimes.Contains(p) && p != prime);
 				}
 			}
@@ -112,7 +113,8 @@ namespace Demo.ProjectEuler.Tests._0035
 			var circularPrimeCandidateText = circularPrimeCandidate.ToString();
 			var primeText = prime.ToString();
 
-			bool any = circularPrimeCandidateText.All(c => primeText.Contains(c));
+			bool any = circularPrimeCandidateText.Length == primeText.Length &&
+				circularPrimeCandidateText.All(c => primeText.Contains(c));
 
 			return any;
 		}
