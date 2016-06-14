@@ -89,10 +89,11 @@ namespace Demo.ProjectEuler.Tests._0032
 				{
 					int multiplicand = Convert.ToInt32(text.Substring(0, indexes.Item1));
 					int multiplier = Convert.ToInt32(text.Substring(indexes.Item1, indexes.Item2));
-					int product = Convert.ToInt32(text.Substring(indexes.Item2 + 1, indexes.Item3));
+					int product = Convert.ToInt32(text.Substring(indexes.Item2 + indexes.Item1, indexes.Item3));
 
 					//if (multiplicand == 39 && multiplier == 186 && product == 7254)
-					if (counter == 116611 && indexes.Item1 == 2 && indexes.Item2 == 3 && indexes.Item3 == 4)
+					//if (counter == 116611 && indexes.Item1 == 2 && indexes.Item2 == 3 && indexes.Item3 == 4)
+					if (multiplicand == 483 && multiplier == 12 && product == 5796)
 					{
 						_output.WriteLine("here");
 					}
