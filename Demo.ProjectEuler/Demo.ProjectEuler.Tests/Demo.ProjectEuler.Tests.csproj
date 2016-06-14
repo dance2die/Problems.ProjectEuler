@@ -102,6 +102,7 @@
     <Compile Include="0030\DigitFifthPowersTest.cs" />
     <Compile Include="0032\PandigitalProducts.cs" />
     <Compile Include="0032\PandigitalProductsTest.cs" />
+    <Compile Include="0035\CircularPrimesTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,6 +136,7 @@
     <Content Include="0029\README.txt" />
     <Content Include="0030\README.txt" />
     <Content Include="0032\README.txt" />
+    <Content Include="0035\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.ProjectEuler.Core\Demo.ProjectEuler.Core.csproj">
