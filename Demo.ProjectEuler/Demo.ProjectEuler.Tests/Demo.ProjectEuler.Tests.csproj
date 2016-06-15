@@ -60,6 +60,7 @@
     <Compile Include="0003\LargestPrimeFactorTest.cs" />
     <Compile Include="0004\LargestPalindromeProduct.cs" />
     <Compile Include="0004\LargestPalindromeProductTest.cs" />
+    <Compile Include="0004\Palindrome.cs" />
     <Compile Include="0005\PrimeTuple.cs" />
     <Compile Include="0005\SmallestMultiple.cs" />
     <Compile Include="0005\SmallestMultipleTest.cs" />

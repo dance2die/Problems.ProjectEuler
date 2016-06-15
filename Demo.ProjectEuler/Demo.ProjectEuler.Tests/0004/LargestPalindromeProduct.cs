@@ -19,36 +19,17 @@ namespace Demo.ProjectEuler.Tests._0004
 				select new { row, col });
 
 			int max = 0;
+			Palindrome palindrome = new Palindrome();
 			foreach (var value in query)
 			{
 				var product = value.row * value.col;
-				if (IsPalindrome(product.ToString()) && product > max)
+				if (palindrome.IsPalindrome(product.ToString()) && product > max)
 				{
 					max = product;
 				}
 			}
 
 			return max;
-		}
-
-	
-		public bool IsPalindrome(string inputText)
-		{
-			if (inputText.Length == 1) return true;
-
-			int midIndex = inputText.Length / 2;
-			int leftEndIndex = midIndex;
-			int rightStartIndex = midIndex;
-
-			if (inputText.Length > 2 && inputText.Length % 2 == 1)
-			{
-				rightStartIndex++;
-			}
-
-			string leftText = inputText.Substring(0, leftEndIndex);
-			string rightText = new string(inputText.Substring(rightStartIndex).ToCharArray().Reverse().ToArray());
-
-			return leftText == rightText;
 		}
 	}
 }
