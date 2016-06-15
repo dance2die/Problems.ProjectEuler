@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -57,6 +58,21 @@ namespace Demo.ProjectEuler.Tests._0035
 			Assert.Equal(expected, actual);
 		}
 
+		[Theory]
+		[InlineData(2, new[] {2}, 10)]
+		[InlineData(11, new[] {11}, 20)]
+		[InlineData(13, new[] {13, 31}, 33)]
+		[InlineData(17, new[] {17, 71}, 77)]
+		[InlineData(79, new[] {79, 97}, 100)]
+		[InlineData(197, new[] {197 , 971, 719}, 1000)]
+		public void TestCircularPrimes(int prime, int[] expected, int primeCount)
+		{
+			var primes = _sut.GetPrimesUnder(primeCount);
+			var actual = _sut.GetCircularPrimes(prime, primes.ToList());
+
+			Assert.True(expected.SequenceEqual(actual));
+		}
+
 		[Fact]
 		public void TestPrimesUnder100()
 		{
@@ -105,14 +121,27 @@ namespace Demo.ProjectEuler.Tests._0035
 			return allCircularPrimes.Count;
 		}
 
-		private IEnumerable<int> GetCircularPrimes(int prime, List<int> primes)
+		public IEnumerable<int> GetCircularPrimes(int prime, List<int> primes)
 		{
-			foreach (int circularPrimeCandidate in primes)
+			var primeText = prime.ToString();
+			Queue<char> digitQueue = new Queue<char>(primeText.Length);
+			foreach (char c in primeText)
 			{
-				if ((IsCircularPrime(prime, circularPrimeCandidate) && prime != circularPrimeCandidate)
-					|| prime == circularPrimeCandidate && prime.ToString().ToCharArray().Distinct().Count() == 1)
-					yield return circularPrimeCandidate;
+				digitQueue.Enqueue(c);
 			}
+
+			List<int> circularPrimes = new List<int>();
+			for (int i = 0; i < primeText.Length; i++)
+			{
+				int candidatePrime = Convert.ToInt32(new string(digitQueue.ToArray()));
+				circularPrimes.AddRange(primes.Where(p => p == candidatePrime));
+
+				// Rotate the digit
+				char firstDigit = digitQueue.Dequeue();
+				digitQueue.Enqueue(firstDigit);
+			}
+
+			return circularPrimes.Distinct();
 		}
 
 		public bool IsCircularPrime(int prime, int circularPrimeCandidate)
@@ -128,7 +157,7 @@ namespace Demo.ProjectEuler.Tests._0035
 			return any;
 		}
 
-		private IEnumerable<int> GetPrimesUnder(int limit)
+		public IEnumerable<int> GetPrimesUnder(int limit)
 		{
 			Prime prime = new Prime();
 			for (int primeCandidate = 1; primeCandidate <= limit; primeCandidate++)
