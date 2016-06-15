@@ -60,7 +60,7 @@ namespace Demo.ProjectEuler.Tests._0035
 
 		[Theory]
 		[InlineData(2, new[] {2}, 10)]
-		[InlineData(11, new[] {11}, 20)]
+		[InlineData(11, new[] {11, 11}, 20)]
 		[InlineData(13, new[] {13, 31}, 33)]
 		[InlineData(17, new[] {17, 71}, 77)]
 		[InlineData(79, new[] {79, 97}, 100)]
@@ -106,15 +106,14 @@ namespace Demo.ProjectEuler.Tests._0035
 				var prime = primes[i];
 				var circularPrimes = GetCircularPrimes(prime, primes).ToList();
 
-				foreach (int circularPrime in circularPrimes)
+				if (circularPrimes.Count > 1)
 				{
-					if (!allCircularPrimes.Contains(prime))
-						allCircularPrimes.Add(prime);
-
-					if (!allCircularPrimes.Contains(circularPrime))
-						allCircularPrimes.Add(circularPrime);
+					foreach (int circularPrime in circularPrimes)
+					{
+						if (!allCircularPrimes.Contains(circularPrime))
+							allCircularPrimes.Add(circularPrime);
+					}
 				}
-
 				primes.RemoveAll(p => circularPrimes.Contains(p) && p != prime);
 			}
 
@@ -141,7 +140,7 @@ namespace Demo.ProjectEuler.Tests._0035
 				digitQueue.Enqueue(firstDigit);
 			}
 
-			return circularPrimes.Distinct();
+			return circularPrimes;
 		}
 
 		public bool IsCircularPrime(int prime, int circularPrimeCandidate)
