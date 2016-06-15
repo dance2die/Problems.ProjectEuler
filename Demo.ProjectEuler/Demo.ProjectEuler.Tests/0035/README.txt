@@ -1,4 +1,8 @@
-﻿https://projecteuler.net/problem=35
+﻿Answer NOT accepted.
+I am going to skip this one for now...
+
+
+https://projecteuler.net/problem=35
 
 
 Circular primes
