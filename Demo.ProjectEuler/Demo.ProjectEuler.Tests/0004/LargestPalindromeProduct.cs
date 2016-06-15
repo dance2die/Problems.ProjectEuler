@@ -22,7 +22,7 @@ namespace Demo.ProjectEuler.Tests._0004
 			foreach (var value in query)
 			{
 				var product = value.row * value.col;
-				if (IsPalindrome(product) && product > max)
+				if (IsPalindrome(product.ToString()) && product > max)
 				{
 					max = product;
 				}
@@ -32,11 +32,10 @@ namespace Demo.ProjectEuler.Tests._0004
 		}
 
 	
-		public bool IsPalindrome(int input)
+		public bool IsPalindrome(string inputText)
 		{
-			if (input.ToString().Length == 1) return true;
+			if (inputText.Length == 1) return true;
 
-			string inputText = input.ToString();
 			int midIndex = inputText.Length / 2;
 			int leftEndIndex = midIndex;
 			int rightStartIndex = midIndex;

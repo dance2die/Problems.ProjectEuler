@@ -103,6 +103,7 @@
     <Compile Include="0032\PandigitalProducts.cs" />
     <Compile Include="0032\PandigitalProductsTest.cs" />
     <Compile Include="0035\CircularPrimesTest.cs" />
+    <Compile Include="0036\DoublebasePalindromesTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

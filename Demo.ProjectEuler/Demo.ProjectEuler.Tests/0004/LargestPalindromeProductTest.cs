@@ -19,7 +19,7 @@ namespace Demo.ProjectEuler.Tests._0004
 		{
 			const int input = 1;
 
-			bool actualValue = _sut.IsPalindrome(input);
+			bool actualValue = _sut.IsPalindrome(input.ToString());
 
 			Assert.True(actualValue);
 		}
@@ -37,7 +37,7 @@ namespace Demo.ProjectEuler.Tests._0004
 		[InlineData(12321, true)]
 		public void TestPalindromeNumber(int input, bool expectedValue)
 		{
-			bool actualValue = _sut.IsPalindrome(input);
+			bool actualValue = _sut.IsPalindrome(input.ToString());
 
 			Assert.Equal(expectedValue, actualValue);
 		}
