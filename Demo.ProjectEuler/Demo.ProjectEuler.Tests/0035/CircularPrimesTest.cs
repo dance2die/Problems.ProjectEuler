@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -74,6 +75,22 @@ namespace Demo.ProjectEuler.Tests._0035
 			Assert.True(expected.SequenceEqual(actual));
 		}
 
+		[Theory]
+		[InlineData(2, 1, 10)]
+		[InlineData(11, 1, 20)]
+		[InlineData(13, 2, 33)]
+		[InlineData(17, 2, 77)]
+		[InlineData(79, 2, 100)]
+		[InlineData(197, 3, 1000)]
+		public void TestCircularPrimeCount(int prime, int expected, int primeCount)
+		{
+			var primes = _sut.GetPrimesUnder(primeCount);
+			int actual = _sut.GetCircularPrimeCount(prime, 
+				primes.Where(p => p.ToString().Length == prime.ToString().Length).ToList());
+
+			Assert.Equal(expected, actual);
+		}
+
 		[Fact]
 		public void TestPrimesUnder100()
 		{
@@ -96,40 +113,71 @@ namespace Demo.ProjectEuler.Tests._0035
 
 	public class CircularPrimes
 	{
+		private readonly Prime _prime = new Prime();
+
 		public int GetCircularPrimeCountUnder(int limit)
 		{
 			var primes = GetPrimesUnder(limit).ToList();
 			var oneDigitPrimes = primes.Where(p => p < 10).ToList();
-			var allCircularPrimes = new List<int>(oneDigitPrimes);
+			//var allCircularPrimes = new List<int>(oneDigitPrimes);
 
-			for (int i = oneDigitPrimes.Count - 1; i < primes.Count; i++)
+			var result = oneDigitPrimes.Count;
+
+			for (int i = oneDigitPrimes.Count; i < primes.Count; i++)
 			{
 				var prime = primes[i];
-				var circularPrimes = GetCircularPrimes(prime, 
-					primes.Where(p => p.ToString().Length == prime.ToString().Length).ToList()).ToList();
+				var circularPrimeCount = GetCircularPrimeCount(prime,
+					primes.Where(p => p.ToString().Length == prime.ToString().Length).ToList());
 
-				if (circularPrimes.Count > 1)
-				{
-					foreach (int circularPrime in circularPrimes)
-					{
-						if (!allCircularPrimes.Contains(circularPrime))
-							allCircularPrimes.Add(circularPrime);
-					}
-				}
-				primes.RemoveAll(p => circularPrimes.Contains(p) && p != prime);
+				//if (circularPrimeCount > 1)
+				//{
+				//	result += circularPrimeCount;
+				//}
+				result += circularPrimeCount;
 			}
 
-			return allCircularPrimes.Count;
+			return result;
+		}
+
+		public int GetCircularPrimeCount(int prime, List<int> primes)
+		{
+			var primeText = prime.ToString();
+			List<int> circularNunmbers = GetCircularNumbers(primeText).Distinct().ToList();
+
+			int count = 0;
+			for (int i = 0; i < primes.Count; i++)
+			{
+				foreach (int circularNunmber in circularNunmbers)
+				{
+					if (_prime.IsPrimeNumber(circularNunmber) && circularNunmber == primes[i])
+					{
+						count++;
+						primes.Remove(circularNunmber);
+					}
+				}
+			}
+
+			return count;
+		}
+
+		private IEnumerable<int> GetCircularNumbers(string primeText)
+		{
+			Queue<char> digitQueue = GetDigitQueue(primeText);
+			for (int i = 0; i < primeText.Length; i++)
+			{
+				int candidatePrime = Convert.ToInt32(new string(digitQueue.ToArray()));
+				yield return candidatePrime;
+
+				// Rotate the digit
+				char firstDigit = digitQueue.Dequeue();
+				digitQueue.Enqueue(firstDigit);
+			}
 		}
 
 		public IEnumerable<int> GetCircularPrimes(int prime, List<int> primes)
 		{
 			var primeText = prime.ToString();
-			Queue<char> digitQueue = new Queue<char>(primeText.Length);
-			foreach (char c in primeText)
-			{
-				digitQueue.Enqueue(c);
-			}
+			Queue<char> digitQueue = GetDigitQueue(primeText);
 
 			List<int> circularPrimes = new List<int>();
 			for (int i = 0; i < primeText.Length; i++)
@@ -160,12 +208,22 @@ namespace Demo.ProjectEuler.Tests._0035
 
 		public IEnumerable<int> GetPrimesUnder(int limit)
 		{
-			Prime prime = new Prime();
 			for (int primeCandidate = 1; primeCandidate <= limit; primeCandidate++)
 			{
-				if (prime.IsPrimeNumber(primeCandidate))
+				if (_prime.IsPrimeNumber(primeCandidate))
 					yield return primeCandidate;
 			}
+		}
+
+		private Queue<char> GetDigitQueue(string primeText)
+		{
+			Queue<char> digitQueue = new Queue<char>(primeText.Length);
+			foreach (char c in primeText)
+			{
+				digitQueue.Enqueue(c);
+			}
+
+			return digitQueue;
 		}
 	}
 }
