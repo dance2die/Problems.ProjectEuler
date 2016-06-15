@@ -68,7 +68,8 @@ namespace Demo.ProjectEuler.Tests._0035
 		public void TestCircularPrimes(int prime, int[] expected, int primeCount)
 		{
 			var primes = _sut.GetPrimesUnder(primeCount);
-			var actual = _sut.GetCircularPrimes(prime, primes.ToList());
+			var actual = _sut.GetCircularPrimes(prime, 
+				primes.Where(p => p.ToString().Length == prime.ToString().Length).ToList());
 
 			Assert.True(expected.SequenceEqual(actual));
 		}
@@ -104,7 +105,8 @@ namespace Demo.ProjectEuler.Tests._0035
 			for (int i = oneDigitPrimes.Count - 1; i < primes.Count; i++)
 			{
 				var prime = primes[i];
-				var circularPrimes = GetCircularPrimes(prime, primes).ToList();
+				var circularPrimes = GetCircularPrimes(prime, 
+					primes.Where(p => p.ToString().Length == prime.ToString().Length).ToList()).ToList();
 
 				if (circularPrimes.Count > 1)
 				{
