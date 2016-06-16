@@ -1,10 +1,25 @@
+using System;
 using System.Linq;
 
 namespace Demo.ProjectEuler.Core
 {
 	public class Palindrome
 	{
+		/// <summary>
+		/// Check if Palindrome
+		/// </summary>
+		/// <remarks>
+		/// From "anotherwealth"'s solution on ProjectEuler.
+		/// Runs a bit faster than IsPalindrome2
+		/// </remarks>
 		public bool IsPalindrome(string inputText)
+		{
+			var charArray = inputText.ToCharArray();
+			Array.Reverse(charArray);
+			return inputText.Equals(new string(charArray));
+		}
+
+		public bool IsPalindrome2(string inputText)
 		{
 			if (inputText.Length == 1) return true;
 

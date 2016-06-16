@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Numerics;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -28,9 +29,12 @@ namespace Demo.ProjectEuler.Tests._0036
 		[Fact]
 		public void ShowResult()
 		{
+			Stopwatch watch = new Stopwatch();
+			watch.Start();
 			BigInteger result = _sut.GetPalindromeNumberSumUnderOneMillion();
+			watch.Stop();
 
-			_output.WriteLine(result.ToString());
+			_output.WriteLine("Result: {0}; Time: {1}", result, watch.Elapsed);
 		}
 	}
 
