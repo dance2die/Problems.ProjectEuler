@@ -19,6 +19,7 @@ namespace Demo.ProjectEuler.Core
 			return inputText.Equals(new string(charArray));
 		}
 
+		[Obsolete("This is slower version")]
 		public bool IsPalindrome2(string inputText)
 		{
 			if (inputText.Length == 1) return true;
