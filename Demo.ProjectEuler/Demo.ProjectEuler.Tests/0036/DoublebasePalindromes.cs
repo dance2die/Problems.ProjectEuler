@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Core;
 
@@ -10,17 +11,21 @@ namespace Demo.ProjectEuler.Tests._0036
 
 		public BigInteger GetPalindromeNumberSumUnderOneMillion()
 		{
-			BigInteger result = BigInteger.Zero;
+			// Answer by "anotherwealth"
+			return Enumerable.Range(1, 1000000)
+				.Where(number => _palindrome.IsPalindrome(number.ToString()) && _palindrome.IsPalindrome(GetBinaryString(number)))
+				.Sum();
 
-			for (int i = 1; i <= 1000000; i++)
-			{
-				string base10Text = i.ToString();
-				string base2Text = GetBinaryString(i);
-				if (_palindrome.IsPalindrome(base10Text) && _palindrome.IsPalindrome(base2Text))
-					result += i;
-			}
+			//BigInteger result = BigInteger.Zero;
+			//for (int i = 1; i <= 1000000; i++)
+			//{
+			//	string base10Text = i.ToString();
+			//	string base2Text = GetBinaryString(i);
+			//	if (_palindrome.IsPalindrome(base10Text) && _palindrome.IsPalindrome(base2Text))
+			//		result += i;
+			//}
 
-			return result;
+			//return result;
 		}
 
 		public string GetBinaryString(int value)
