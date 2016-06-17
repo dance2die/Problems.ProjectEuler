@@ -29,9 +29,11 @@ namespace Demo.ProjectEuler.Tests._0037
 		[Fact]
 		public void ShowResult()
 		{
-			BigInteger result = _sut.GetTruncablePrimes();
+			BigInteger actual = _sut.GetTruncablePrimes();
 
-			_output.WriteLine(result.ToString());
+			_output.WriteLine(actual.ToString());
+			const int expected = 748317;
+			Assert.Equal(expected, actual);
 		}
 	}
 }
