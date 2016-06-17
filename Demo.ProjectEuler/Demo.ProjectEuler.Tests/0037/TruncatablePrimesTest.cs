@@ -76,29 +76,45 @@ namespace Demo.ProjectEuler.Tests._0037
 			if (prime < 10) return false;
 			if (!_prime.IsPrimeNumber(prime)) return false;
 
-			if (prime == 3797)
+			if (prime == 223)
 			{
 				Console.WriteLine(prime);
 			}
 
-			string primeTextLeftToRight = prime.ToString();
-			string primeTextRightToLeft = primeTextLeftToRight;
+			List<int> invalidNumbers = new List<int> {1, 4, 6, 8, 0};
+			//foreach (char c in prime.ToString())
+			//{
+			//	if (invalidNumbers.Contains(Convert.ToInt32(c.ToString())))
+			//		return false;
+			//}
+			var primeText = prime.ToString();
+			if (invalidNumbers.Contains(Convert.ToInt32(primeText.Substring(0, 1))) ||
+			    invalidNumbers.Contains(Convert.ToInt32(primeText.Substring(primeText.Length - 1, 1))))
+			{
+				return false;
+			}
+
+			string leftToRight = prime.ToString();
+			string rightToLeft = leftToRight;
 			// Remove number from left to right.
 			// Remove number from right to left.
 			for (int i = 0; i < prime.ToString().Length - 1; i++)
 			{
-				primeTextLeftToRight = primeTextLeftToRight.Substring(1);
-				primeTextRightToLeft = primeTextRightToLeft.Substring(0, primeTextRightToLeft.Length - 1);
+				leftToRight = leftToRight.Substring(1);
+				rightToLeft = rightToLeft.Substring(0, rightToLeft.Length - 1);
 
-				double primeTextLeftToRightValue = Convert.ToDouble(primeTextLeftToRight);
-				double primeTextRightToLeftValue = Convert.ToDouble(primeTextRightToLeft);
+				int leftRightValue = Convert.ToInt32(leftToRight);
+				int rightLeftValue = Convert.ToInt32(rightToLeft);
 
-				if (_processedPrimes.Contains((int)primeTextLeftToRightValue) ||
-					_processedPrimes.Contains((int)primeTextRightToLeftValue))
+				if (leftRightValue % 2 == 0 || rightLeftValue % 2 == 0)
+					return false;
+
+				if (_processedPrimes.Contains(leftRightValue) ||
+					_processedPrimes.Contains(rightLeftValue))
 					return true;
 
-				if (!_prime.IsPrimeNumber(primeTextLeftToRightValue) || 
-					!_prime.IsPrimeNumber(primeTextRightToLeftValue))
+				if (!_prime.IsPrimeNumber(leftRightValue) || 
+					!_prime.IsPrimeNumber(rightLeftValue))
 					return false;
 
 			}
