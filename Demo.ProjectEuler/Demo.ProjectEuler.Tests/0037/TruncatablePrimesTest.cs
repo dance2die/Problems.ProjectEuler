@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -76,17 +74,7 @@ namespace Demo.ProjectEuler.Tests._0037
 			if (prime < 10) return false;
 			if (!_prime.IsPrimeNumber(prime)) return false;
 
-			if (prime == 797)
-			{
-				Console.WriteLine(prime);
-			}
-
 			List<int> invalidNumbers = new List<int> {1, 4, 6, 8, 0};
-			//foreach (char c in prime.ToString())
-			//{
-			//	if (invalidNumbers.Contains(Convert.ToInt32(c.ToString())))
-			//		return false;
-			//}
 			var primeText = prime.ToString();
 			if (invalidNumbers.Contains(Convert.ToInt32(primeText.Substring(0, 1))) ||
 			    invalidNumbers.Contains(Convert.ToInt32(primeText.Substring(primeText.Length - 1, 1))))
