@@ -76,7 +76,7 @@ namespace Demo.ProjectEuler.Tests._0037
 			if (prime < 10) return false;
 			if (!_prime.IsPrimeNumber(prime)) return false;
 
-			if (prime == 223)
+			if (prime == 797)
 			{
 				Console.WriteLine(prime);
 			}
@@ -106,10 +106,7 @@ namespace Demo.ProjectEuler.Tests._0037
 				int leftRightValue = Convert.ToInt32(leftToRight);
 				int rightLeftValue = Convert.ToInt32(rightToLeft);
 
-				if (leftRightValue % 2 == 0 || rightLeftValue % 2 == 0)
-					return false;
-
-				if (_processedPrimes.Contains(leftRightValue) ||
+				if (_processedPrimes.Contains(leftRightValue) &&
 					_processedPrimes.Contains(rightLeftValue))
 					return true;
 
