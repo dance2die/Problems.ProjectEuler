@@ -141,6 +141,7 @@
     <Content Include="0032\README.txt" />
     <Content Include="0035\README.txt" />
     <Content Include="0036\README.txt" />
+    <Content Include="0037\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.ProjectEuler.Core\Demo.ProjectEuler.Core.csproj">
