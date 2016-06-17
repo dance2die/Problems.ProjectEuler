@@ -106,6 +106,7 @@
     <Compile Include="0035\CircularPrimesTest.cs" />
     <Compile Include="0036\DoublebasePalindromes.cs" />
     <Compile Include="0036\DoublebasePalindromesTest.cs" />
+    <Compile Include="0037\TruncatablePrimesTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
