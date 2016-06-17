@@ -44,37 +44,42 @@ namespace Demo.ProjectEuler.Tests._0037
 	public class TruncatablePrimes
 	{
 		private readonly Prime _prime = new Prime();
+		private readonly List<int> _processedPrimes = new List<int>();
 
 		public BigInteger GetTruncablePrimes()
 		{
 			const int primeCountTotal = 11;	// given on the problem page.
 
-			BigInteger result = BigInteger.Zero;
-			int number = 1;
+			int number = 22;
 			int counter = 0;
+
+			List<int> truncablePrimes = new List<int>();
 
 			do
 			{
 				do
 				{
 					number++;
-					if (number == 3797)
-					{
-						Console.WriteLine(number);
-					}
 				} while (!IsTruncablePrime(number));
 
-				result += number;
-				counter++;
-			} while (counter <= 11);
+				_processedPrimes.Add(number);
+				truncablePrimes.Add(number);
 
-			return result;
+				counter++;
+			} while (counter < primeCountTotal);
+
+			return truncablePrimes.Sum();
 		}
 
 		public bool IsTruncablePrime(int prime)
 		{
 			if (prime < 10) return false;
 			if (!_prime.IsPrimeNumber(prime)) return false;
+
+			if (prime == 3797)
+			{
+				Console.WriteLine(prime);
+			}
 
 			string primeTextLeftToRight = prime.ToString();
 			string primeTextRightToLeft = primeTextLeftToRight;
@@ -87,9 +92,15 @@ namespace Demo.ProjectEuler.Tests._0037
 
 				double primeTextLeftToRightValue = Convert.ToDouble(primeTextLeftToRight);
 				double primeTextRightToLeftValue = Convert.ToDouble(primeTextRightToLeft);
+
+				if (_processedPrimes.Contains((int)primeTextLeftToRightValue) ||
+					_processedPrimes.Contains((int)primeTextRightToLeftValue))
+					return true;
+
 				if (!_prime.IsPrimeNumber(primeTextLeftToRightValue) || 
 					!_prime.IsPrimeNumber(primeTextRightToLeftValue))
 					return false;
+
 			}
 
 			return true;
