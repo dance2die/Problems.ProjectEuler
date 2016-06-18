@@ -108,6 +108,7 @@
     <Compile Include="0036\DoublebasePalindromesTest.cs" />
     <Compile Include="0037\TruncatablePrimes.cs" />
     <Compile Include="0037\TruncatablePrimesTest.cs" />
+    <Compile Include="0501\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <Content Include="0035\README.txt" />
     <Content Include="0036\README.txt" />
     <Content Include="0037\README.txt" />
+    <Content Include="0501\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.ProjectEuler.Core\Demo.ProjectEuler.Core.csproj">
