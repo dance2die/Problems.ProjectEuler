@@ -1,4 +1,7 @@
-﻿using Demo.ProjectEuler.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -55,12 +58,18 @@ namespace Demo.ProjectEuler.Tests._0501
 		public int GetEightDivisorFactorsUpto(int upto)
 		{
 			int result = 0;
-			// Skip odd numbers
-			for (int i = 1; i <= upto; i+=1)
+			List<int> numbers = Enumerable.Range(1, upto).ToList();
+
+			for (int i = 0; i < numbers.Count; i++)
 			{
-				int divisorCount = _factors.GetFactorCount(i);
+				var number = numbers[i];
+				int divisorCount = _factors.GetFactorCount(number);
+
 				if (divisorCount == FACTOR_COUNT)
+				{
 					result++;
+					numbers.RemoveAll(n => n % number == 0 && n > number);
+				}
 			}
 
 			return result;
