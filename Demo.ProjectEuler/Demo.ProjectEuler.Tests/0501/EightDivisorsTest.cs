@@ -59,16 +59,20 @@ namespace Demo.ProjectEuler.Tests._0501
 		{
 			int result = 0;
 			List<int> numbers = Enumerable.Range(1, upto).ToList();
+			List<int> eightDivisors = new List<int>();
 
 			for (int i = 0; i < numbers.Count; i++)
 			{
 				var number = numbers[i];
 				int divisorCount = _factors.GetFactorCount(number);
 
+				//if (eightDivisors.Any(n => number % n == 0)) continue;
+
 				if (divisorCount == FACTOR_COUNT)
 				{
 					result++;
-					numbers.RemoveAll(n => n % number == 0 && n > number);
+					eightDivisors.Add(number);
+					//numbers.RemoveAll(n => n % number == 0 && n > number);
 				}
 			}
 
