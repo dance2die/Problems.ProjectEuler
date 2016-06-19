@@ -48,13 +48,15 @@ namespace Demo.ProjectEuler.Tests._0501
 
 	public class EightDivisors
 	{
-		private readonly Factors _factors = new Factors();
 		private const int FACTOR_COUNT = 8;
+
+		private readonly Factors _factors = new Factors();
 
 		public int GetEightDivisorFactorsUpto(int upto)
 		{
 			int result = 0;
-			for (int i = 0; i < upto; i++)
+			// Skip odd numbers
+			for (int i = 1; i <= upto; i+=1)
 			{
 				int divisorCount = _factors.GetFactorCount(i);
 				if (divisorCount == FACTOR_COUNT)
