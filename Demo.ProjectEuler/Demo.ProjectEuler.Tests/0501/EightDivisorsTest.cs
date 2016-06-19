@@ -33,16 +33,40 @@ namespace Demo.ProjectEuler.Tests._0501
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(100, 10)]
+		[InlineData(1000, 180)]
+		[InlineData(1000000, 224427)]
+		public void TestNumberOfFactorsUpto(int upto, int expected)
+		{
+			int actual = _sut.GetEightDivisorFactorsUpto(upto);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class EightDivisors
 	{
 		private readonly Factors _factors = new Factors();
+		private const int FACTOR_COUNT = 8;
+
+		public int GetEightDivisorFactorsUpto(int upto)
+		{
+			int result = 0;
+			for (int i = 0; i < upto; i++)
+			{
+				int divisorCount = _factors.GetFactorCount(i);
+				if (divisorCount == FACTOR_COUNT)
+					result++;
+			}
+
+			return result;
+		}
 
 		public bool HasEdightDivisors(int value)
 		{
-			const int factorCount = 8;
-			return _factors.GetFactorCount(value) == factorCount;
+			return _factors.GetFactorCount(value) == FACTOR_COUNT;
 		}
 	}
 }
