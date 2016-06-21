@@ -41,9 +41,9 @@ namespace Demo.ProjectEuler.Tests._0501
 		[InlineData(100, 10)]
 		[InlineData(1000, 180)]
 		[InlineData(1000000, 224427)]
-		public void TestNumberOfFactorsUpto(int upto, int expected)
+		public void TestNumberOfFactorsUpto(long upto, long expected)
 		{
-			int actual = _sut.GetEightDivisorFactorsUpto(upto);
+			long actual = _sut.GetEightDivisorFactorsUpto(upto);
 
 			Assert.Equal(expected, actual);
 		}
@@ -55,15 +55,14 @@ namespace Demo.ProjectEuler.Tests._0501
 
 		private readonly Factors _factors = new Factors();
 
-		public int GetEightDivisorFactorsUpto(int upto)
+		public long GetEightDivisorFactorsUpto(long upto)
 		{
-			int result = 0;
-			List<int> numbers = Enumerable.Range(1, upto).ToList();
-			List<int> eightDivisors = new List<int>();
+			long result = 0;
+			List<long> eightDivisors = new List<long>();
 
-			for (int i = 0; i < numbers.Count; i++)
+			for (int i = 1; i < upto; i++)
 			{
-				var number = numbers[i];
+				var number = i;
 				int divisorCount = _factors.GetFactorCount(number);
 
 				//if (eightDivisors.Any(n => number % n == 0)) continue;

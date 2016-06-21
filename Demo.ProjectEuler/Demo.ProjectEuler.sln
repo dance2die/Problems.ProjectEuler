@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRecursionDemo", "Simp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombinationDemo", "CombinationDemo\CombinationDemo.csproj", "{537AF944-A53A-4BF2-AB1A-11105A6751F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EightDivisorsDemo", "EightDivisorsDemo\EightDivisorsDemo.csproj", "{23CE00F8-8C64-4034-AA6F-E0CD35CE28A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{537AF944-A53A-4BF2-AB1A-11105A6751F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{537AF944-A53A-4BF2-AB1A-11105A6751F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{537AF944-A53A-4BF2-AB1A-11105A6751F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23CE00F8-8C64-4034-AA6F-E0CD35CE28A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23CE00F8-8C64-4034-AA6F-E0CD35CE28A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23CE00F8-8C64-4034-AA6F-E0CD35CE28A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23CE00F8-8C64-4034-AA6F-E0CD35CE28A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{B4305786-4E72-49EA-B331-FE50FF39043A} = {7C0A3082-70AF-441B-BB4D-B8A62F882F4A}
 		{674DE5D6-1A27-4B20-B74E-ABD4CA93E5E7} = {7C0A3082-70AF-441B-BB4D-B8A62F882F4A}
 		{537AF944-A53A-4BF2-AB1A-11105A6751F2} = {7C0A3082-70AF-441B-BB4D-B8A62F882F4A}
+		{23CE00F8-8C64-4034-AA6F-E0CD35CE28A7} = {7C0A3082-70AF-441B-BB4D-B8A62F882F4A}
 	EndGlobalSection
 EndGlobal
