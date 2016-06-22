@@ -108,6 +108,7 @@
     <Compile Include="0036\DoublebasePalindromesTest.cs" />
     <Compile Include="0037\TruncatablePrimes.cs" />
     <Compile Include="0037\TruncatablePrimesTest.cs" />
+    <Compile Include="0040\ChampernownesConstant.cs" />
     <Compile Include="0040\ChampernownesConstantTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />

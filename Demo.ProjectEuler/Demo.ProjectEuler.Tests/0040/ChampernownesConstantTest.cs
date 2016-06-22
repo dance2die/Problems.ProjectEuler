@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Demo.ProjectEuler.Tests.Core;
+﻿using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -59,19 +57,6 @@ namespace Demo.ProjectEuler.Tests._0040
 
 			const int expected = 210;
 			Assert.Equal(expected, actual);
-		}
-	}
-
-	public class ChampernownesConstant
-	{
-		public int GetDigitValueAt(string stringNumber, int oneBasedIndex)
-		{
-			return Convert.ToInt32(stringNumber[oneBasedIndex - 1].ToString());
-		}
-
-		public string GetNumberStringUpto(int upto)
-		{
-			return string.Join("", Enumerable.Range(1, upto).Select(number => number.ToString()));
 		}
 	}
 }
