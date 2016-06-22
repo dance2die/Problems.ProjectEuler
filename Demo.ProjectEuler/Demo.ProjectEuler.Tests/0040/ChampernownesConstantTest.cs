@@ -40,22 +40,26 @@ namespace Demo.ProjectEuler.Tests._0040
 			Assert.Equal(expected, actual);
 		}
 
-		//[Fact]
-		//public void ShowResult()
-		//{
-		//	const int upto = 1000000;
-		//	string stringNumber = _sut.GetNumberStringUpto(upto);
+		[Fact]
+		public void ShowResult()
+		{
+			const int upto = 1000000;
+			string stringNumber = _sut.GetNumberStringUpto(upto);
 
-		//	int value1 = _sut.GetDigitAt(stringNumber, 1);
-		//	int value2 = _sut.GetDigitAt(stringNumber, 10);
-		//	int value3 = _sut.GetDigitAt(stringNumber, 100);
-		//	int value4 = _sut.GetDigitAt(stringNumber, 1000);
-		//	int value5 = _sut.GetDigitAt(stringNumber, 10000);
-		//	int value6 = _sut.GetDigitAt(stringNumber, 100000);
-		//	int value7 = _sut.GetDigitAt(stringNumber, 1000000);
+			int value1 = _sut.GetDigitValueAt(stringNumber, 1);
+			int value2 = _sut.GetDigitValueAt(stringNumber, 10);
+			int value3 = _sut.GetDigitValueAt(stringNumber, 100);
+			int value4 = _sut.GetDigitValueAt(stringNumber, 1000);
+			int value5 = _sut.GetDigitValueAt(stringNumber, 10000);
+			int value6 = _sut.GetDigitValueAt(stringNumber, 100000);
+			int value7 = _sut.GetDigitValueAt(stringNumber, 1000000);
 
+			int actual = value1 * value2 * value3 * value4 * value5 * value6 * value7;
+			_output.WriteLine(actual.ToString());
 
-		//}
+			const int expected = 210;
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class ChampernownesConstant
