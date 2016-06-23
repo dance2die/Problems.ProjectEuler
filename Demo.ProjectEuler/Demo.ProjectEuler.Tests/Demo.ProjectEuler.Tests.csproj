@@ -110,6 +110,7 @@
     <Compile Include="0037\TruncatablePrimesTest.cs" />
     <Compile Include="0040\ChampernownesConstant.cs" />
     <Compile Include="0040\ChampernownesConstantTest.cs" />
+    <Compile Include="0042\CodedTriangleNumbersTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,6 +149,7 @@
     <Content Include="0036\README.txt" />
     <Content Include="0037\README.txt" />
     <Content Include="0040\README.txt" />
+    <Content Include="0042\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
