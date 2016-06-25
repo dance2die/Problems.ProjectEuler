@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -67,6 +69,16 @@ namespace Demo.ProjectEuler.Tests._0042
 			bool actual = _sut.IsTriangleWord(word);
 
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			var wordText = File.ReadAllText("./0042/words.txt");
+			var words = wordText.Split(new []{"\"", ","}, StringSplitOptions.RemoveEmptyEntries);
+			int triangleWordCount = words.Count(word => _sut.IsTriangleWord(word));
+
+			_output.WriteLine(triangleWordCount.ToString());
 		}
 	}
 

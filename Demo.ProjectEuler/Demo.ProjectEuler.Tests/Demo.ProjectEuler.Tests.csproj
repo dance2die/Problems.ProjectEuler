@@ -150,6 +150,9 @@
     <Content Include="0037\README.txt" />
     <Content Include="0040\README.txt" />
     <Content Include="0042\README.txt" />
+    <Content Include="0042\words.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
