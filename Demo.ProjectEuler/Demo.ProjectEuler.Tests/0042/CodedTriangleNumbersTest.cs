@@ -35,10 +35,33 @@ namespace Demo.ProjectEuler.Tests._0042
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(1, 1)]
+		[InlineData(2, 3)]
+		[InlineData(3, 6)]
+		[InlineData(4, 10)]
+		[InlineData(5, 15)]
+		[InlineData(6, 21)]
+		[InlineData(7, 28)]
+		[InlineData(8, 36)]
+		[InlineData(9, 45)]
+		[InlineData(10, 55)]
+		public void TestTriangleNumberGeneration(int n, int expected)
+		{
+			int actual = _sut.GetTriangleNumber(n);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CodedTriangleNumbers
 	{
+		public int GetTriangleNumber(int n)
+		{
+			return n * (n + 1) / 2;
+		}
+
 		public int GetPosition(char character)
 		{
 			const int offset = 64;	// 'A' is 65 in ASCII table.
