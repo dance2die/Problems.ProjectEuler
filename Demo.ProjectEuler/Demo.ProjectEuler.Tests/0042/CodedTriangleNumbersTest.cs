@@ -1,4 +1,6 @@
-﻿using Demo.ProjectEuler.Tests.Core;
+﻿using System.Linq;
+using System.Reflection;
+using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -53,10 +55,45 @@ namespace Demo.ProjectEuler.Tests._0042
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData("SKY", true)]
+		[InlineData("ABC", true)]
+		[InlineData("DEF", true)]
+		[InlineData("XXX", false)]
+		[InlineData("XYZ", false)]
+		public void TestTriangleWord(string word, bool expected)
+		{
+			bool actual = _sut.IsTriangleWord(word);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CodedTriangleNumbers
 	{
+		public bool IsTriangleWord(string word)
+		{
+			int wordPositionSum = word.Sum(GetPosition);
+			int triangleNumber = 0;
+
+			// Optimization: Lowest number can be 1 for "A"
+			int n = word.Length;
+
+			// Get triangle numbers until wordPositionSum is reached.
+			do
+			{
+				triangleNumber = GetTriangleNumber(n);
+
+				if (triangleNumber == wordPositionSum)
+					return true;
+
+				n++;
+			} while (triangleNumber <= wordPositionSum);
+
+			return false;
+		}
+
 		public int GetTriangleNumber(int n)
 		{
 			return n * (n + 1) / 2;
