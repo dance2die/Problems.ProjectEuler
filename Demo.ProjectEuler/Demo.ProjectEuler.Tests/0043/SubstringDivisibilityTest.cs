@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Numerics;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -47,7 +46,7 @@ namespace Demo.ProjectEuler.Tests._0043
 		[Fact]
 		public void ShowResult()
 		{
-			BigInteger actual = _sut.GetNumbersWithSpecialProperties();
+			long actual = _sut.GetNumbersWithSpecialProperties();
 
 			_output.WriteLine(actual.ToString());
 			Assert.Equal(16695334890, actual);
