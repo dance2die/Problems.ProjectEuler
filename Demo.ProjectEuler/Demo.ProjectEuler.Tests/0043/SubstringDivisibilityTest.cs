@@ -35,7 +35,8 @@ namespace Demo.ProjectEuler.Tests._0043
 		[Fact]
 		public void TestSpecialProperties()
 		{
-			const int input = 1406357289;
+			//const int input = 1406357289;
+			var input = new[] {1, 4, 0, 6, 3, 5, 7, 2, 8, 9 };
 			const bool expected = true;
 
 			bool actual = _sut.HasSpecialProperties(input);
