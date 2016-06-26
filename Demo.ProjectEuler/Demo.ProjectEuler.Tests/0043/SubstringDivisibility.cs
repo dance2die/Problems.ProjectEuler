@@ -12,13 +12,13 @@ namespace Demo.ProjectEuler.Tests._0043
 		public long GetNumbersWithSpecialProperties()
 		{
 			Permutation perm = new Permutation();
-			var permutations = perm.GetPermutations(Enumerable.Range(0, 10).ToList()).ToList();
+			var permutations = perm.GetPermutations(Enumerable.Range(0, 10).ToList());
 
 			long result = 0;
-			foreach (IEnumerable<int> permutation in permutations)
+			foreach (IEnumerable<int> permutation in permutations.Where(n => n.First() != 0))
 			{
 				string numberText = string.Join("", permutation.Select(n => n.ToString()).ToArray());
-				if (numberText.StartsWith("0")) continue;
+				//if (numberText.StartsWith("0")) continue;
 
 				long number = Convert.ToInt64(numberText);
 
