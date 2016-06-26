@@ -47,9 +47,10 @@ namespace Demo.ProjectEuler.Tests._0043
 		[Fact]
 		public void ShowResult()
 		{
-			BigInteger result = _sut.GetNumbersWithSpecialProperties();
+			BigInteger actual = _sut.GetNumbersWithSpecialProperties();
 
-			_output.WriteLine(result.ToString());
+			_output.WriteLine(actual.ToString());
+			Assert.Equal(16695334890, actual);
 		}
 	}
 }
