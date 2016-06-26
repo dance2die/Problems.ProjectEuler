@@ -34,12 +34,13 @@ namespace Demo.ProjectEuler.Tests._0043
 			string inputText = input.ToString();
 			for (int i = 0; i < inputText.Length - 3; i++)
 			{
-				var digit1 = inputText[i + 1];
-				var digit2 = inputText[i + 2];
-				var digit3 = inputText[i + 3];
+				var digit1 = Convert.ToInt32(inputText[i + 1].ToString()) * 100;
+				var digit2 = Convert.ToInt32(inputText[i + 2].ToString()) * 10;
+				var digit3 = Convert.ToInt32(inputText[i + 3].ToString());
+				var number = digit1 + digit2 + digit3;
 
-				string substring = $"{digit1}{digit2}{digit3}";
-				int number = Convert.ToInt32(substring);
+				//string substring = $"{digit1}{digit2}{digit3}";
+				//int number = Convert.ToInt32(substring);
 
 				if (number % _primes[i] != 0)
 					return false;
