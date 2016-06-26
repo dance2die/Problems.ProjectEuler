@@ -112,6 +112,7 @@
     <Compile Include="0040\ChampernownesConstantTest.cs" />
     <Compile Include="0042\CodedTriangleNumbers.cs" />
     <Compile Include="0042\CodedTriangleNumbersTest.cs" />
+    <Compile Include="0043\SubstringDivisibility.cs" />
     <Compile Include="0043\SubstringDivisibilityTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
