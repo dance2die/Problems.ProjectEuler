@@ -19,10 +19,12 @@ namespace Demo.ProjectEuler.Tests._0043
 			foreach (IEnumerable<int> permutation in permutations.Where(n => n.First() != 0))
 			{
 				var permutationList = permutation.ToList();
-				string numberText = string.Join("", permutationList.Select(n => n.ToString()).ToArray());
 
 				if (HasSpecialProperties(permutationList))
+				{
+					string numberText = string.Join("", permutationList.Select(n => n.ToString()).ToArray());
 					result += Convert.ToInt64(numberText);
+				}
 			}
 
 			return result;
