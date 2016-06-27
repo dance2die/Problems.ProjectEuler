@@ -69,9 +69,48 @@ namespace Demo.ProjectEuler.Tests._0045
 
 	public class NextTriangle
 	{
-		public int GetNextTriangleNumberGreaterThan(int oneBasedIndex)
+		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
+
+		public int GetNextTriangleNumberGreaterThan(int startIndex)
 		{
-			return -1;
+			int triangleIndex = startIndex;
+
+			while (true)
+			{
+				int triangleNumber = _numberGenerator.GetTriangleNumber(triangleIndex);
+				bool hasMatchingPentagonalNumber = CheckPentagonalNumber(triangleIndex, triangleNumber);
+				bool hasMatchingHexagonalNumber = CheckHexagonalNumber(triangleIndex, triangleNumber);
+				if (hasMatchingPentagonalNumber && hasMatchingHexagonalNumber)
+					break;
+
+				triangleIndex++;
+			}
+
+			return triangleIndex;
+		}
+
+		private bool CheckPentagonalNumber(int triangleIndex, int triangleNumber)
+		{
+			for (int i = triangleIndex; i >= 1; i--)
+			{
+				var pentagonalNumber = _numberGenerator.GetPentagonalNumber(i);
+				if (pentagonalNumber == triangleNumber)
+					return true;
+			}
+
+			return false;
+		}
+
+		private bool CheckHexagonalNumber(int triangleIndex, int triangleNumber)
+		{
+			for (int i = triangleIndex; i >= 1; i--)
+			{
+				var hexagonalNumber = _numberGenerator.GetHexagonalNumber(i);
+				if (hexagonalNumber == triangleNumber)
+					return true;
+			}
+
+			return false;
 		}
 	}
 }
