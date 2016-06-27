@@ -1,5 +1,4 @@
-﻿using System;
-using Demo.ProjectEuler.Core;
+﻿using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -75,73 +74,8 @@ namespace Demo.ProjectEuler.Tests._0045
 			long actual = _sut.GetNextTriangleNumberGreaterThan(startIndex);
 
 			_output.WriteLine(actual.ToString());
-		}
-	}
-
-	public class NextTriangle
-	{
-		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
-
-		public long GetNextTriangleNumberGreaterThan(long startIndex)
-		{
-			long triangleIndex = startIndex;
-			long triangleNumber = 0;
-
-			while (true)
-			{
-				triangleNumber = _numberGenerator.GetTriangleNumber(triangleIndex);
-				//bool hasMatchingPentagonalNumber = CheckPentagonalNumber(triangleIndex, hexagonalNumber);
-
-				//if (hasMatchingPentagonalNumber)
-				//	break;
-				if (IsPentagonal(triangleNumber) && IsHexagonal(triangleNumber))
-				{
-					var pIndex = CheckPentagonalNumber(triangleIndex, triangleNumber);
-					var hIndex = CheckHexagonalNumber(triangleIndex, triangleNumber);
-					break;
-				}
-
-				triangleIndex++;
-			}
-
-			return triangleNumber;
-		}
-
-		// http://www.mathblog.dk/project-euler-44-smallest-pair-pentagonal-numbers/
-		private bool IsPentagonal(long number)
-		{
-			double penTest = (Math.Sqrt(1 + 24 * number) + 1.0) / 6.0;
-			return penTest == (long)penTest;
-		}
-
-		private bool IsHexagonal(long number)
-		{
-			double hexTest = (Math.Sqrt(8 * number + 1) + 1) / 4.0;
-			return hexTest == (long) hexTest;
-		}
-
-		private long CheckPentagonalNumber(long triangleIndex, long hexagonalNumber)
-		{
-			for (long i = triangleIndex;; i--)
-			{
-				var pentagonalNumber = _numberGenerator.GetPentagonalNumber(i);
-				if (pentagonalNumber < hexagonalNumber) return -1;
-				if (pentagonalNumber == hexagonalNumber) return i;
-			}
-
-			return -1;
-		}
-
-		private long CheckHexagonalNumber(long triangleIndex, long triangleNumber)
-		{
-			for (long i = triangleIndex; ; i--)
-			{
-				var hexagonalNumber = _numberGenerator.GetHexagonalNumber(i);
-				if (hexagonalNumber < triangleNumber) return -1;
-				if (hexagonalNumber == triangleNumber) return i;
-			}
-
-			return -1;
+			const long expected = 1533776805;
+			Assert.Equal(expected, actual);
 		}
 	}
 }

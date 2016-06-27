@@ -114,6 +114,7 @@
     <Compile Include="0042\CodedTriangleNumbersTest.cs" />
     <Compile Include="0043\SubstringDivisibility.cs" />
     <Compile Include="0043\SubstringDivisibilityTest.cs" />
+    <Compile Include="0045\NextTriangle.cs" />
     <Compile Include="0045\NextTriangleTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
