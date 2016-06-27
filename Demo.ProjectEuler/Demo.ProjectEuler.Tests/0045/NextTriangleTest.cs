@@ -1,4 +1,5 @@
-﻿using Demo.ProjectEuler.Core;
+﻿using System;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -21,7 +22,7 @@ namespace Demo.ProjectEuler.Tests._0045
 		[InlineData(5, 35)]
 		public void TestPentagonalNumberGeneration(int oneBasedIndex, int expected)
 		{
-			int actual = new NumberGenerator().GetPentagonalNumber(oneBasedIndex);
+			long actual = new NumberGenerator().GetPentagonalNumber(oneBasedIndex);
 
 			Assert.Equal(expected, actual);
 		}
@@ -34,7 +35,7 @@ namespace Demo.ProjectEuler.Tests._0045
 		[InlineData(5, 45)]
 		public void TestHexagonalNumberGeneration(int oneBasedIndex, int expected)
 		{
-			int actual = new NumberGenerator().GetHexagonalNumber(oneBasedIndex);
+			long actual = new NumberGenerator().GetHexagonalNumber(oneBasedIndex);
 
 			Assert.Equal(expected, actual);
 		}
@@ -47,9 +48,9 @@ namespace Demo.ProjectEuler.Tests._0045
 			const int hexagonalIndex = 143;
 
 			var numberGenerator = new NumberGenerator();
-			int triangleNumber = numberGenerator.GetTriangleNumber(triangleIndex);
-			int pentagonalNumber = numberGenerator.GetPentagonalNumber(pentagonalIndex);
-			int hexagonalNumber = numberGenerator.GetHexagonalNumber(hexagonalIndex);
+			long triangleNumber = numberGenerator.GetTriangleNumber(triangleIndex);
+			long pentagonalNumber = numberGenerator.GetPentagonalNumber(pentagonalIndex);
+			long hexagonalNumber = numberGenerator.GetHexagonalNumber(hexagonalIndex);
 
 			Assert.Equal(triangleNumber, pentagonalNumber);
 			Assert.Equal(hexagonalNumber, pentagonalNumber);
@@ -58,10 +59,10 @@ namespace Demo.ProjectEuler.Tests._0045
 		[Fact]
 		public void FindFirstTriangleNumber()
 		{
-			const int expected = 285;
+			const int expected = 40755;
 			const int oneBasedIndex = 280;
 
-			int actual = _sut.GetNextTriangleNumberGreaterThan(oneBasedIndex);
+			long actual = _sut.GetNextTriangleNumberGreaterThan(oneBasedIndex);
 
 			Assert.Equal(expected, actual);
 		}
@@ -69,9 +70,9 @@ namespace Demo.ProjectEuler.Tests._0045
 		[Fact]
 		public void ShowResult()
 		{
-			const int startIndex = 286;
+			const long startIndex = 286;
 
-			int actual = _sut.GetNextTriangleNumberGreaterThan(startIndex);
+			long actual = _sut.GetNextTriangleNumberGreaterThan(startIndex);
 
 			_output.WriteLine(actual.ToString());
 		}
@@ -81,43 +82,66 @@ namespace Demo.ProjectEuler.Tests._0045
 	{
 		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
 
-		public int GetNextTriangleNumberGreaterThan(int startIndex)
+		public long GetNextTriangleNumberGreaterThan(long startIndex)
 		{
-			int triangleIndex = startIndex;
+			long triangleIndex = startIndex;
+			long triangleNumber = 0;
 
 			while (true)
 			{
-				int triangleNumber = _numberGenerator.GetTriangleNumber(triangleIndex);
-				bool hasMatchingPentagonalNumber = CheckPentagonalNumber(triangleIndex, triangleNumber);
-				bool hasMatchingHexagonalNumber = CheckHexagonalNumber(triangleIndex, triangleNumber);
-				if (hasMatchingPentagonalNumber && hasMatchingHexagonalNumber)
+				triangleNumber = _numberGenerator.GetTriangleNumber(triangleIndex);
+				//bool hasMatchingPentagonalNumber = CheckPentagonalNumber(triangleIndex, hexagonalNumber);
+
+				//if (hasMatchingPentagonalNumber)
+				//	break;
+				if (IsPentagonal(triangleNumber) && IsHexagonal(triangleNumber))
+				{
+					var pIndex = CheckPentagonalNumber(triangleIndex, triangleNumber);
+					var hIndex = CheckHexagonalNumber(triangleIndex, triangleNumber);
 					break;
+				}
 
 				triangleIndex++;
 			}
 
-			return triangleIndex;
+			return triangleNumber;
 		}
 
-		private bool CheckPentagonalNumber(int triangleIndex, int triangleNumber)
+		// http://www.mathblog.dk/project-euler-44-smallest-pair-pentagonal-numbers/
+		private bool IsPentagonal(long number)
 		{
-			for (int i = triangleIndex;; i--)
+			double penTest = (Math.Sqrt(1 + 24 * number) + 1.0) / 6.0;
+			return penTest == (long)penTest;
+		}
+
+		private bool IsHexagonal(long number)
+		{
+			double hexTest = (Math.Sqrt(8 * number + 1) + 1) / 4.0;
+			return hexTest == (long) hexTest;
+		}
+
+		private long CheckPentagonalNumber(long triangleIndex, long hexagonalNumber)
+		{
+			for (long i = triangleIndex;; i--)
 			{
 				var pentagonalNumber = _numberGenerator.GetPentagonalNumber(i);
-				if (pentagonalNumber < triangleNumber) return false;
-				if (pentagonalNumber == triangleNumber) return true;
-
+				if (pentagonalNumber < hexagonalNumber) return -1;
+				if (pentagonalNumber == hexagonalNumber) return i;
 			}
+
+			return -1;
 		}
 
-		private bool CheckHexagonalNumber(int triangleIndex, int triangleNumber)
+		private long CheckHexagonalNumber(long triangleIndex, long triangleNumber)
 		{
-			for (int i = triangleIndex;; i--)
+			for (long i = triangleIndex; ; i--)
 			{
 				var hexagonalNumber = _numberGenerator.GetHexagonalNumber(i);
-				if (hexagonalNumber < triangleNumber) return false;
-				if (hexagonalNumber == triangleNumber) return true;
+				if (hexagonalNumber < triangleNumber) return -1;
+				if (hexagonalNumber == triangleNumber) return i;
 			}
+
+			return -1;
 		}
 	}
 }

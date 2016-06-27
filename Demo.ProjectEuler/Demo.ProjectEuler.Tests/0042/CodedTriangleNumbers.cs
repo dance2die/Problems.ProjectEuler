@@ -10,7 +10,7 @@ namespace Demo.ProjectEuler.Tests._0042
 		public bool IsTriangleWord(string word)
 		{
 			int wordPositionSum = word.Sum(GetPosition);
-			int triangleNumber = 0;
+			long triangleNumber = 0;
 
 			// Optimization: Lowest number can be 1 for "A"
 			int n = word.Length;
@@ -35,7 +35,7 @@ namespace Demo.ProjectEuler.Tests._0042
 			return character - offset;
 		}
 
-		public int GetTriangleNumber(int n)
+		public long GetTriangleNumber(int n)
 		{
 			return _triangle.GetTriangleNumber(n);
 		}

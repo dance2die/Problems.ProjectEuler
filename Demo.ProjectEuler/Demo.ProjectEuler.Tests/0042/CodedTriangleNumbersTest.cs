@@ -50,9 +50,9 @@ namespace Demo.ProjectEuler.Tests._0042
 		[InlineData(8, 36)]
 		[InlineData(9, 45)]
 		[InlineData(10, 55)]
-		public void TestTriangleNumberGeneration(int n, int expected)
+		public void TestTriangleNumberGeneration(int n, long expected)
 		{
-			int actual = _sut.GetTriangleNumber(n);
+			long actual = _sut.GetTriangleNumber(n);
 
 			Assert.Equal(expected, actual);
 		}
