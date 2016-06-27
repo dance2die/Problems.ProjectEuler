@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
