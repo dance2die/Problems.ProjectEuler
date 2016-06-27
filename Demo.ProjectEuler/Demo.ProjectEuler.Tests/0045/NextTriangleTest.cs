@@ -25,6 +25,19 @@ namespace Demo.ProjectEuler.Tests._0045
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(1, 1)]
+		[InlineData(2, 6)]
+		[InlineData(3, 15)]
+		[InlineData(4, 28)]
+		[InlineData(5, 45)]
+		public void TestHexagonalNumberGeneration(int oneBasedIndex, int expected)
+		{
+			int actual = new NumberGenerator().GetHexagonalNumber(oneBasedIndex);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class NextTriangle

@@ -13,5 +13,11 @@ namespace Demo.ProjectEuler.Core
 		{
 			return n * (3 * n - 1) / 2;
 		}
+
+		/// <param name="n">One-based index</param>
+		public int GetHexagonalNumber(int n)
+		{
+			return n * (2 * n - 1);
+		}
 	}
 }
