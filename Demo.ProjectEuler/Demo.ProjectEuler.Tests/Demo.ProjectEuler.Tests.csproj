@@ -114,8 +114,8 @@
     <Compile Include="0042\CodedTriangleNumbersTest.cs" />
     <Compile Include="0043\SubstringDivisibility.cs" />
     <Compile Include="0043\SubstringDivisibilityTest.cs" />
-    <Compile Include="0045\NextTriangle.cs" />
-    <Compile Include="0045\NextTriangleTest.cs" />
+    <Compile Include="0045_unsolved\NextTriangle.cs" />
+    <Compile Include="0045_unsolved\NextTriangleTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,7 +159,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="0043\README.txt" />
-    <Content Include="0045\README.txt" />
+    <Content Include="0045_unsolved\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
