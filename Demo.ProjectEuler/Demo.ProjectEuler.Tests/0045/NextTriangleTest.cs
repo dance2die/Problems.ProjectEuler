@@ -54,9 +54,24 @@ namespace Demo.ProjectEuler.Tests._0045
 			Assert.Equal(triangleNumber, pentagonalNumber);
 			Assert.Equal(hexagonalNumber, pentagonalNumber);
 		}
+
+		[Fact]
+		public void FindFirstTriangleNumber()
+		{
+			const int expected = 285;
+			const int oneBasedIndex = 280;
+
+			int actual = _sut.GetNextTriangleNumberGreaterThan(oneBasedIndex);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class NextTriangle
 	{
+		public int GetNextTriangleNumberGreaterThan(int oneBasedIndex)
+		{
+			return -1;
+		}
 	}
 }
