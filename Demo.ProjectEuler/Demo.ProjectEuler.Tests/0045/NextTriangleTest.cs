@@ -65,6 +65,16 @@ namespace Demo.ProjectEuler.Tests._0045
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int startIndex = 286;
+
+			int actual = _sut.GetNextTriangleNumberGreaterThan(startIndex);
+
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class NextTriangle
@@ -91,26 +101,23 @@ namespace Demo.ProjectEuler.Tests._0045
 
 		private bool CheckPentagonalNumber(int triangleIndex, int triangleNumber)
 		{
-			for (int i = triangleIndex; i >= 1; i--)
+			for (int i = triangleIndex;; i--)
 			{
 				var pentagonalNumber = _numberGenerator.GetPentagonalNumber(i);
-				if (pentagonalNumber == triangleNumber)
-					return true;
-			}
+				if (pentagonalNumber < triangleNumber) return false;
+				if (pentagonalNumber == triangleNumber) return true;
 
-			return false;
+			}
 		}
 
 		private bool CheckHexagonalNumber(int triangleIndex, int triangleNumber)
 		{
-			for (int i = triangleIndex; i >= 1; i--)
+			for (int i = triangleIndex;; i--)
 			{
 				var hexagonalNumber = _numberGenerator.GetHexagonalNumber(i);
-				if (hexagonalNumber == triangleNumber)
-					return true;
+				if (hexagonalNumber < triangleNumber) return false;
+				if (hexagonalNumber == triangleNumber) return true;
 			}
-
-			return false;
 		}
 	}
 }
