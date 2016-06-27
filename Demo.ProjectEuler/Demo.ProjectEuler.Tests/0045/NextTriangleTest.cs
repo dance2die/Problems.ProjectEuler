@@ -38,6 +38,22 @@ namespace Demo.ProjectEuler.Tests._0045
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestMatchTrianglePentagonalHexagonalMatch()
+		{
+			const int triangleIndex = 285;
+			const int pentagonalIndex = 165;
+			const int hexagonalIndex = 143;
+
+			var numberGenerator = new NumberGenerator();
+			int triangleNumber = numberGenerator.GetTriangleNumber(triangleIndex);
+			int pentagonalNumber = numberGenerator.GetPentagonalNumber(pentagonalIndex);
+			int hexagonalNumber = numberGenerator.GetHexagonalNumber(hexagonalIndex);
+
+			Assert.Equal(triangleNumber, pentagonalNumber);
+			Assert.Equal(hexagonalNumber, pentagonalNumber);
+		}
 	}
 
 	public class NextTriangle
