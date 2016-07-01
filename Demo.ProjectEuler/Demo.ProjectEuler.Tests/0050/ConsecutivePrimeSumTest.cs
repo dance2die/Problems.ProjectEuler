@@ -37,6 +37,8 @@ namespace Demo.ProjectEuler.Tests._0050
 			double actual = _sut.GetLongestConsecutivePrimeSum(upto);
 
 			_output.WriteLine(actual.ToString(CultureInfo.InvariantCulture));
+			const int expected = 997651;
+			Assert.Equal(expected, actual);
 		}
 	}
 
