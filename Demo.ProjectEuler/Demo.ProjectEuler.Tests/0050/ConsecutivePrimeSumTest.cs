@@ -60,14 +60,14 @@ namespace Demo.ProjectEuler.Tests._0050
 
 			for (int i = 0; i < primes.Count - 1; i++)
 			{
-				for (int j = primes.Count - 1; j >= 2; j--)
+				for (int j = 2; j <= primes.Count; j++)
 				{
 					var range = primes.Skip(i).Take(j).ToList();
 					//double sum = range.Aggregate(0, (a, b) => a + b);
 					double sum = GetRangeSum(range);
+					if (sum > upto) break;
 
-					if (sum <= upto &&
-						maxSequence < range.Count &&
+					if (maxSequence < range.Count &&
 						_prime.IsPrimeNumber(sum))
 					{
 						maxSequence = range.Count;
