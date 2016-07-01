@@ -49,7 +49,7 @@ namespace Demo.ProjectEuler.Tests._0050
 
 		public double GetLongestConsecutivePrimeSum(int upto)
 		{
-			var primes = _eSieve.GetPrimes(upto).ToList();
+			var primes = _eSieve.GetPrimes(upto / 2).ToList();
 			var maxSequence = 0;
 			double maxSequencePrime = 0;
 
