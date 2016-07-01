@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -46,12 +45,6 @@ namespace Demo.ProjectEuler.Tests._0050
 		private readonly ESieve _eSieve = new ESieve();
 		private readonly Prime _prime = new Prime();
 
-		/// <remarks>
-		/// Algorithm.
-		/// 
-		/// Get primes "upto" specified argument.
-		/// 
-		/// </remarks>
 		public double GetLongestConsecutivePrimeSum(int upto)
 		{
 			var primes = _eSieve.GetPrimes(upto).ToList();
@@ -63,8 +56,7 @@ namespace Demo.ProjectEuler.Tests._0050
 				for (int j = 2; j <= primes.Count; j++)
 				{
 					var range = primes.Skip(i).Take(j).ToList();
-					//double sum = range.Aggregate(0, (a, b) => a + b);
-					double sum = GetRangeSum(range);
+					double sum = range.Aggregate(0, (a, b) => a + b);
 					if (sum > upto) break;
 
 					if (maxSequence < range.Count &&
@@ -77,17 +69,6 @@ namespace Demo.ProjectEuler.Tests._0050
 			}
 
 			return maxSequencePrime;
-		}
-
-		private double GetRangeSum(IEnumerable<int> range)
-		{
-			double result = 0;
-			foreach (int value in range)
-			{
-				result += value;
-			}
-
-			return result;
 		}
 	}
 }
