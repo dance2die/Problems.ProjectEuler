@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -22,11 +23,20 @@ namespace Demo.ProjectEuler.Tests._0050
 		[InlineData(100, 41)]
 		// 7 + 11 + 13 + 17 + 19 + 23 + 29 + 31 + 37 + 41 + 43 + 47 + 53 + 59 + 61 + 67 + 71 + 73 + 79 + 83 + 89
 		[InlineData(1000, 953)]
-		public void TestSampleData(int upto, int expected)
+		public void TestSampleData(int upto, double expected)
 		{
-			int actual = _sut.GetLongestConsecutivePrimeSum(upto);
+			double actual = _sut.GetLongestConsecutivePrimeSum(upto);
 
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int upto = 1000000;
+			double actual = _sut.GetLongestConsecutivePrimeSum(upto);
+
+			_output.WriteLine(actual.ToString(CultureInfo.InvariantCulture));
 		}
 	}
 
@@ -41,18 +51,18 @@ namespace Demo.ProjectEuler.Tests._0050
 		/// Get primes "upto" specified argument.
 		/// 
 		/// </remarks>
-		public int GetLongestConsecutivePrimeSum(int upto)
+		public double GetLongestConsecutivePrimeSum(int upto)
 		{
 			var primes = _eSieve.GetPrimes(upto / 2).ToList();
 			var maxSequence = 0;
-			var maxSequencePrime = 0;
+			double maxSequencePrime = 0;
 
 			for (int i = 0; i < primes.Count - 1; i++)
 			{
 				for (int j = primes.Count - 1; j >= 2; j--)
 				{
 					var range = primes.Skip(i).Take(j).ToList();
-					var sum = range.Sum();
+					double sum = range.Sum();
 
 					if (_prime.IsPrimeNumber(sum) && sum <= upto && maxSequence < range.Count)
 					{
