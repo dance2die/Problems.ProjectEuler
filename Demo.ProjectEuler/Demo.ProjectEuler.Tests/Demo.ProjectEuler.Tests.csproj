@@ -116,6 +116,7 @@
     <Compile Include="0043\SubstringDivisibilityTest.cs" />
     <Compile Include="0045_unsolved\NextTriangle.cs" />
     <Compile Include="0045_unsolved\NextTriangleTest.cs" />
+    <Compile Include="0050\ConsecutivePrimeSum.cs" />
     <Compile Include="0050\ConsecutivePrimeSumTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
