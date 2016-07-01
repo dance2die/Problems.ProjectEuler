@@ -8,8 +8,9 @@ namespace Demo.ProjectEuler.Core
 		/// <summary>
 		/// Get prime numbers "upto" specified number
 		/// </summary>
-		/// <param name="upto"></param>
-		/// <returns></returns>
+		/// <remarks>
+		/// Algorithm found on <see cref="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"/>
+		/// </remarks>
 		public IEnumerable<int> GetPrimes(int upto)
 		{
 			var primes = new bool[upto + 1];
