@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -21,11 +18,13 @@ namespace Demo.ProjectEuler.Tests._0050
 		}
 
 		[Theory]
-		[InlineData(50, 41)]
+		// 2 + 3 + 5 + 7 + 11 + 13
+		[InlineData(100, 41)]
+		// 7 + 11 + 13 + 17 + 19 + 23 + 29 + 31 + 37 + 41 + 43 + 47 + 53 + 59 + 61 + 67 + 71 + 73 + 79 + 83 + 89
 		[InlineData(1000, 953)]
 		public void TestSampleData(int upto, int expected)
 		{
-			int actual = _sut.GetConsecutivePrimeSum(upto);
+			int actual = _sut.GetLongestConsecutivePrimeSum(upto);
 
 			Assert.Equal(expected, actual);
 		}
@@ -33,10 +32,37 @@ namespace Demo.ProjectEuler.Tests._0050
 
 	public class ConsecutivePrimeSum
 	{
+		private readonly ESieve _eSieve = new ESieve();
+		private readonly Prime _prime = new Prime();
 
-		public int GetConsecutivePrimeSum(int upto)
+		/// <remarks>
+		/// Algorithm.
+		/// 
+		/// Get primes "upto" specified argument.
+		/// 
+		/// </remarks>
+		public int GetLongestConsecutivePrimeSum(int upto)
 		{
-			return -1;
+			var primes = _eSieve.GetPrimes(upto / 2).ToList();
+			var maxSequence = 0;
+			var maxSequencePrime = 0;
+
+			for (int i = 0; i < primes.Count - 1; i++)
+			{
+				for (int j = primes.Count - 1; j >= 2; j--)
+				{
+					var range = primes.Skip(i).Take(j).ToList();
+					var sum = range.Sum();
+
+					if (_prime.IsPrimeNumber(sum) && sum <= upto && maxSequence < range.Count)
+					{
+						maxSequence = range.Count;
+						maxSequencePrime = sum;
+					}
+				}
+			}
+
+			return maxSequencePrime;
 		}
 	}
 }
