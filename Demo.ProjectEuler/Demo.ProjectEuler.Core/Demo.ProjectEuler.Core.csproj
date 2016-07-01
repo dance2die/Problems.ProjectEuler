@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ESieve.cs" />
     <Compile Include="Factors.cs" />
     <Compile Include="Palindrome.cs" />
     <Compile Include="Permutation.cs" />
