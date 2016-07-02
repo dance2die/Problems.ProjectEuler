@@ -118,6 +118,7 @@
     <Compile Include="0045_unsolved\NextTriangleTest.cs" />
     <Compile Include="0050\ConsecutivePrimeSum.cs" />
     <Compile Include="0050\ConsecutivePrimeSumTest.cs" />
+    <Compile Include="0052\PermutedMultiplesTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -164,6 +165,7 @@
     <Content Include="0043\README.txt" />
     <Content Include="0045_unsolved\README.txt" />
     <Content Include="0050\README.txt" />
+    <Content Include="0052\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
