@@ -14,6 +14,7 @@ namespace Demo.ProjectEuler.Tests._0050
 			var maxSequence = 0;
 			int maxSequencePrime = 0;
 
+			// http://www.mathblog.dk/project-euler-50-sum-consecutive-primes/
 			int[] primeSums = new int[primes.Length + 1];
 			primeSums[0] = 0;
 			for (int a = 0; a < primes.Length; a++)
