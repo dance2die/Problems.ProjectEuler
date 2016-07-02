@@ -15,21 +15,16 @@ namespace Demo.ProjectEuler.Tests._0050
 			int maxSequencePrime = 0;
 
 			// http://www.mathblog.dk/project-euler-50-sum-consecutive-primes/
-			int[] primeSums = new int[primes.Length + 1];
-			primeSums[0] = 0;
-			for (int a = 0; a < primes.Length; a++)
-			{
-				primeSums[a + 1] = primeSums[a] + primes[a];
-			}
+			var primeSums = GetPrimeSums(primes);
 
 			for (int i = 0; i < primes.Length - 1; i++)
 			{
 				for (int j = 2; j <= primes.Length; j++)
 				{
 					int sum = primeSums[j] - primeSums[i];
-					int rangeCount = j - i;
 					if (sum > upto) break;
 
+					int rangeCount = j - i;
 					if (maxSequence < rangeCount &&
 						Array.BinarySearch(primes, sum) >= 0)
 					{
@@ -40,6 +35,19 @@ namespace Demo.ProjectEuler.Tests._0050
 			}
 
 			return maxSequencePrime;
+		}
+
+		private static int[] GetPrimeSums(int[] primes)
+		{
+			int[] primeSums = new int[primes.Length + 1];
+			primeSums[0] = 0;
+
+			for (int a = 0; a < primes.Length; a++)
+			{
+				primeSums[a + 1] = primeSums[a] + primes[a];
+			}
+
+			return primeSums;
 		}
 	}
 }
