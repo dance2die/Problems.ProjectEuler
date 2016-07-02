@@ -26,7 +26,7 @@ namespace Demo.ProjectEuler.Tests._0050
 				for (int j = 2; j <= primes.Length; j++)
 				{
 					int sum = primeSums[j] - primeSums[i];
-					int rangeCount = j - i + 1;
+					int rangeCount = j - i;
 					if (sum > upto) break;
 
 					if (maxSequence < rangeCount &&
