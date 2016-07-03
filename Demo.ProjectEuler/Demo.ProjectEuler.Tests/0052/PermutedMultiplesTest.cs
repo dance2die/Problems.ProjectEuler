@@ -28,10 +28,23 @@ namespace Demo.ProjectEuler.Tests._0052
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestMultipleMultiplicationsWithSameDigits()
+		{
+			long actual = _sut.GetMultipleCheckPermutedMultiples();
+
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class PermutedMultiple
 	{
+		public long GetMultipleCheckPermutedMultiples()
+		{
+			return -1;
+		}
+
 		public bool CheckPermutedMultiples(long input, int multiplyBy)
 		{
 			long multiplied = input * multiplyBy;
