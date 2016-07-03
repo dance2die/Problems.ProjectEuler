@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -42,7 +38,22 @@ namespace Demo.ProjectEuler.Tests._0052
 	{
 		public long GetMultipleCheckPermutedMultiples()
 		{
-			return -1;
+			long counter = 1;
+
+			do
+			{
+				bool isPermutedMutiple = true;
+				for (int multiplyBy = 1; multiplyBy <= 6; multiplyBy++)
+				{
+					if (!isPermutedMutiple) break;
+
+					isPermutedMutiple = CheckPermutedMultiples(counter, multiplyBy);
+				}
+
+				if (isPermutedMutiple) return counter;
+
+				counter++;
+			} while (true);
 		}
 
 		public bool CheckPermutedMultiples(long input, int multiplyBy)
