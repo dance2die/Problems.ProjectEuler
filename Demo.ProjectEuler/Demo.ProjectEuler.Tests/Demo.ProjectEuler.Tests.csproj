@@ -170,6 +170,7 @@
     <Content Include="0050\README.txt" />
     <Content Include="0052\README.txt" />
     <Content Include="0053\README.txt" />
+    <Content Include="0055\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
