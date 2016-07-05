@@ -21,10 +21,25 @@ namespace Demo.ProjectEuler.Tests._0053
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int startIndex = 1;
+			const int endIndex = 100;
+			long actual = _sut.GetRangeOfCombinatoricSelectionsOverOneMillion(startIndex, endIndex);
+
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class CombinatoricSelections
 	{
+		public long GetRangeOfCombinatoricSelectionsOverOneMillion(int startIndex, int endIndex)
+		{
+			return -1;
+		}
+
 		public long GetCombinatoricsSelectionCount(int n, int r)
 		{
 			long numerator = GetNumerator(n, r);
