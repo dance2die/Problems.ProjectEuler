@@ -120,6 +120,7 @@
     <Compile Include="0050\ConsecutivePrimeSumTest.cs" />
     <Compile Include="0052\PermutedMultiple.cs" />
     <Compile Include="0052\PermutedMultiplesTest.cs" />
+    <Compile Include="0053\CombinatoricSelections.cs" />
     <Compile Include="0053\CombinatoricSelectionsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
