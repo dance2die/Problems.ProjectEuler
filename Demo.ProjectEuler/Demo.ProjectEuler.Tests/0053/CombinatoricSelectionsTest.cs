@@ -1,4 +1,6 @@
-﻿using Demo.ProjectEuler.Tests.Core;
+﻿using System;
+using System.Numerics;
+using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -17,7 +19,7 @@ namespace Demo.ProjectEuler.Tests._0053
 		[InlineData(23, 10, 1144066)]
 		public void TestNumberOfCominatoricSelectionCount(int n, int r, long expected)
 		{
-			long actual = _sut.GetCombinatoricsSelectionCount(n, r);
+			BigInteger actual = _sut.GetCombinatoricsSelectionCount(n, r);
 
 			Assert.Equal(expected, actual);
 		}
@@ -25,7 +27,7 @@ namespace Demo.ProjectEuler.Tests._0053
 		[Fact]
 		public void ShowResult()
 		{
-			const int startIndex = 1;
+			const int startIndex = 23;
 			const int endIndex = 100;
 			long actual = _sut.GetRangeOfCombinatoricSelectionsOverOneMillion(startIndex, endIndex);
 
@@ -37,20 +39,38 @@ namespace Demo.ProjectEuler.Tests._0053
 	{
 		public long GetRangeOfCombinatoricSelectionsOverOneMillion(int startIndex, int endIndex)
 		{
-			return -1;
+			const int boundary = 1000000;
+			int totalCombinatoricSelectionCount = 0;
+
+			for (int n = startIndex; n <= endIndex; n++)
+			{
+				for (int r = n - 1; r >= 1; r--)
+				{
+					BigInteger combinatoricSelectionCount = GetCombinatoricsSelectionCount(n, r);
+					if (combinatoricSelectionCount >= boundary)
+						totalCombinatoricSelectionCount++;
+				}
+			}
+
+			return totalCombinatoricSelectionCount;
 		}
 
-		public long GetCombinatoricsSelectionCount(int n, int r)
+		public BigInteger GetCombinatoricsSelectionCount(int n, int r)
 		{
-			long numerator = GetNumerator(n, r);
-			long denominator = GetDenominator(n, r);
+			BigInteger numerator = GetNumerator(n, r);
+			BigInteger denominator = GetDenominator(n, r);
+
+			if (denominator == 0)
+			{
+				Console.WriteLine("bad");
+			}
 
 			return numerator / denominator;
 		}
 
-		private long GetNumerator(int n, int r)
+		private BigInteger GetNumerator(int n, int r)
 		{
-			long result = 1;
+			BigInteger result = 1;
 			for (int i = n; i > r; i--)
 			{
 				result *= i;
@@ -59,10 +79,10 @@ namespace Demo.ProjectEuler.Tests._0053
 			return result;
 		}
 
-		private long GetDenominator(int n, int r)
+		private BigInteger GetDenominator(int n, int r)
 		{
-			long result = 1;
-			for (int i = (n - r); i >= 2; i--)
+			BigInteger result = 1;
+			for (int i = n - r; i >= 2; i--)
 			{
 				result *= i;
 			}
