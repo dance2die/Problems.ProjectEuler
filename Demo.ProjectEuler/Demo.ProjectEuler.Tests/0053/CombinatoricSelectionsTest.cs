@@ -32,6 +32,8 @@ namespace Demo.ProjectEuler.Tests._0053
 			long actual = _sut.GetRangeOfCombinatoricSelectionsOverOneMillion(startIndex, endIndex);
 
 			_output.WriteLine(actual.ToString());
+			const int expected = 4075;
+			Assert.Equal(expected, actual);
 		}
 	}
 
