@@ -12,15 +12,13 @@ namespace Demo.ProjectEuler.Tests._0053
 		{
 		}
 
-		[Fact]
-		public void TestNumberOfCominatoricSelectionCount()
+		[Theory]
+		[InlineData(5, 3, 10)]
+		[InlineData(23, 10, 1144066)]
+		public void TestNumberOfCominatoricSelectionCount(int n, int r, long expected)
 		{
-			int n = 12345.ToString().ToCharArray().Length;
-			const int r = 3;
-
 			long actual = _sut.GetCombinatoricsSelectionCount(n, r);
 
-			const long expected = 10;
 			Assert.Equal(expected, actual);
 		}
 	}
