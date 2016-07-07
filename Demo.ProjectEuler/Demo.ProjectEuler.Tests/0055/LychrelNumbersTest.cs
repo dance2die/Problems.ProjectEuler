@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Core;
@@ -34,8 +35,16 @@ namespace Demo.ProjectEuler.Tests._0055
 		{
 			const int upto = 10000;
 
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
+
 			int actual = _sut.GetLychrelNumberUpto(upto);
-			_output.WriteLine(actual.ToString());
+			stopwatch.Stop();
+
+			_output.WriteLine("Result: {0}: Ellapsed time: {1}", actual, stopwatch.Elapsed);
+
+			const int expected = 249;
+			Assert.Equal(expected, actual);
 		}
 	}
 
