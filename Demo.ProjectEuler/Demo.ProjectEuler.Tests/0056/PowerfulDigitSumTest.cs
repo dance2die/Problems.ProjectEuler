@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Numerics;
-using Demo.ProjectEuler.Tests.Core;
+﻿using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -29,20 +26,15 @@ namespace Demo.ProjectEuler.Tests._0056
 
 			Assert.Equal(expected, actual);
 		}
-	}
 
-	public class PowerfulDigitSum
-	{
-		public long GetPowerDigitSum(int a, int b)
+		[Fact]
+		public void ShowResult()
 		{
-			BigInteger powered = BigInteger.One;
-			for (int i = 0; i < b; i++)
-			{
-				powered *= a;
-			}
+			long actual = _sut.GetMaxDigitSum();
+			_output.WriteLine(actual.ToString());
 
-
-			return powered.ToString().Select(c => Convert.ToInt32(c.ToString())).Sum();
+			const long expected = 972;
+			Assert.Equal(expected, actual);
 		}
 	}
 }
