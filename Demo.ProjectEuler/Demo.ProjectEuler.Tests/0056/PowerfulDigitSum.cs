@@ -26,12 +26,7 @@ namespace Demo.ProjectEuler.Tests._0056
 
 		public long GetPowerDigitSum(int a, int b)
 		{
-			BigInteger powered = BigInteger.One;
-			for (int i = 0; i < b; i++)
-			{
-				powered *= a;
-			}
-
+			BigInteger powered = BigInteger.Pow(a, b);
 
 			return powered.ToString().Select(c => Convert.ToInt32((string) c.ToString())).Sum();
 		}
