@@ -19,6 +19,7 @@ namespace Demo.ProjectEuler.Tests._0055
 		[InlineData(47, true)]
 		[InlineData(349, true)]
 		[InlineData(196, false)]
+		[InlineData(4994, true)]
 		public void TestLychrelNumber(int number, bool expected)
 		{
 			bool actual = _sut.IsLychrelNumber(number);
@@ -35,6 +36,8 @@ namespace Demo.ProjectEuler.Tests._0055
 		public bool IsLychrelNumber(BigInteger number)
 		{
 			BigInteger currentNumber = number;
+			if (_palindrome.IsPalindrome(currentNumber.ToString()))
+				return true;
 
 			for (int i = 0; i < MAX_ITERATION; i++)
 			{
