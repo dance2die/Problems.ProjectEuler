@@ -125,6 +125,7 @@
     <Compile Include="0055\LychrelNumbers.cs" />
     <Compile Include="0055\LychrelNumbersTest.cs" />
     <Compile Include="0056\PowerfulDigitSumTest.cs" />
+    <Compile Include="0061\CyclicalFigurateNumbersTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -175,6 +176,7 @@
     <Content Include="0053\README.txt" />
     <Content Include="0055\README.txt" />
     <Content Include="0056\README.txt" />
+    <Content Include="0061\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
