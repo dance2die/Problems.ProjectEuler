@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Demo.ProjectEuler.Core
 {
@@ -26,6 +26,15 @@ namespace Demo.ProjectEuler.Core
 		public long GetHexagonalNumber(long n)
 		{
 			return n * (2 * n - 1);
+		}
+
+		/// <summary>
+		/// Formula: n(5n−3)/2
+		/// </summary>
+		/// <param name="n">One-based index</param>
+		public long GetHeptagonalNumber(int n)
+		{
+			return n * (5 * n - 3) / 2;
 		}
 	}
 }
