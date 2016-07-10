@@ -124,6 +124,7 @@
     <Compile Include="0053\CombinatoricSelectionsTest.cs" />
     <Compile Include="0055\LychrelNumbers.cs" />
     <Compile Include="0055\LychrelNumbersTest.cs" />
+    <Compile Include="0056\PowerfulDigitSum.cs" />
     <Compile Include="0056\PowerfulDigitSumTest.cs" />
     <Compile Include="0061\CyclicalFigurateNumbersTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
