@@ -1,3 +1,5 @@
+using System;
+
 namespace Demo.ProjectEuler.Core
 {
 	public class NumberGenerator
@@ -6,6 +8,12 @@ namespace Demo.ProjectEuler.Core
 		public long GetTriangleNumber(long n)
 		{
 			return n * (n + 1) / 2;
+		}
+
+		/// <param name="n">One-based index</param>
+		public long GetSquareNumber(int n)
+		{
+			return (long) Math.Pow(n, 2);
 		}
 
 		/// <param name="n">One-based index</param>

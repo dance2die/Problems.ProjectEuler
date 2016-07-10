@@ -130,6 +130,7 @@
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
+    <Compile Include="LibraryTests\NumberGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
