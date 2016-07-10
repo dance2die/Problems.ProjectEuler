@@ -36,5 +36,14 @@ namespace Demo.ProjectEuler.Core
 		{
 			return n * (5 * n - 3) / 2;
 		}
+
+		/// <summary>
+		/// Formula: n(3n−2)
+		/// </summary>
+		/// <param name="n">One-based index</param>
+		public long GetOctagonalNumber(int n)
+		{
+			return n * (3 * n - 2);
+		}
 	}
 }

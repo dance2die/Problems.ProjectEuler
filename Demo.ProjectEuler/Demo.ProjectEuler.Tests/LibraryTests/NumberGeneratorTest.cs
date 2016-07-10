@@ -44,5 +44,18 @@ namespace Demo.ProjectEuler.Tests.LibraryTests
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(1, 1)]
+		[InlineData(2, 8)]
+		[InlineData(3, 21)]
+		[InlineData(4, 40)]
+		[InlineData(5, 65)]
+		public void TestOctagonalNumber(int n, long expected)
+		{
+			long actual = _sut.GetOctagonalNumber(n);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 }
