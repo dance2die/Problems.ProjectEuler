@@ -25,20 +25,44 @@ namespace Demo.ProjectEuler.Tests._0061
 			const int expected = 96;	// calculated via trial-error.
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestGeneratingFourDigitSquareNumbers()
+		{
+			var fourDigitSquareNumbers = _sut.GetFourDigitSquareNumbers().ToList();
+			var actual = fourDigitSquareNumbers.Count;
+
+			_output.WriteLine("fourDigitSquareNumbers.Count: {0}", actual);
+			const int expected = 68;    // 100-32
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CyclicalFigurateNumbers
 	{
 		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
 
+		public IEnumerable<long> GetFourDigitSquareNumbers()
+		{
+			const int limit = 10000;
+			for (int n = 32; ; n++)
+			{
+				var squareNumber = _numberGenerator.GetSquareNumber(n);
+				if (squareNumber < limit)
+					yield return squareNumber;
+				else
+					yield break;
+			}
+		}
+
 		public IEnumerable<long> GetFourDigitTriangleNumbers()
 		{
 			// First 4-digit triangle number starts at 45: 
 			// calculated using http://www.mathgoodies.com/calculators/triangular-numbers.html
 			const int limit = 10000;
-			for (int i = 45;; i++)
+			for (int n = 45;; n++)
 			{
-				var triangleNumber = _numberGenerator.GetTriangleNumber(i);
+				var triangleNumber = _numberGenerator.GetTriangleNumber(n);
 				if (triangleNumber < limit)
 					yield return triangleNumber;
 				else
