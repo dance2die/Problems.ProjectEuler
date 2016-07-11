@@ -93,43 +93,36 @@ namespace Demo.ProjectEuler.Tests._0061
 
 	public class CyclicalFigurateNumbers
 	{
-		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
 		private const int LOWER_LIMIT = 999;
 		private const int UPPER_LIMIT = 10000;
 
+		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
+
 		public long GetFourDigitCyclicNumberSum()
 		{
-			var triangleNumbers = GetFourDigitTriangleNumbers();
-			foreach (long triangleNumber in triangleNumbers)
-			{
-				var squareNumber = GetCyclicNumber(triangleNumber, GetFourDigitSquareNumbers());
-				if (squareNumber > 0)
-				{
-					var pentagonalNumber = GetCyclicNumber(squareNumber, GetFourDigitPentagonalNumbers());
-					if (pentagonalNumber > 0)
-					{
-						var hexagonalNumber = GetCyclicNumber(pentagonalNumber, GetFourDigitHexagonalNumbers());
-						if (hexagonalNumber > 0)
-						{
-							var heptagonalNumber = GetCyclicNumber(hexagonalNumber, GetFourDigitHeptagonalNumbers());
-							if (heptagonalNumber > 0)
-							{
-								var octagonalNumber = GetCyclicNumber(heptagonalNumber, GetFourDigitOctagonalNumbers());
-								if (octagonalNumber > 0)
-								{
-									var lastCyclicNumber = GetCyclicNumber(octagonalNumber, new List<long> {triangleNumber});
-									if (lastCyclicNumber > 0)
-									{
-										return triangleNumber + squareNumber + pentagonalNumber + hexagonalNumber + heptagonalNumber + octagonalNumber;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			var numbers = GetNumbers();
 
 			return -1;
+		}
+
+		private List<IEnumerable<long>> GetNumbers()
+		{
+			var triangleNumbers = GetFourDigitTriangleNumbers();
+			var squareNumbers = GetFourDigitSquareNumbers();
+			var pentagonalNumbers = GetFourDigitPentagonalNumbers();
+			var hexagonalNumbers = GetFourDigitHexagonalNumbers();
+			var heptagonalNumbers = GetFourDigitHeptagonalNumbers();
+			var octagonalNumbers = GetFourDigitOctagonalNumbers();
+
+			return new List<IEnumerable<long>>
+			{
+				triangleNumbers,
+				squareNumbers,
+				pentagonalNumbers,
+				hexagonalNumbers,
+				heptagonalNumbers,
+				octagonalNumbers
+			};
 		}
 
 		private long GetCyclicNumber(long number, IEnumerable<long> nextFourDigitNumbers)
