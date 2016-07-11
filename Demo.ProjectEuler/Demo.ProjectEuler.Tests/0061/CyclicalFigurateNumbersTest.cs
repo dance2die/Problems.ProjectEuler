@@ -19,10 +19,10 @@ namespace Demo.ProjectEuler.Tests._0061
 		[Fact]
 		public void TestGeneratingFourDigitTriangleNumbers()
 		{
-			var fourDigitTriangleNumbers = _sut.GetFourDigitTriangleNumbers().ToList();
-			var actual = fourDigitTriangleNumbers.Count;
+			var fourDigitNumber = _sut.GetFourDigitTriangleNumbers().ToList();
+			var actual = fourDigitNumber.Count;
 
-			_output.WriteLine("fourDigitTriangleNumbers.Count: {0}", actual);
+			_output.WriteLine("fourDigitNumber.Count: {0}", actual);
 			const int expected = 96;	// calculated via trial-error.
 			Assert.Equal(expected, actual);
 		}
@@ -30,10 +30,10 @@ namespace Demo.ProjectEuler.Tests._0061
 		[Fact]
 		public void TestGeneratingFourDigitSquareNumbers()
 		{
-			var fourDigitSquareNumbers = _sut.GetFourDigitSquareNumbers().ToList();
-			var actual = fourDigitSquareNumbers.Count;
+			var fourDigitNumber = _sut.GetFourDigitSquareNumbers().ToList();
+			var actual = fourDigitNumber.Count;
 
-			_output.WriteLine("fourDigitSquareNumbers.Count: {0}", actual);
+			_output.WriteLine("fourDigitNumber.Count: {0}", actual);
 			const int expected = 68;    // 100-32
 			Assert.Equal(expected, actual);
 		}
@@ -41,10 +41,10 @@ namespace Demo.ProjectEuler.Tests._0061
 		[Fact]
 		public void TestGeneratingFourDigitPentagonalNumbers()
 		{
-			var fourDigitPentagonalNumbers = _sut.GetFourDigitPentagonalNumbers().ToList();
-			var actual = fourDigitPentagonalNumbers.Count;
+			var fourDigitNumber = _sut.GetFourDigitPentagonalNumbers().ToList();
+			var actual = fourDigitNumber.Count;
 
-			_output.WriteLine("fourDigitPentagonalNumbers.Count: {0}", actual);
+			_output.WriteLine("fourDigitNumber.Count: {0}", actual);
 			const int expected = 56;    // calculated via trial-error.
 			Assert.Equal(expected, actual);
 		}
@@ -52,10 +52,10 @@ namespace Demo.ProjectEuler.Tests._0061
 		[Fact]
 		public void TestGeneratingFourDigitHexagonalNumbers()
 		{
-			var fourDigitHexagonalNumbers = _sut.GetFourDigitHexagonalNumbers().ToList();
-			var actual = fourDigitHexagonalNumbers.Count;
+			var fourDigitNumber = _sut.GetFourDigitHexagonalNumbers().ToList();
+			var actual = fourDigitNumber.Count;
 
-			_output.WriteLine("fourDigitHexagonalNumbers.Count: {0}", actual);
+			_output.WriteLine("fourDigitNumber.Count: {0}", actual);
 			const int expected = 48;    // calculated via trial-error.
 			Assert.Equal(expected, actual);
 		}
@@ -132,11 +132,8 @@ namespace Demo.ProjectEuler.Tests._0061
 			for (int n = startIndex; ; n++)
 			{
 				var number = numberGenerator(n);
-				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
-				{
-					Console.WriteLine(n);
+				if (LOWER_LIMIT < number && number < UPPER_LIMIT) 
 					yield return number;
-				}
 
 				if (number >= UPPER_LIMIT)
 					yield break;
