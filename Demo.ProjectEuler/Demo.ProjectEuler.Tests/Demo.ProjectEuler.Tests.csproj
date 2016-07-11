@@ -122,12 +122,13 @@
     <Compile Include="0052\PermutedMultiplesTest.cs" />
     <Compile Include="0053\CombinatoricSelections.cs" />
     <Compile Include="0053\CombinatoricSelectionsTest.cs" />
-    <Compile Include="0055\LychrelNumbers.cs" />
-    <Compile Include="0055\LychrelNumbersTest.cs" />
+    <Compile Include="0053\0055\LychrelNumbers.cs" />
+    <Compile Include="0053\0055\LychrelNumbersTest.cs" />
     <Compile Include="0056\PowerfulDigitSum.cs" />
     <Compile Include="0056\PowerfulDigitSumTest.cs" />
     <Compile Include="0061\CyclicalFigurateNumbers.cs" />
     <Compile Include="0061\CyclicalFigurateNumbersTest.cs" />
+    <Compile Include="0062\CubicPermutationsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -177,9 +178,10 @@
     <Content Include="0050\README.txt" />
     <Content Include="0052\README.txt" />
     <Content Include="0053\README.txt" />
-    <Content Include="0055\README.txt" />
+    <Content Include="0053\0055\README.txt" />
     <Content Include="0056\README.txt" />
     <Content Include="0061\README.txt" />
+    <Content Include="0062\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
