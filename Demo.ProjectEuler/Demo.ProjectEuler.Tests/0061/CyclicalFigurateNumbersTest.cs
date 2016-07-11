@@ -101,11 +101,36 @@ namespace Demo.ProjectEuler.Tests._0061
 		public long GetFourDigitCyclicNumberSum()
 		{
 			var numbers = GetNumbers();
+			Permutation permutationManager = new Permutation();
+			var permutations = permutationManager.GetPermutations(Enumerable.Range(0, numbers.Count - 1).ToList()).ToList();
+
+			foreach (IEnumerable<int> permutationIndexes in permutations)
+			{
+				var permutationIndices = permutationIndexes.ToList();
+				foreach (int permutationIndex in permutationIndices)
+				{
+					var cyclicNumbers = new List<long>(numbers.Count);
+					for (int i = 0; i < permutationIndices.Count - 1; i++)
+					{
+						var n1 = numbers[permutationIndex][i];
+						cyclicNumbers.Add(n1);
+
+						var cyclicNumber = GetCyclicNumber(n1, numbers[permutationIndex + 1]);
+						if (cyclicNumber > 0)
+							cyclicNumbers.Add(cyclicNumber);
+						else
+							break;
+					}
+
+					if (cyclicNumbers.Count == numbers.Count)
+						return cyclicNumbers.Sum();
+				}
+			}
 
 			return -1;
 		}
 
-		private List<IEnumerable<long>> GetNumbers()
+		private List<List<long>> GetNumbers()
 		{
 			var triangleNumbers = GetFourDigitTriangleNumbers();
 			var squareNumbers = GetFourDigitSquareNumbers();
@@ -114,14 +139,14 @@ namespace Demo.ProjectEuler.Tests._0061
 			var heptagonalNumbers = GetFourDigitHeptagonalNumbers();
 			var octagonalNumbers = GetFourDigitOctagonalNumbers();
 
-			return new List<IEnumerable<long>>
+			return new List<List<long>>
 			{
-				triangleNumbers,
-				squareNumbers,
-				pentagonalNumbers,
-				hexagonalNumbers,
-				heptagonalNumbers,
-				octagonalNumbers
+				triangleNumbers.ToList(),
+				squareNumbers.ToList(),
+				pentagonalNumbers.ToList(),
+				hexagonalNumbers.ToList(),
+				heptagonalNumbers.ToList(),
+				octagonalNumbers.ToList()
 			};
 		}
 
