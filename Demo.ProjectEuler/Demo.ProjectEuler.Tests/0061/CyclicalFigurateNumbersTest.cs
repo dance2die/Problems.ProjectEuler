@@ -60,6 +60,17 @@ namespace Demo.ProjectEuler.Tests._0061
 			Assert.Equal(expected, actual);
 		}
 
+		[Fact]
+		public void TestGeneratingFourDigitHeptagonalNumbers()
+		{
+			var fourDigitNumber = _sut.GetFourDigitHeptagonalNumbers().ToList();
+			var actual = fourDigitNumber.Count;
+
+			_output.WriteLine("fourDigitNumber.Count: {0}", actual);
+			const int expected = 43;    // calculated via trial-error.
+			Assert.Equal(expected, actual);
+		}
+
 	}
 
 	public class CyclicalFigurateNumbers
@@ -68,62 +79,43 @@ namespace Demo.ProjectEuler.Tests._0061
 		private const int LOWER_LIMIT = 999;
 		private const int UPPER_LIMIT = 10000;
 
-		public IEnumerable<long> GetFourDigitHexagonalNumbers()
-		{
-			for (int n = 23;; n++)
-			{
-				var number = _numberGenerator.GetHexagonalNumber(n);
-				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
-				{
-					Console.WriteLine(n);
-					yield return number;
-				}
-
-				if (number >= UPPER_LIMIT)
-					yield break;
-			}
-		}
-
-		public IEnumerable<long> GetFourDigitPentagonalNumbers()
-		{
-			for (int n = 26;; n++)
-			{
-				var number = _numberGenerator.GetPentagonalNumber(n);
-				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
-				{
-					Console.WriteLine(n);
-					yield return number;
-				}
-
-				if (number >= UPPER_LIMIT)
-					yield break;
-			}
-
-		}
-
-		public IEnumerable<long> GetFourDigitSquareNumbers()
-		{
-			for (int n = 32;; n++)
-			{
-				var number = _numberGenerator.GetSquareNumber(n);
-				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
-				{
-					Console.WriteLine(n);
-					yield return number;
-				}
-
-				if (number >= UPPER_LIMIT)
-					yield break;
-			}
-		}
-
 		public IEnumerable<long> GetFourDigitTriangleNumbers()
 		{
 			// First 4-digit triangle number starts at 45: 
 			// calculated using http://www.mathgoodies.com/calculators/triangular-numbers.html
-			for (int n = 45;; n++)
+			const int startIndex = 45;  // from trial and error.
+			return GetNumbers(startIndex, _numberGenerator.GetTriangleNumber);
+		}
+
+		public IEnumerable<long> GetFourDigitSquareNumbers()
+		{
+			const int startIndex = 32;  // from trial and error.
+			return GetNumbers(startIndex, _numberGenerator.GetSquareNumber);
+		}
+
+		public IEnumerable<long> GetFourDigitPentagonalNumbers()
+		{
+			const int startIndex = 26;  // from trial and error.
+			return GetNumbers(startIndex, _numberGenerator.GetPentagonalNumber);
+		}
+
+		public IEnumerable<long> GetFourDigitHexagonalNumbers()
+		{
+			const int startIndex = 23;	// from trial and error.
+			return GetNumbers(startIndex, _numberGenerator.GetHexagonalNumber);
+		}
+
+		public IEnumerable<long> GetFourDigitHeptagonalNumbers()
+		{
+			const int startIndex = 21;  // from trial and error.
+			return GetNumbers(startIndex, _numberGenerator.GetHeptagonalNumber);
+		}
+
+		public IEnumerable<long> GetNumbers(int startIndex, Func<long, long> numberGenerator)
+		{
+			for (int n = startIndex; ; n++)
 			{
-				var number = _numberGenerator.GetTriangleNumber(n);
+				var number = numberGenerator(n);
 				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
 				{
 					Console.WriteLine(n);

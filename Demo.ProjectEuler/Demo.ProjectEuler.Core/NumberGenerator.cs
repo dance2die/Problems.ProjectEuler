@@ -11,7 +11,7 @@ namespace Demo.ProjectEuler.Core
 		}
 
 		/// <param name="n">One-based index</param>
-		public long GetSquareNumber(int n)
+		public long GetSquareNumber(long n)
 		{
 			return (long) Math.Pow(n, 2);
 		}
@@ -32,7 +32,7 @@ namespace Demo.ProjectEuler.Core
 		/// Formula: n(5n−3)/2
 		/// </summary>
 		/// <param name="n">One-based index</param>
-		public long GetHeptagonalNumber(int n)
+		public long GetHeptagonalNumber(long n)
 		{
 			return n * (5 * n - 3) / 2;
 		}
@@ -41,7 +41,7 @@ namespace Demo.ProjectEuler.Core
 		/// Formula: n(3n−2)
 		/// </summary>
 		/// <param name="n">One-based index</param>
-		public long GetOctagonalNumber(int n)
+		public long GetOctagonalNumber(long n)
 		{
 			return n * (3 * n - 2);
 		}
