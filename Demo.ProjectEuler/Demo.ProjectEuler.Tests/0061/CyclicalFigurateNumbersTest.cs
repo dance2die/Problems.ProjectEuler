@@ -71,6 +71,16 @@ namespace Demo.ProjectEuler.Tests._0061
 			Assert.Equal(expected, actual);
 		}
 
+		[Fact]
+		public void TestGeneratingFourDigitOctagonalNumbers()
+		{
+			var fourDigitNumber = _sut.GetFourDigitOctagonalNumbers().ToList();
+			var actual = fourDigitNumber.Count;
+
+			_output.WriteLine("fourDigitNumber.Count: {0}", actual);
+			const int expected = 40;    // calculated via trial-error.
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CyclicalFigurateNumbers
@@ -109,6 +119,12 @@ namespace Demo.ProjectEuler.Tests._0061
 		{
 			const int startIndex = 21;  // from trial and error.
 			return GetNumbers(startIndex, _numberGenerator.GetHeptagonalNumber);
+		}
+
+		public IEnumerable<long> GetFourDigitOctagonalNumbers()
+		{
+			const int startIndex = 19;  // from trial and error.
+			return GetNumbers(startIndex, _numberGenerator.GetOctagonalNumber);
 		}
 
 		public IEnumerable<long> GetNumbers(int startIndex, Func<long, long> numberGenerator)
