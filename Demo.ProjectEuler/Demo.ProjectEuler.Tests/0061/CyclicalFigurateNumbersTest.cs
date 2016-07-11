@@ -36,19 +36,44 @@ namespace Demo.ProjectEuler.Tests._0061
 			const int expected = 68;    // 100-32
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestGeneratingFourDigitPentagonalNumbers()
+		{
+			var fourDigitPentagonalNumbers = _sut.GetFourDigitPentagonalNumbers().ToList();
+			var actual = fourDigitPentagonalNumbers.Count;
+
+			_output.WriteLine("fourDigitPentagonalNumbers.Count: {0}", actual);
+			const int expected = 56;    // calculated via trial-error.
+			Assert.Equal(expected, actual);
+		}
+
 	}
 
 	public class CyclicalFigurateNumbers
 	{
 		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
+		private const int LIMIT = 10000;
+
+		public IEnumerable<long> GetFourDigitPentagonalNumbers()
+		{
+			for (int n = 26; ; n++)
+			{
+				var squareNumber = _numberGenerator.GetPentagonalNumber(n);
+				if (squareNumber < LIMIT)
+					yield return squareNumber;
+				else
+					yield break;
+			}
+
+		}
 
 		public IEnumerable<long> GetFourDigitSquareNumbers()
 		{
-			const int limit = 10000;
 			for (int n = 32; ; n++)
 			{
 				var squareNumber = _numberGenerator.GetSquareNumber(n);
-				if (squareNumber < limit)
+				if (squareNumber < LIMIT)
 					yield return squareNumber;
 				else
 					yield break;
@@ -59,11 +84,10 @@ namespace Demo.ProjectEuler.Tests._0061
 		{
 			// First 4-digit triangle number starts at 45: 
 			// calculated using http://www.mathgoodies.com/calculators/triangular-numbers.html
-			const int limit = 10000;
 			for (int n = 45;; n++)
 			{
 				var triangleNumber = _numberGenerator.GetTriangleNumber(n);
-				if (triangleNumber < limit)
+				if (triangleNumber < LIMIT)
 					yield return triangleNumber;
 				else
 					yield break;
