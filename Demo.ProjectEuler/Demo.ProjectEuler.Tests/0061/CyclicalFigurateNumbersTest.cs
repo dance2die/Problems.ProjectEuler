@@ -107,24 +107,59 @@ namespace Demo.ProjectEuler.Tests._0061
 			foreach (IEnumerable<int> permutationIndexes in permutations)
 			{
 				var permutationIndices = permutationIndexes.ToList();
+				var newNumbers = new List<List<long>>(permutationIndices.Count);
 				foreach (int permutationIndex in permutationIndices)
 				{
-					var cyclicNumbers = new List<long>(numbers.Count);
-					for (int i = 0; i < permutationIndices.Count - 1; i++)
-					{
-						var n1 = numbers[permutationIndex][i];
-						cyclicNumbers.Add(n1);
-
-						var cyclicNumber = GetCyclicNumber(n1, numbers[permutationIndex + 1]);
-						if (cyclicNumber > 0)
-							cyclicNumbers.Add(cyclicNumber);
-						else
-							break;
-					}
-
-					if (cyclicNumbers.Count == numbers.Count)
-						return cyclicNumbers.Sum();
+					newNumbers.Add(numbers[permutationIndex]);
 				}
+
+				var cyclicNumbers = CalculateCyclicNumbers(newNumbers).ToList();
+				if (cyclicNumbers.Count == permutationIndices.Count)
+					return cyclicNumbers.Sum();
+			}
+
+			return -1;
+		}
+
+		private IEnumerable<long> CalculateCyclicNumbers(List<List<long>> matrix)
+		{
+			var result = new List<long>();
+
+			foreach (List<long> row in matrix)
+			{
+				foreach (long number in row)
+				{
+					result.Add(number);
+
+					var tempNumber = number;
+					for (int i = 0; i < matrix.Count - 2; i++)
+					{
+						long cyclicNumber = GetCyclicNumber(tempNumber, matrix[i + 1]);
+						if (cyclicNumber > 0 && !result.Contains(cyclicNumber))
+						{
+							result.Add(cyclicNumber);
+							tempNumber = cyclicNumber;
+						}
+						else
+						{
+							result.Clear();
+							break;
+						}
+					}
+				}
+			}
+
+			return result;
+		}
+
+		private long GetCyclicNumber(long number, IEnumerable<long> nextFourDigitNumbers)
+		{
+			var lastTwoDigitText1 = number.ToString().Substring(2, 2);
+			foreach (long nextFourDigitNumber in nextFourDigitNumbers)
+			{
+				var lastTwoDigitText2 = nextFourDigitNumber.ToString().Substring(0, 2);
+				if (lastTwoDigitText1 == lastTwoDigitText2)
+					return nextFourDigitNumber;
 			}
 
 			return -1;
@@ -148,19 +183,6 @@ namespace Demo.ProjectEuler.Tests._0061
 				heptagonalNumbers.ToList(),
 				octagonalNumbers.ToList()
 			};
-		}
-
-		private long GetCyclicNumber(long number, IEnumerable<long> nextFourDigitNumbers)
-		{
-			var lastTwoDigitText1 = number.ToString().Substring(2, 2);
-			foreach (long nextFourDigitNumber in nextFourDigitNumbers)
-			{
-				var lastTwoDigitText2 = nextFourDigitNumber.ToString().Substring(0, 2);
-				if (lastTwoDigitText1 == lastTwoDigitText2)
-					return nextFourDigitNumber;
-			}
-
-			return -1;
 		}
 
 		public IEnumerable<long> GetFourDigitTriangleNumbers()
