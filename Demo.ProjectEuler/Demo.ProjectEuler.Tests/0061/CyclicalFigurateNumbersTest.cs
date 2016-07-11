@@ -102,7 +102,7 @@ namespace Demo.ProjectEuler.Tests._0061
 		{
 			var numbers = GetNumbers();
 			Permutation permutationManager = new Permutation();
-			var permutations = permutationManager.GetPermutations(Enumerable.Range(0, numbers.Count - 1).ToList()).ToList();
+			var permutations = permutationManager.GetPermutations(Enumerable.Range(0, numbers.Count).ToList()).ToList();
 
 			foreach (IEnumerable<int> permutationIndexes in permutations)
 			{
@@ -114,7 +114,7 @@ namespace Demo.ProjectEuler.Tests._0061
 				}
 
 				var cyclicNumbers = CalculateCyclicNumbers(newNumbers).ToList();
-				if (cyclicNumbers.Count == permutationIndices.Count)
+				if (cyclicNumbers.Count == numbers.Count)
 					return cyclicNumbers.Sum();
 			}
 
@@ -129,16 +129,24 @@ namespace Demo.ProjectEuler.Tests._0061
 			{
 				foreach (long number in row)
 				{
-					result.Add(number);
-
 					var tempNumber = number;
-					for (int i = 0; i < matrix.Count - 2; i++)
+					result.Add(tempNumber);
+
+					//if (tempNumber == 8128 && matrix[0].Count == 96 && matrix[1].Count == 56 && matrix[2].Count == 68)
+					//	Console.WriteLine(tempNumber);
+					if (tempNumber == 1225 && matrix[0].Count == 96 && matrix[1].Count == 68 && matrix[2].Count == 56 && matrix[3].Count == 48 && matrix[4].Count == 43)
+						Console.WriteLine(tempNumber);
+
+					for (int i = 0; i < matrix.Count - 1; i++)
 					{
 						long cyclicNumber = GetCyclicNumber(tempNumber, matrix[i + 1]);
 						if (cyclicNumber > 0 && !result.Contains(cyclicNumber))
 						{
 							result.Add(cyclicNumber);
 							tempNumber = cyclicNumber;
+
+							if (result.Count >= 4 && tempNumber == 1225)
+								Console.WriteLine(result.Count);
 						}
 						else
 						{
@@ -146,6 +154,11 @@ namespace Demo.ProjectEuler.Tests._0061
 							break;
 						}
 					}
+
+					//if (result.Count == matrix.Count)
+					//	return result;
+					//else
+					//	result.Clear();
 				}
 			}
 
