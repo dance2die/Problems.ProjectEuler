@@ -81,6 +81,14 @@ namespace Demo.ProjectEuler.Tests._0061
 			const int expected = 40;    // calculated via trial-error.
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			long actual = _sut.GetFourDigitCyclicNumberSum();
+
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class CyclicalFigurateNumbers
@@ -88,6 +96,54 @@ namespace Demo.ProjectEuler.Tests._0061
 		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
 		private const int LOWER_LIMIT = 999;
 		private const int UPPER_LIMIT = 10000;
+
+		public long GetFourDigitCyclicNumberSum()
+		{
+			var triangleNumbers = GetFourDigitTriangleNumbers();
+			foreach (long triangleNumber in triangleNumbers)
+			{
+				var squareNumber = GetCyclicNumber(triangleNumber, GetFourDigitSquareNumbers());
+				if (squareNumber > 0)
+				{
+					var pentagonalNumber = GetCyclicNumber(squareNumber, GetFourDigitPentagonalNumbers());
+					if (pentagonalNumber > 0)
+					{
+						var hexagonalNumber = GetCyclicNumber(pentagonalNumber, GetFourDigitHexagonalNumbers());
+						if (hexagonalNumber > 0)
+						{
+							var heptagonalNumber = GetCyclicNumber(hexagonalNumber, GetFourDigitHeptagonalNumbers());
+							if (heptagonalNumber > 0)
+							{
+								var octagonalNumber = GetCyclicNumber(heptagonalNumber, GetFourDigitOctagonalNumbers());
+								if (octagonalNumber > 0)
+								{
+									var lastCyclicNumber = GetCyclicNumber(octagonalNumber, new List<long> {triangleNumber});
+									if (lastCyclicNumber > 0)
+									{
+										return triangleNumber + squareNumber + pentagonalNumber + hexagonalNumber + heptagonalNumber + octagonalNumber;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			return -1;
+		}
+
+		private long GetCyclicNumber(long number, IEnumerable<long> nextFourDigitNumbers)
+		{
+			var lastTwoDigitText1 = number.ToString().Substring(2, 2);
+			foreach (long nextFourDigitNumber in nextFourDigitNumbers)
+			{
+				var lastTwoDigitText2 = nextFourDigitNumber.ToString().Substring(0, 2);
+				if (lastTwoDigitText1 == lastTwoDigitText2)
+					return nextFourDigitNumber;
+			}
+
+			return -1;
+		}
 
 		public IEnumerable<long> GetFourDigitTriangleNumbers()
 		{
