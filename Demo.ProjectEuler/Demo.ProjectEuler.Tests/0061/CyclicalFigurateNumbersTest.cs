@@ -132,11 +132,6 @@ namespace Demo.ProjectEuler.Tests._0061
 					var tempNumber = number;
 					result.Add(tempNumber);
 
-					//if (tempNumber == 8128 && matrix[0].Count == 96 && matrix[1].Count == 56 && matrix[2].Count == 68)
-					//	Console.WriteLine(tempNumber);
-					if (tempNumber == 1225 && matrix[0].Count == 96 && matrix[1].Count == 68 && matrix[2].Count == 56 && matrix[3].Count == 48 && matrix[4].Count == 43)
-						Console.WriteLine(tempNumber);
-
 					for (int i = 0; i < matrix.Count - 1; i++)
 					{
 						long cyclicNumber = GetCyclicNumber(tempNumber, matrix[i + 1]);
@@ -144,9 +139,6 @@ namespace Demo.ProjectEuler.Tests._0061
 						{
 							result.Add(cyclicNumber);
 							tempNumber = cyclicNumber;
-
-							if (result.Count >= 4 && tempNumber == 1225)
-								Console.WriteLine(result.Count);
 						}
 						else
 						{
@@ -155,10 +147,14 @@ namespace Demo.ProjectEuler.Tests._0061
 						}
 					}
 
-					//if (result.Count == matrix.Count)
-					//	return result;
-					//else
-					//	result.Clear();
+					if (result.Count == matrix.Count)
+					{
+						long lastCyclic = GetCyclicNumber(result.Last(), new List<long> {result.First()});
+						if (lastCyclic < 0)
+							result.Clear();
+						else
+							return result;
+					}
 				}
 			}
 
