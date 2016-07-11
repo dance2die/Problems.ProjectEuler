@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -48,21 +49,53 @@ namespace Demo.ProjectEuler.Tests._0061
 			Assert.Equal(expected, actual);
 		}
 
+		[Fact]
+		public void TestGeneratingFourDigitHexagonalNumbers()
+		{
+			var fourDigitHexagonalNumbers = _sut.GetFourDigitHexagonalNumbers().ToList();
+			var actual = fourDigitHexagonalNumbers.Count;
+
+			_output.WriteLine("fourDigitHexagonalNumbers.Count: {0}", actual);
+			const int expected = 48;    // calculated via trial-error.
+			Assert.Equal(expected, actual);
+		}
+
 	}
 
 	public class CyclicalFigurateNumbers
 	{
 		private readonly NumberGenerator _numberGenerator = new NumberGenerator();
-		private const int LIMIT = 10000;
+		private const int LOWER_LIMIT = 999;
+		private const int UPPER_LIMIT = 10000;
+
+		public IEnumerable<long> GetFourDigitHexagonalNumbers()
+		{
+			for (int n = 23;; n++)
+			{
+				var number = _numberGenerator.GetHexagonalNumber(n);
+				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
+				{
+					Console.WriteLine(n);
+					yield return number;
+				}
+
+				if (number >= UPPER_LIMIT)
+					yield break;
+			}
+		}
 
 		public IEnumerable<long> GetFourDigitPentagonalNumbers()
 		{
-			for (int n = 26; ; n++)
+			for (int n = 26;; n++)
 			{
-				var squareNumber = _numberGenerator.GetPentagonalNumber(n);
-				if (squareNumber < LIMIT)
-					yield return squareNumber;
-				else
+				var number = _numberGenerator.GetPentagonalNumber(n);
+				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
+				{
+					Console.WriteLine(n);
+					yield return number;
+				}
+
+				if (number >= UPPER_LIMIT)
 					yield break;
 			}
 
@@ -70,12 +103,16 @@ namespace Demo.ProjectEuler.Tests._0061
 
 		public IEnumerable<long> GetFourDigitSquareNumbers()
 		{
-			for (int n = 32; ; n++)
+			for (int n = 32;; n++)
 			{
-				var squareNumber = _numberGenerator.GetSquareNumber(n);
-				if (squareNumber < LIMIT)
-					yield return squareNumber;
-				else
+				var number = _numberGenerator.GetSquareNumber(n);
+				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
+				{
+					Console.WriteLine(n);
+					yield return number;
+				}
+
+				if (number >= UPPER_LIMIT)
 					yield break;
 			}
 		}
@@ -86,10 +123,14 @@ namespace Demo.ProjectEuler.Tests._0061
 			// calculated using http://www.mathgoodies.com/calculators/triangular-numbers.html
 			for (int n = 45;; n++)
 			{
-				var triangleNumber = _numberGenerator.GetTriangleNumber(n);
-				if (triangleNumber < LIMIT)
-					yield return triangleNumber;
-				else
+				var number = _numberGenerator.GetTriangleNumber(n);
+				if (LOWER_LIMIT < number && number < UPPER_LIMIT)
+				{
+					Console.WriteLine(n);
+					yield return number;
+				}
+
+				if (number >= UPPER_LIMIT)
 					yield break;
 			}
 		}
