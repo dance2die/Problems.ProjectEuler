@@ -30,9 +30,8 @@ namespace Demo.ProjectEuler.Tests._0062
 		[Fact]
 		public void ShowResult()
 		{
-			//int actual = _sut.GetFiveCubePermutations();
-			//_output.WriteLine(actual.ToString());
-
+			int actual = _sut.GetFiveCubePermutations();
+			_output.WriteLine(actual.ToString());
 		}
 	}
 
@@ -41,10 +40,23 @@ namespace Demo.ProjectEuler.Tests._0062
 		private readonly Permutation _permutation = new Permutation();
 		private readonly MathExt _math = new MathExt();
 
-		//public int GetFiveCubePermutations()
-		//{
-			
-		//}
+		public int GetFiveCubePermutations()
+		{
+			List<int> permutations = new List<int>();
+
+			int number = 345;
+			do
+			{
+				permutations = GetCubePermutations(number);
+				if (number % 10 == 0)
+					Console.WriteLine(number);
+
+				if (permutations.Count == 5)
+					return permutations.Min();
+
+				number++;
+			} while (true);
+		}
 
 		public List<int> GetCubePermutations(int number)
 		{
