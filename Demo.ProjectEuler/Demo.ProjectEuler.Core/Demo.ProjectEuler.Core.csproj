@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ESieve.cs" />
     <Compile Include="Factors.cs" />
+    <Compile Include="MathExt.cs" />
     <Compile Include="Palindrome.cs" />
     <Compile Include="Permutation.cs" />
     <Compile Include="Prime.cs" />

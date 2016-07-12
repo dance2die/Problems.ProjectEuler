@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -29,15 +29,6 @@ namespace Demo.ProjectEuler.Tests.LibraryTests
 			double actual = _sut.NthRoot(number, rootPower);
 
 			Assert.True(expected - actual < 0.00001);
-		}
-	}
-
-	public class MathExt
-	{
-		public double NthRoot(double number, int rootPower)
-		{
-			// http://stackoverflow.com/a/18657674/4035
-			return Math.Pow(number, 1.0 / rootPower);
 		}
 	}
 }
