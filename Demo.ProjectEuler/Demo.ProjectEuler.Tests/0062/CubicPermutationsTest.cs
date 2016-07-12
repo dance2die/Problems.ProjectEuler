@@ -21,10 +21,18 @@ namespace Demo.ProjectEuler.Tests._0062
 		[InlineData(345, new [] { 345, 384, 405 })]
 		public void TestSampleDataPermutations(int number, int[] expected)
 		{
-			var actual = _sut.GetCubePermutations(number).Distinct().ToList();
+			var actual = _sut.GetCubePermutations(number);
 			actual.Sort();
 
 			Assert.True(expected.SequenceEqual(actual));
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			//int actual = _sut.GetFiveCubePermutations();
+			//_output.WriteLine(actual.ToString());
+
 		}
 	}
 
@@ -33,7 +41,12 @@ namespace Demo.ProjectEuler.Tests._0062
 		private readonly Permutation _permutation = new Permutation();
 		private readonly MathExt _math = new MathExt();
 
-		public IEnumerable<int> GetCubePermutations(int number)
+		//public int GetFiveCubePermutations()
+		//{
+			
+		//}
+
+		public List<int> GetCubePermutations(int number)
 		{
 			const double power = 3;	// cube
 			const double precision = 0.000001;
@@ -48,6 +61,8 @@ namespace Demo.ProjectEuler.Tests._0062
 			var permutations = _permutation.GetPermutations(cubeSequence);
 
 			int index = 0;
+			List<int> result = new List<int>();
+
 			foreach (IEnumerable<int> sequence in permutations.Distinct())
 			{
 				double doubleValue = ConvertSequenceToDouble(sequence);
@@ -57,12 +72,17 @@ namespace Demo.ProjectEuler.Tests._0062
 
 				if (difference < precision)
 				{
-					Console.WriteLine("index: {0}", index);
-					yield return (int) Math.Round(rooted, 0);
+					//Console.WriteLine("index: {0}", index);
+					int resultValue = (int) Math.Round(rooted, 0);
+					//yield return resultValue;
+					if (!result.Contains(resultValue))
+						result.Add(resultValue);
 				}
 
 				index++;
 			}
+
+			return result;
 		}
 
 		private double ConvertSequenceToDouble(IEnumerable<int> sequence)
