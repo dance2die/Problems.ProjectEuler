@@ -99,7 +99,7 @@ namespace Demo.ProjectEuler.Tests._0062
 
 		private double ConvertSequenceToDouble(IEnumerable<int> sequence)
 		{
-			string valueText = sequence.Aggregate("", (current, value) => current + value.ToString());
+			string valueText = string.Join("", sequence.Select(i => i.ToString()));
 			return Convert.ToDouble(valueText);
 		}
 	}
