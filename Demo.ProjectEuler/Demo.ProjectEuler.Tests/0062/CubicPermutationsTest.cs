@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -15,23 +12,6 @@ namespace Demo.ProjectEuler.Tests._0062
 		public CubicPermutationsTest(ITestOutputHelper output) : base(output)
 		{
 		}
-
-		//[Theory]
-		//[InlineData(345, new [] { 345, 384, 405 })]
-		//public void TestSampleDataPermutations(int number, int[] expected)
-		//{
-		//	var actual = _sut.GetCubePermutations(number);
-		//	actual.Sort();
-
-		//	Assert.True(expected.SequenceEqual(actual));
-		//}
-
-		//[Fact]
-		//public void ShowResult()
-		//{
-		//	int actual = _sut.GetFiveCubePermutations();
-		//	_output.WriteLine(actual.ToString());
-		//}
 
 		[Theory]
 		[InlineData(41063625, 56623104, true)]
@@ -90,154 +70,8 @@ namespace Demo.ProjectEuler.Tests._0062
 			long actual = _sut.GetSmallestCubeWithin(permutationCount);
 			_output.WriteLine(actual.ToString());
 
-			//const long expected = 41063625L;
-			//Assert.Equal(expected, actual);
+			const long expected = 127035954683L;
+			Assert.Equal(expected, actual);
 		}
-	}
-
-	public class CubicPermutations
-	{
-		public long GetSmallestCubeWithin(int permutationCount)
-		{
-			for (int i = 1;; i++)
-			{
-				var cubePermutations = GetCubesWithSamePermutations(i).ToList();
-				if (cubePermutations.Count == permutationCount)
-					return cubePermutations.Min();
-			}
-		}
-
-		public long GetSmallestCube(int cubeRoot)
-		{
-			return GetCubesWithSamePermutations(cubeRoot).Min();
-		}
-
-		/// <param name="number">Number for which to cubes with same sequences for</param>
-		/// <remarks>
-		/// To do
-		/// 
-		/// Get the number sequence
-		/// while length of "cubed number" is equal to the given "number",
-		///		Increase number by one and get cube.
-		///		If sequence is the same as cubed number sequence then yield.
-		/// </remarks>
-		public IEnumerable<long> GetCubesWithSamePermutations(int cubeRoot)
-		{
-			const int cubePower = 3;
-			var cubed = (long) Math.Pow(cubeRoot, cubePower);
-
-			var numberList1 = GetNumberList(cubed);
-			for (long i = cubeRoot;; i++)
-			{
-				cubed = (long)Math.Pow(i, cubePower);
-
-				if (i == 384 || i == 405)
-					Console.WriteLine(i);
-
-				var numberList2 = GetNumberList(cubed);
-				if (numberList2.Count > numberList1.Count)
-					yield break;
-
-				if (HasSameNumberSequence(numberList1, numberList2))
-					yield return ConvertSequenceToLong(numberList2);
-			}
-		}
-
-		public bool HasSameNumberSequence<T>(IList<T> list1, IList<T> list2)
-		{
-			var copy1 = list1.ToList();
-			var copy2 = list2.ToList();
-
-			copy1.Sort();
-			copy2.Sort();
-
-			return copy1.SequenceEqual(copy2);
-		}
-
-		public bool HasSameNumberSequence(long number1, long number2)
-		{
-			var list1 = GetNumberList(number1);
-			var list2 = GetNumberList(number2);
-
-			return HasSameNumberSequence(list1, list2);
-		}
-
-		private List<int> GetNumberList(long number)
-		{
-			List<int> list = new List<int>();
-			foreach (char c in number.ToString(CultureInfo.InvariantCulture))
-			{
-				list.Add(Convert.ToInt32(c.ToString()));
-			}
-			//list.Sort();
-
-			return list;
-		}
-
-		private long ConvertSequenceToLong(IEnumerable<int> sequence)
-		{
-			string valueText = string.Join("", sequence.Select(i => i.ToString()));
-			return Convert.ToInt64(valueText);
-		}
-
-		//private readonly Permutation _permutation = new Permutation();
-		//private readonly MathExt _math = new MathExt();
-
-		//public int GetFiveCubePermutations()
-		//{
-		//	List<int> permutations = new List<int>();
-
-		//	int number = 345;
-		//	do
-		//	{
-		//		permutations = GetCubePermutations(number);
-		//		if (number % 10 == 0)
-		//			Console.WriteLine(number);
-
-		//		if (permutations.Count == 5)
-		//			return permutations.Min();
-
-		//		number++;
-		//	} while (true);
-		//}
-
-		//public List<int> GetCubePermutations(int number)
-		//{
-		//	const double power = 3;	// cube
-		//	const double precision = 0.000001;
-
-		//	double cubed = Math.Pow(number, power);
-
-		//	var cubeSequence = cubed
-		//		.ToString(CultureInfo.InvariantCulture)
-		//		.ToCharArray()
-		//		.Select(c => Convert.ToInt32(c.ToString()))
-		//		.ToList();
-		//	var permutations = _permutation.GetPermutations(cubeSequence);
-
-		//	int index = 0;
-		//	List<int> result = new List<int>();
-
-		//	foreach (IEnumerable<int> sequence in permutations.Distinct())
-		//	{
-		//		double doubleValue = ConvertSequenceToDouble(sequence);
-		//		double rooted = _math.NthRoot(doubleValue, power);
-		//		double decimalValue = rooted - Math.Truncate(rooted);
-		//		double difference = 1 - decimalValue;
-
-		//		if (difference < precision)
-		//		{
-		//			//Console.WriteLine("index: {0}", index);
-		//			int resultValue = (int) Math.Round(rooted, 0);
-		//			//yield return resultValue;
-		//			if (!result.Contains(resultValue))
-		//				result.Add(resultValue);
-		//		}
-
-		//		index++;
-		//	}
-
-		//	return result;
-		//}
 	}
 }

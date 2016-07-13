@@ -128,6 +128,7 @@
     <Compile Include="0056\PowerfulDigitSumTest.cs" />
     <Compile Include="0061\CyclicalFigurateNumbers.cs" />
     <Compile Include="0061\CyclicalFigurateNumbersTest.cs" />
+    <Compile Include="0062\CubicPermutations.cs" />
     <Compile Include="0062\CubicPermutationsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
