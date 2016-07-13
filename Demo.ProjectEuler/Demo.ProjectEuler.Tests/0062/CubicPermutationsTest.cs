@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -48,17 +46,31 @@ namespace Demo.ProjectEuler.Tests._0062
 		[InlineData(12345678, 87658765, false)]
 		[InlineData(123, 1234, false)]
 		[InlineData(123, 12345, false)]
-		public void TestContainsAllSequence(int number1, int number2, bool expected)
+		public void TestContainsAllSequence(long number1, long number2, bool expected)
 		{
 			bool actual = _sut.HasSameNumberSequence(number1, number2);
 
 			Assert.Equal(expected, actual);
 		}
+
+		//[Theory]
+		//[InlineData(41063625, new[] {56623104, 66430125})]
+		//public void TestSampleData(int number, long[] expected)
+		//{
+		//	var actual = _sut.GetCubesWithSamePermutations(number);
+
+		//	Assert.True(expected.SequenceEqual(actual));
+		//}
 	}
 
 	public class CubicPermutations
 	{
-		public bool HasSameNumberSequence(int number1, int number2)
+		//public IEnumerable<long> GetCubesWithSamePermutations(int number)
+		//{
+			
+		//}
+
+		public bool HasSameNumberSequence(long number1, long number2)
 		{
 			var list1 = GetSortedNumberList(number1);
 			var list2 = GetSortedNumberList(number2);
@@ -66,12 +78,12 @@ namespace Demo.ProjectEuler.Tests._0062
 			return list1.SequenceEqual(list2);
 		}
 
-		private List<int> GetSortedNumberList(int number)
+		private List<long> GetSortedNumberList(long number)
 		{
 			var list = number
 				.ToString(CultureInfo.InvariantCulture)
 				.ToCharArray()
-				.Select(c => Convert.ToInt32(c.ToString())).ToList();
+				.Select(c => Convert.ToInt64(c.ToString())).ToList();
 			list.Sort();
 
 			return list;
