@@ -81,6 +81,18 @@ namespace Demo.ProjectEuler.Tests._0062
 			const long expected = 41063625L;
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int permutationCount = 5;
+
+			long actual = _sut.GetSmallestCubeWithin(permutationCount);
+			_output.WriteLine(actual.ToString());
+
+			//const long expected = 41063625L;
+			//Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CubicPermutations
