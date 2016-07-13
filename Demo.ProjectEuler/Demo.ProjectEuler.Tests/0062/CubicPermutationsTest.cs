@@ -61,10 +61,24 @@ namespace Demo.ProjectEuler.Tests._0062
 
 			Assert.True(expected.SequenceEqual(actual));
 		}
+
+		[Theory]
+		[InlineData(345, 41063625L)]
+		public void TestFindingSmallestCube(int cubeRoot, long expected)
+		{
+			var actual = _sut.GetSmallestCube(cubeRoot);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CubicPermutations
 	{
+		public long GetSmallestCube(int cubeRoot)
+		{
+			return GetCubesWithSamePermutations(cubeRoot).Min();
+		}
+
 		/// <param name="number">Number for which to cubes with same sequences for</param>
 		/// <remarks>
 		/// To do
@@ -192,7 +206,5 @@ namespace Demo.ProjectEuler.Tests._0062
 
 		//	return result;
 		//}
-
-
 	}
 }
