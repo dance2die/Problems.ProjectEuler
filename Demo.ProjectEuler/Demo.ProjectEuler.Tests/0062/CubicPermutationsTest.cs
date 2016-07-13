@@ -70,10 +70,31 @@ namespace Demo.ProjectEuler.Tests._0062
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestGettingSmallestCubeWithThreePermutations()
+		{
+			const int permutationCount = 3;
+
+			long actual = _sut.GetSmallestCubeWithin(permutationCount);
+
+			const long expected = 41063625L;
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class CubicPermutations
 	{
+		public long GetSmallestCubeWithin(int permutationCount)
+		{
+			for (int i = 1;; i++)
+			{
+				var cubePermutations = GetCubesWithSamePermutations(i).ToList();
+				if (cubePermutations.Count == permutationCount)
+					return cubePermutations.Min();
+			}
+		}
+
 		public long GetSmallestCube(int cubeRoot)
 		{
 			return GetCubesWithSamePermutations(cubeRoot).Min();
