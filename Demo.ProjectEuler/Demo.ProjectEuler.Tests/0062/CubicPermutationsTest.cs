@@ -34,21 +34,12 @@ namespace Demo.ProjectEuler.Tests._0062
 		}
 
 		[Theory]
-		[InlineData(345, new[] {41063625L, 56623104L, 66430125L})]
-		public void TestSampleData(int number, long[] expected)
+		[InlineData(345, new[] { "41063625", "56623104", "66430125" })]
+		public void TestSampleData(int number, string[] expected)
 		{
 			var actual = _sut.GetCubesWithSamePermutations(number).ToList();
 
 			Assert.True(expected.SequenceEqual(actual));
-		}
-
-		[Theory]
-		[InlineData(345, 41063625L)]
-		public void TestFindingSmallestCube(int cubeRoot, long expected)
-		{
-			var actual = _sut.GetSmallestCube(cubeRoot);
-
-			Assert.Equal(expected, actual);
 		}
 
 		[Fact]
