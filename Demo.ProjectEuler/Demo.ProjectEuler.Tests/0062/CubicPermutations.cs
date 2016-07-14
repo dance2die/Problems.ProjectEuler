@@ -35,9 +35,6 @@ namespace Demo.ProjectEuler.Tests._0062
 			{
 				cubed = (long)Math.Pow(i, cubePower);
 
-				if (i == 384 || i == 405)
-					Console.WriteLine(i);
-
 				var numberList2 = GetNumberList(cubed);
 				if (numberList2.Length > numberList1.Length)
 					yield break;
