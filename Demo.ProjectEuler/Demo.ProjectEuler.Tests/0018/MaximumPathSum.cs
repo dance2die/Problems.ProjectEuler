@@ -53,7 +53,7 @@ namespace Demo.ProjectEuler.Tests._0018
 
 		public IEnumerable<IEnumerable<BigInteger>> ParseInput(string input)
 		{
-			var lines = input.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+			var lines = input.Split(new[] {Environment.NewLine, "\n"}, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string line in lines)
 			{
 				yield return line.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries).Select(BigInteger.Parse);
