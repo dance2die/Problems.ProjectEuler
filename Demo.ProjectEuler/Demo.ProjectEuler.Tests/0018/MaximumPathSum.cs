@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Demo.ProjectEuler.Tests._0018
 {
@@ -26,11 +27,11 @@ namespace Demo.ProjectEuler.Tests._0018
 		/// <summary>
 		/// Work from bottom up instead of top to bottom.
 		/// </summary>
-		public int GetMximumPathSum(string input)
+		public BigInteger GetMximumPathSum(string input)
 		{
-			List<IEnumerable<int>> triangle = ParseInput(input).ToList();
+			var triangle = ParseInput(input).ToList();
 
-			var currentLastRow = new List<int>();
+			var currentLastRow = new List<BigInteger>();
 			for (int i = triangle.Count - 1; i >= 1; i--)
 			{
 				var currentLastRowCopy = currentLastRow.ToList();
@@ -43,19 +44,19 @@ namespace Demo.ProjectEuler.Tests._0018
 					var leftValue = lastRow[j] + prevRow[j];
 					var rightValue = lastRow[j + 1] + prevRow[j];
 
-					currentLastRow.Add(Math.Max(leftValue, rightValue));
+					currentLastRow.Add(BigInteger.Max(leftValue, rightValue));
 				}
 			}
 
-			return currentLastRow.Sum();
+			return currentLastRow.Aggregate(BigInteger.Zero, (current, value) => current + value);
 		}
 
-		public IEnumerable<IEnumerable<int>> ParseInput(string input)
+		public IEnumerable<IEnumerable<BigInteger>> ParseInput(string input)
 		{
 			var lines = input.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string line in lines)
 			{
-				yield return line.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries).Select(s => Convert.ToInt32(s));
+				yield return line.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries).Select(BigInteger.Parse);
 			}
 		}
 	}

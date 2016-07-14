@@ -47,7 +47,7 @@ namespace Demo.ProjectEuler.Tests.Core
 		/// Compare two list of list sequences.
 		/// </summary>
 		protected bool IsMultidimensionalArraySequenceEqual<T>(
-			IEnumerable<IEnumerable<int>> enumerable1, IEnumerable<IEnumerable<int>> enumerable2)
+			IEnumerable<IEnumerable<T>> enumerable1, IEnumerable<IEnumerable<T>> enumerable2)
 		{
 			var list1 = enumerable1.ToList();
 			var list2 = enumerable2.ToList();

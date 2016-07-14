@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -21,17 +22,17 @@ namespace Demo.ProjectEuler.Tests._0018
 		[Fact]
 		public void TestParsingInput()
 		{
-			var expected = new List<IEnumerable<int>>
+			var expected = new List<IEnumerable<BigInteger>>
 			{
-				new[] {3},
-				new[] {7, 4},
-				new[] {2, 4, 6},
-				new[] {8, 5, 9, 3}
+				new BigInteger[] {3},
+				new BigInteger[] {7, 4},
+				new BigInteger[] {2, 4, 6},
+				new BigInteger[] {8, 5, 9, 3}
 			};
 
-			IEnumerable<IEnumerable<int>> actual = _sut.ParseInput(SAMPLE_DATA);
+			IEnumerable<IEnumerable<BigInteger>> actual = _sut.ParseInput(SAMPLE_DATA);
 
-			Assert.True(IsMultidimensionalArraySequenceEqual<int>(expected, actual));
+			Assert.True(IsMultidimensionalArraySequenceEqual(expected, actual));
 		}
 
 		[Fact]
@@ -39,7 +40,7 @@ namespace Demo.ProjectEuler.Tests._0018
 		{
 			const int expected = 23;
 
-			int actual = _sut.GetMximumPathSum(SAMPLE_DATA);
+			BigInteger actual = _sut.GetMximumPathSum(SAMPLE_DATA);
 
 			Assert.Equal(expected, actual);
 		}
@@ -64,7 +65,7 @@ namespace Demo.ProjectEuler.Tests._0018
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23";
 
-			int result = _sut.GetMximumPathSum(input);
+			BigInteger result = _sut.GetMximumPathSum(input);
 
 			_output.WriteLine(result.ToString());
 		}
