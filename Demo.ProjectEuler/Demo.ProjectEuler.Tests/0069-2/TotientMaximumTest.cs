@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -41,16 +38,26 @@ namespace Demo.ProjectEuler.Tests._0069
 		{
 			yield return 1;	// everything is divisible by 1.
 
-			List<int> multiples = new List<int>();
 			for (int i = 2; i < n; i++)
 			{
-				if (n % i > 0)
+				if (GreatestCommonDivisor(n, i) == 1)
 					yield return i;
-				else
-				{
-					multiples.Add(i);
-				}
 			}
+		}
+
+		/// <summary>
+		/// <see cref="https://en.wikipedia.org/wiki/Euclidean_algorithm"/>
+		/// </summary>
+		private int GreatestCommonDivisor(int a, int b)
+		{
+			while (b != 0)
+			{
+				var temp = a;
+				a = b;
+				b = temp % b;
+			}
+
+			return a;
 		}
 	}
 }
