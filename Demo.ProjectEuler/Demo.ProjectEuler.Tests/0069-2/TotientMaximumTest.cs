@@ -30,10 +30,28 @@ namespace Demo.ProjectEuler.Tests._0069
 
 			Assert.True(expected.SequenceEqual(actual));
 		}
+
+		//[Fact]
+		//public void TestGeneratingMillionRelativePrimes()
+		//{
+		//	const int upto = 1000000;
+
+		//	var actual = _sut.GetRelativePrimeCache(upto).ToList();
+
+		//	_output.WriteLine(actual.Count.ToString());
+		//}
 	}
 
 	public class TotientMaximum
 	{
+		//public IEnumerable<List<int>> GetRelativePrimeCache(int upto)
+		//{
+		//	for (int n = 2; n <= upto; n++)
+		//	{
+		//		yield return GetRelativePrimes(n).ToList();
+		//	}
+		//}
+
 		public IEnumerable<int> GetRelativePrimes(int n)
 		{
 			yield return 1;	// everything is divisible by 1.
