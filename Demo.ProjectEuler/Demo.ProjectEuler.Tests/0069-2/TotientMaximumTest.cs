@@ -31,26 +31,31 @@ namespace Demo.ProjectEuler.Tests._0069
 			Assert.True(expected.SequenceEqual(actual));
 		}
 
-		//[Fact]
-		//public void TestGeneratingMillionRelativePrimes()
-		//{
-		//	const int upto = 1000000;
+		[Theory]
+		[InlineData(2, 1)]
+		[InlineData(3, 1.5)]
+		[InlineData(4, 2)]
+		[InlineData(5, 1.25)]
+		[InlineData(6, 3)]
+		[InlineData(7, 1.16666)]
+		[InlineData(8, 2)]
+		[InlineData(9, 1.5)]
+		[InlineData(10, 2.5)]
+		public void TestGeneratingTotientDivision(int n, double expected)
+		{
+			double actual = _sut.GetTotientDivision(n);
 
-		//	var actual = _sut.GetRelativePrimeCache(upto).ToList();
-
-		//	_output.WriteLine(actual.Count.ToString());
-		//}
+			const double precision = 0.00001;
+			Assert.True(expected - actual < precision);
+		}
 	}
 
 	public class TotientMaximum
 	{
-		//public IEnumerable<List<int>> GetRelativePrimeCache(int upto)
-		//{
-		//	for (int n = 2; n <= upto; n++)
-		//	{
-		//		yield return GetRelativePrimes(n).ToList();
-		//	}
-		//}
+		public double GetTotientDivision(int n)
+		{
+			return GetRelativePrimes(n).Average();
+		}
 
 		public IEnumerable<int> GetRelativePrimes(int n)
 		{
