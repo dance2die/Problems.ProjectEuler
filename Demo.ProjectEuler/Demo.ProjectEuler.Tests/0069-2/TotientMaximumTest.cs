@@ -48,13 +48,30 @@ namespace Demo.ProjectEuler.Tests._0069
 			const double precision = 0.00001;
 			Assert.True(expected - actual < precision);
 		}
+
+		[Fact]
+		public void TestGeneratingTotientDivisions()
+		{
+			const int upto = 1000000;
+
+			double maximum = 0;
+			for (int n = 6; n <= upto; n++)
+			{
+				double value = _sut.GetTotientDivision(n);
+				if (value > maximum)
+					maximum = value;
+			}
+
+			_output.WriteLine("Result: {0}", maximum);
+		}
 	}
 
 	public class TotientMaximum
 	{
 		public double GetTotientDivision(int n)
 		{
-			return GetRelativePrimes(n).Average();
+			var relativePrimes = GetRelativePrimes(n).ToList();
+			return (double) n / relativePrimes.Count;
 		}
 
 		public IEnumerable<int> GetRelativePrimes(int n)
