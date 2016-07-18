@@ -50,19 +50,22 @@ namespace Demo.ProjectEuler.Tests._0069
 		}
 
 		[Fact]
-		public void TestGeneratingTotientDivisions()
+		public void TestGeneratingTotientDivisionsForSampleData()
 		{
-			const int upto = 1000000;
+			const int upto = 10;
 
-			double maximum = 0;
-			for (int n = 6; n <= upto; n++)
+			double actual = 0;
+			for (int n = 1; n <= upto; n++)
 			{
 				double value = _sut.GetTotientDivision(n);
-				if (value > maximum)
-					maximum = value;
+				if (value > actual)
+					actual = n;
 			}
 
-			_output.WriteLine("Result: {0}", maximum);
+			_output.WriteLine("Result: {0}", actual);
+
+			const int expected = 6;
+			Assert.Equal(expected, actual);
 		}
 	}
 
