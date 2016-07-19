@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -70,11 +71,37 @@ namespace Demo.ProjectEuler.Tests._0069
 		[Fact]
 		public void TestGeneratingTotientDivisionsForSampleData()
 		{
+			//const int upto = 10;
 			const int upto = 10000;
+			const int expected = 6;
 
 			double actual = 0;
-			Prime prime = new Prime();
-			var numbers = Enumerable.Range(1, upto).Where(number => !prime.IsPrimeNumber(number));
+			Prime primeManager = new Prime();
+			// Remove "n^n" from calculation
+			// remove 2, 2^2, 2^3,...
+			var primes = Enumerable.Range(1, upto).Where(number => primeManager.IsPrimeNumber(number)).ToList();
+
+			List<int> primeMultiples = new List<int>();
+			foreach (int prime in primes)
+			{
+				primeMultiples.Add(prime);
+
+				double currentNumber = 0;
+				int counter = 2;
+				while (currentNumber <= upto)
+				{
+					currentNumber = Math.Pow(prime, currentNumber);
+					if (currentNumber <= upto)
+						primeMultiples.Add((int)currentNumber);
+
+					counter++;
+				}
+			}
+
+
+			var numbers = Enumerable.Range(1, upto).Where(number => !primeMultiples.Contains(number));
+
+
 			foreach (int number in numbers)
 			{
 				double value = _sut.GetTotientDivision(number);
@@ -82,16 +109,7 @@ namespace Demo.ProjectEuler.Tests._0069
 					actual = number;
 			}
 
-			//for (int n = 1; n <= upto; n++)
-			//{
-			//	double value = _sut.GetTotientDivision(n);
-			//	if (value > actual)
-			//		actual = n;
-			//}
-
 			_output.WriteLine("Result: {0}", actual);
-
-			const int expected = 210;
 			Assert.Equal(expected, actual);
 		}
 	}
