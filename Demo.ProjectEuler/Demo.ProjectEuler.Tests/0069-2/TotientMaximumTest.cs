@@ -49,6 +49,23 @@ namespace Demo.ProjectEuler.Tests._0069
 			Assert.True(expected - actual < precision);
 		}
 
+		[Theory]
+		[InlineData(2, 1)]
+		[InlineData(3, 2)]
+		[InlineData(4, 2)]
+		[InlineData(5, 4)]
+		[InlineData(6, 2)]
+		[InlineData(7, 6)]
+		[InlineData(8, 4)]
+		[InlineData(9, 6)]
+		[InlineData(10, 4)]
+		public void TestRelativePrimeCount(int n, int expected)
+		{
+			int actual = _sut.GetRelativePrimeCount(n);
+
+			Assert.Equal(expected, actual);
+		}
+
 		[Fact]
 		public void TestGeneratingTotientDivisionsForSampleData()
 		{
@@ -67,31 +84,16 @@ namespace Demo.ProjectEuler.Tests._0069
 			const int expected = 6;
 			Assert.Equal(expected, actual);
 		}
-
-		[Theory]
-		[InlineData(2, 1)]
-		[InlineData(3, 2)]
-		[InlineData(4, 2)]
-		[InlineData(5, 4)]
-		[InlineData(6, 2)]
-		[InlineData(7, 6)]
-		[InlineData(8, 4)]
-		[InlineData(9, 6)]
-		[InlineData(10, 4)]
-		public void TestRelativePrimeCount(int n, int expected)
-		{
-			int actual = _sut.GetRelativePrimeCount(n);
-
-			Assert.Equal(expected, actual);
-		}
 	}
 
 	public class TotientMaximum
 	{
 		public double GetTotientDivision(int n)
 		{
-			var relativePrimes = GetRelativePrimes(n).ToList();
-			return (double) n / relativePrimes.Count;
+			//var relativePrimes = GetRelativePrimes(n).ToList();
+			//return (double) n / relativePrimes.Count;
+
+			return (double) n/GetRelativePrimeCount(n);
 		}
 
 		public int GetRelativePrimeCount(int n)
