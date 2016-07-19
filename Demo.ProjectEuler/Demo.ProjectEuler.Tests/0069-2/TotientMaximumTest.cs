@@ -52,7 +52,7 @@ namespace Demo.ProjectEuler.Tests._0069
 		[Fact]
 		public void TestGeneratingTotientDivisionsForSampleData()
 		{
-			const int upto = 10;
+			const int upto = 10000;
 
 			double actual = 0;
 			for (int n = 1; n <= upto; n++)
