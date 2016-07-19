@@ -162,5 +162,21 @@ namespace Demo.ProjectEuler.Tests._0069
 
 			return a;
 		}
+
+		/// <summary>
+		/// <see cref="https://en.wikipedia.org/wiki/Euclidean_algorithm"/>
+		/// </summary>
+		private int GreatestCommonDivisor2(int a, int b)
+		{
+			while (a != b)
+			{
+				if (a > b)
+					a -= b;
+				else
+					b -= a;
+			}
+
+			return a;
+		}
 	}
 }
