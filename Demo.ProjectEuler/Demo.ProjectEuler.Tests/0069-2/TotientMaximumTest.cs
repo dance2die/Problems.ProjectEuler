@@ -112,6 +112,24 @@ namespace Demo.ProjectEuler.Tests._0069
 			_output.WriteLine("Result: {0}", actual);
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestGreatestCommonDivisorCollectionCreation()
+		{
+			const int upto = 10000;
+			Dictionary<Tuple<int, int>, int> lookup = new Dictionary<Tuple<int, int>, int>();
+			for (int i = 1; i <= upto; i++)
+			{
+				for (int j = 2; j <= upto; j++)
+				{
+					Tuple<int, int> key = new Tuple<int, int>(j, i);
+					if (!lookup.ContainsKey(key))
+						lookup[key] = _sut.GreatestCommonDivisor(j, i);
+				}
+			}
+
+			_output.WriteLine(lookup.Keys.Count.ToString());
+		}
 	}
 
 	public class TotientMaximum
@@ -151,7 +169,7 @@ namespace Demo.ProjectEuler.Tests._0069
 		/// <summary>
 		/// <see cref="https://en.wikipedia.org/wiki/Euclidean_algorithm"/>
 		/// </summary>
-		private int GreatestCommonDivisor(int a, int b)
+		public int GreatestCommonDivisor(int a, int b)
 		{
 			while (b != 0)
 			{
