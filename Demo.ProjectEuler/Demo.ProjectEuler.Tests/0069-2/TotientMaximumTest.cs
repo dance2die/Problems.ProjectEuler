@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -72,16 +73,25 @@ namespace Demo.ProjectEuler.Tests._0069
 			const int upto = 10000;
 
 			double actual = 0;
-			for (int n = 1; n <= upto; n++)
+			Prime prime = new Prime();
+			var numbers = Enumerable.Range(1, upto).Where(number => !prime.IsPrimeNumber(number));
+			foreach (int number in numbers)
 			{
-				double value = _sut.GetTotientDivision(n);
+				double value = _sut.GetTotientDivision(number);
 				if (value > actual)
-					actual = n;
+					actual = number;
 			}
+
+			//for (int n = 1; n <= upto; n++)
+			//{
+			//	double value = _sut.GetTotientDivision(n);
+			//	if (value > actual)
+			//		actual = n;
+			//}
 
 			_output.WriteLine("Result: {0}", actual);
 
-			const int expected = 6;
+			const int expected = 210;
 			Assert.Equal(expected, actual);
 		}
 	}
