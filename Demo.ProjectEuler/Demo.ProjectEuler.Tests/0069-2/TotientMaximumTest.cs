@@ -90,7 +90,7 @@ namespace Demo.ProjectEuler.Tests._0069
 				int counter = 2;
 				while (currentNumber <= upto)
 				{
-					currentNumber = Math.Pow(prime, currentNumber);
+					currentNumber = Math.Pow(prime, counter);
 					if (currentNumber <= upto)
 						primeMultiples.Add((int)currentNumber);
 
