@@ -38,5 +38,10 @@ namespace Demo.ProjectEuler.Core
 			list[index1] = list[index2];
 			list[index2] = temp;
 		}
+
+	    public bool IsPermutation(int value1, int value2)
+	    {
+	        return false;
+	    }
 	}
 }
