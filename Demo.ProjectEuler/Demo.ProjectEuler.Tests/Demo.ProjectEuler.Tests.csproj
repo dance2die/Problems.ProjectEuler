@@ -138,6 +138,7 @@
     <Compile Include="LibraryTests\ESieveTest.cs" />
     <Compile Include="LibraryTests\MathExtTest.cs" />
     <Compile Include="LibraryTests\NumberGeneratorTest.cs" />
+    <Compile Include="LibraryTests\PermutationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
