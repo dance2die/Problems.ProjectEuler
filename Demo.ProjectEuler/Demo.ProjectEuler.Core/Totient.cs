@@ -69,9 +69,9 @@ namespace Demo.ProjectEuler.Core
         }
 
         // http://www.geeksforgeeks.org/eulers-totient-function/
-        public int GetPhi(int n)
+        public double GetPhi(int n)
         {
-            int result = n;   // Initialize result as n
+            double result = n;   // Initialize result as n
 
             // Consider all prime factors of n and subtract their
             // multiples from result
