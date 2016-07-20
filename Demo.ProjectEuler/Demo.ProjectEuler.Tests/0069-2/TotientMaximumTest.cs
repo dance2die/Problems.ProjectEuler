@@ -116,14 +116,14 @@ namespace Demo.ProjectEuler.Tests._0069
 		[Fact]
 		public void TestGreatestCommonDivisorCollectionCreation()
 		{
-			const int upto = 10000;
+			const int upto = 100;
 			Dictionary<Tuple<int, int>, int> lookup = new Dictionary<Tuple<int, int>, int>();
 			for (int i = 1; i <= upto; i++)
 			{
 				for (int j = 2; j <= upto; j++)
 				{
 					Tuple<int, int> key = new Tuple<int, int>(j, i);
-					if (!lookup.ContainsKey(key))
+					//if (!lookup.ContainsKey(key))
 						lookup[key] = _sut.GreatestCommonDivisor(j, i);
 				}
 			}
