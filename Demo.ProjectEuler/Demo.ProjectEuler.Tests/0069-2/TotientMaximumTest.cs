@@ -68,11 +68,28 @@ namespace Demo.ProjectEuler.Tests._0069
 			Assert.Equal(expected, actual);
 		}
 
+        [Theory]
+        [InlineData(2, 1)]
+        [InlineData(3, 2)]
+        [InlineData(4, 2)]
+        [InlineData(5, 4)]
+        [InlineData(6, 2)]
+        [InlineData(7, 6)]
+        [InlineData(8, 4)]
+        [InlineData(9, 6)]
+        [InlineData(10, 4)]
+        public void TestPhi(int n, int expected)
+        {
+            var actual = _sut.GetPhi(n);
+
+            Assert.Equal(expected, actual);
+        }
+
 		[Fact]
 		public void TestGeneratingTotientDivisionsForSampleData()
 		{
 			//const int upto = 10;
-			const int upto = 10000;
+			const int upto = 100000;
 			const int expected = 6;
 
 			double actual = 0;
@@ -139,7 +156,8 @@ namespace Demo.ProjectEuler.Tests._0069
 			//var relativePrimes = GetRelativePrimes(n).ToList();
 			//return (double) n / relativePrimes.Count;
 
-			return (double) n/GetRelativePrimeCount(n);
+			//return (double) n/GetRelativePrimeCount(n);
+			return (double) n/GetPhi(n);
 		}
 
 		public int GetRelativePrimeCount(int n)
@@ -196,5 +214,31 @@ namespace Demo.ProjectEuler.Tests._0069
 
 			return a;
 		}
+
+        // http://www.geeksforgeeks.org/eulers-totient-function/
+        public int GetPhi(int n)
+	    {
+            int result = n;   // Initialize result as n
+
+            // Consider all prime factors of n and subtract their
+            // multiples from result
+            for (int p = 2; p * p <= n; ++p)
+            {
+                // Check if p is a prime factor.
+                if (n % p == 0)
+                {
+                    // If yes, then update n and result 
+                    while (n % p == 0)
+                        n /= p;
+                    result -= result / p;
+                }
+            }
+
+            // If n has a prime factor greater than sqrt(n)
+            // (There can be at-most one such prime factor)
+            if (n > 1)
+                result -= result / n;
+            return result;
+        }
 	}
 }
