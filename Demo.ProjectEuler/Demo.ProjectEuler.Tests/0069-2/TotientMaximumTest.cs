@@ -89,41 +89,21 @@ namespace Demo.ProjectEuler.Tests._0069
 		public void TestGeneratingTotientDivisionsForSampleData()
 		{
 			//const int upto = 10;
-			const int upto = 100000;
-			const int expected = 6;
+			const int upto = 1000000;
+			const int expected = 510510;
 
 			double actual = 0;
-			Prime primeManager = new Prime();
-			// Remove "n^n" from calculation
-			// remove 2, 2^2, 2^3,...
-			var primes = Enumerable.Range(1, upto).Where(number => primeManager.IsPrimeNumber(number)).ToList();
-
-			List<int> primeMultiples = new List<int>();
-			foreach (int prime in primes)
-			{
-				primeMultiples.Add(prime);
-
-				double currentNumber = 0;
-				int counter = 2;
-				while (currentNumber <= upto)
-				{
-					currentNumber = Math.Pow(prime, counter);
-					if (currentNumber <= upto)
-						primeMultiples.Add((int)currentNumber);
-
-					counter++;
-				}
-			}
-
-
-			var numbers = Enumerable.Range(1, upto).Where(number => !primeMultiples.Contains(number));
-
+		    var numbers = Enumerable.Range(1, upto);
+            double maximum = 1;
 
 			foreach (int number in numbers)
 			{
 				double value = _sut.GetTotientDivision(number);
-				if (value > actual)
-					actual = number;
+				if (value > maximum)
+				{
+				    actual = number;
+				    maximum = value;
+				}
 			}
 
 			_output.WriteLine("Result: {0}", actual);
