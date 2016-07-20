@@ -131,6 +131,7 @@
     <Compile Include="0062\CubicPermutations.cs" />
     <Compile Include="0062\CubicPermutationsTest.cs" />
     <Compile Include="0067\MaximumPathSumIITest.cs" />
+    <Compile Include="0069-2\TotientMaximum.cs" />
     <Compile Include="0069-2\TotientMaximumTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
