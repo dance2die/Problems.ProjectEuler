@@ -10,7 +10,7 @@ namespace Demo.ProjectEuler.Tests._0069
 {
 	public class TotientMaximumTest : BaseTest
 	{
-		private readonly TotientMaximum _sut = new TotientMaximum();
+		private readonly Totient _sut = new Totient();
 
 		public TotientMaximumTest(ITestOutputHelper output) : base(output)
 		{

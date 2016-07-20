@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace Demo.ProjectEuler.Tests._0069
+namespace Demo.ProjectEuler.Core
 {
-    public class TotientMaximum
+    public class Totient
     {
         public double GetTotientDivision(int n)
         {
