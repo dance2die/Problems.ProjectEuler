@@ -12,7 +12,9 @@ namespace Demo.ProjectEuler.Tests._0070
 {
     public class TotientPermutationTest : BaseTest
     {
-        private readonly TotientPermutation _sut = new TotientPermutation();
+		private const int UPTO = 10000000;
+
+		private readonly TotientPermutation _sut = new TotientPermutation();
 
         public TotientPermutationTest(ITestOutputHelper output) : base(output)
         {
@@ -21,9 +23,7 @@ namespace Demo.ProjectEuler.Tests._0070
         [Fact]
         public void TestGeneratingHugeNumberOfPhiCalculations()
         {
-            const int upto = 10000000;
-
-            var phis = _sut.GetPhiUpto(upto).ToList();
+            var phis = _sut.GetPhiUpto(UPTO).ToList();
 
             _output.WriteLine(phis.Count.ToString());
         }
@@ -31,12 +31,39 @@ namespace Demo.ProjectEuler.Tests._0070
 	    [Fact]
 	    public void TestHugeTotientDivisions()
 	    {
-		    const int upto = 10000000;
-
-		    var totients = _sut.GetTotientUpto(upto).ToList();
+		    var totients = _sut.GetTotientUpto(UPTO).ToList();
 
 			_output.WriteLine(totients.Count.ToString());
 		}
+
+	    [Fact]
+	    public void ShowResult()
+	    {
+			Totient totientManager = new Totient();
+			Permutation permutationManager = new Permutation();
+
+			double minimum = double.MaxValue;
+		    int minimumIndex = 2;
+			for (int n = minimumIndex; n <= UPTO; n++)
+			{
+				var phi = totientManager.GetPhi(n);
+				if (permutationManager.IsPermutation(n, phi))
+				{
+					double totient = n / phi;
+					if (totient < minimum)
+					{
+						minimum = totient;
+						minimumIndex = n;
+					}
+				}
+			}
+
+			_output.WriteLine(minimumIndex.ToString());
+
+		    const int expected = 8319823;
+		    int actual = minimumIndex;
+			Assert.Equal(expected, actual);
+	    }
     }
 
     public class TotientPermutation

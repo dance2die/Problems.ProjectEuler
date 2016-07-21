@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Demo.ProjectEuler.Core
 {
 	public class Permutation
 	{
-		public bool IsPermutation(int value1, int value2)
+		public bool IsPermutation(double value1, double value2)
 		{
-			var textList1 = value1.ToString().ToCharArray();
-			var textList2 = value2.ToString().ToCharArray();
+			var textList1 = value1.ToString(CultureInfo.InvariantCulture).ToCharArray();
+			var textList2 = value2.ToString(CultureInfo.InvariantCulture).ToCharArray();
 
 			Array.Sort(textList1);
 			Array.Sort(textList2);
