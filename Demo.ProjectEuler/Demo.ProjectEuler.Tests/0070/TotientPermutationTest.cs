@@ -23,17 +23,35 @@ namespace Demo.ProjectEuler.Tests._0070
         {
             const int upto = 10000000;
 
-            var totients = _sut.GetPhiUpto(upto).ToList();
+            var phis = _sut.GetPhiUpto(upto).ToList();
 
-            _output.WriteLine(totients.Count.ToString());
+            _output.WriteLine(phis.Count.ToString());
         }
+
+	    [Fact]
+	    public void TestHugeTotientDivisions()
+	    {
+		    const int upto = 10000000;
+
+		    var totients = _sut.GetTotientUpto(upto).ToList();
+
+			_output.WriteLine(totients.Count.ToString());
+		}
     }
 
     public class TotientPermutation
     {
         private readonly Totient _totient = new Totient();
 
-        public IEnumerable<double> GetPhiUpto(int upto)
+	    public IEnumerable<double> GetTotientUpto(int upto)
+	    {
+			for (int i = 1; i <= upto; i++)
+			{
+				yield return _totient.GetTotientDivision(i);
+			}
+		}
+
+	    public IEnumerable<double> GetPhiUpto(int upto)
         {
             for (int i = 1; i <= upto; i++)
             {
