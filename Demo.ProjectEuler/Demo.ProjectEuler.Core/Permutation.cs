@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,6 +6,17 @@ namespace Demo.ProjectEuler.Core
 {
 	public class Permutation
 	{
+		public bool IsPermutation(int value1, int value2)
+		{
+			var textList1 = value1.ToString().ToCharArray();
+			var textList2 = value2.ToString().ToCharArray();
+
+			Array.Sort(textList1);
+			Array.Sort(textList2);
+
+			return textList1.SequenceEqual(textList2);
+		}
+
 		public IEnumerable<IEnumerable<T>> GetPermutations<T>(IList<T> list)
 		{
 			return GetPermutations(list, 0, list.Count - 1).ToList();
@@ -38,10 +50,5 @@ namespace Demo.ProjectEuler.Core
 			list[index1] = list[index2];
 			list[index2] = temp;
 		}
-
-	    public bool IsPermutation(int value1, int value2)
-	    {
-	        return false;
-	    }
 	}
 }
