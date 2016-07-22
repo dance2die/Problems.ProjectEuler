@@ -133,6 +133,7 @@
     <Compile Include="0067\MaximumPathSumIITest.cs" />
     <Compile Include="0069-2\TotientMaximumTest.cs" />
     <Compile Include="0070_NeedImprovement\TotientPermutationTest.cs" />
+    <Compile Include="0071\OrderedFractionsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -194,6 +195,7 @@
     <Content Include="0067\README.txt" />
     <Content Include="0069-2\README.txt" />
     <Content Include="0070_NeedImprovement\README.txt" />
+    <Content Include="0071\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
