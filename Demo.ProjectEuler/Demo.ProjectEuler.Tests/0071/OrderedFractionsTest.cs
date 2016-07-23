@@ -52,6 +52,7 @@ namespace Demo.ProjectEuler.Tests._0071
 					double fractionValue = (double)n / d;
 					if (fractionValue > comparisonValue) continue;
 					if (previousValue > fractionValue) continue;
+					if (n % d == 0 || d % n == 0) continue;
 
 					if ((n != 3 && d != 7) && _totient.GreatestCommonDivisor(n, d) == 1)
 					{
