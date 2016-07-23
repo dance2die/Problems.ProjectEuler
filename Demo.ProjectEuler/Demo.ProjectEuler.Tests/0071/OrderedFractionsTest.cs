@@ -41,33 +41,27 @@ namespace Demo.ProjectEuler.Tests._0071
 
 		public Tuple<int, int> GetPreviousNumberBefore3Over7(int upto)
 		{
-			Dictionary<Tuple<int, int>, double> fractionValues = new Dictionary<Tuple<int, int>, double>(upto);
+			double comparisonValue = (double) 3 / 7;
+			double previousValue = 0;
+			Tuple<int, int> previousTuple = new Tuple<int, int>(0, 0);
 
 			for (int n = 1; n < upto; n++)
 			{
 				for (int d = n + 1; d <= upto; d++)
 				{
-					if (_totient.GreatestCommonDivisor(n, d) == 1)
+					double fractionValue = (double)n / d;
+					if (fractionValue > comparisonValue) continue;
+					if (previousValue > fractionValue) continue;
+
+					if ((n != 3 && d != 7) && _totient.GreatestCommonDivisor(n, d) == 1)
 					{
-						double fractionValue = (double)n / d;
-						var key = new Tuple<int, int>(n, d);
-						fractionValues[key] = fractionValue;
+						previousValue = fractionValue;
+						previousTuple = new Tuple<int, int>(n, d);
 					}
 				}
 			}
 
-			IOrderedEnumerable<KeyValuePair<Tuple<int, int>, double>> orderedDictionary = fractionValues.OrderBy(pair => pair.Value);
-
-			int index = 0;
-			foreach (KeyValuePair<Tuple<int, int>, double> pair in orderedDictionary)
-			{
-				if (pair.Key.Item1 == 3 && pair.Key.Item2 == 7)
-					break;
-
-				index++;
-			}
-
-			return orderedDictionary.ToList()[index - 1].Key;
+			return previousTuple;
 		}
 	}
 }
