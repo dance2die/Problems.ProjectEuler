@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -16,9 +19,9 @@ namespace Demo.ProjectEuler.Tests._0071
 		[Fact]
 		public void TestSampleData()
 		{
-			const int d = 8;
+			const int upto = 8;
 
-			Tuple<int, int> actual = _sut.GetPreviousNumberBefore3Over7(d);
+			Tuple<int, int> actual = _sut.GetPreviousNumberBefore3Over7(upto);
 
 			Tuple<int, int> expected = new Tuple<int, int>(2, 5);
 
@@ -28,9 +31,32 @@ namespace Demo.ProjectEuler.Tests._0071
 
 	public class OrderedFractions
 	{
-		public Tuple<int, int> GetPreviousNumberBefore3Over7(int d)
+		public Tuple<int, int> GetPreviousNumberBefore3Over7(int upto)
 		{
-			return null;
+			Dictionary<Tuple<int, int>, double> fractionValues = new Dictionary<Tuple<int, int>, double>(upto);
+
+			for (int n = 1; n < upto; n++)
+			{
+				for (int d = n + 1; d <= upto; d++)
+				{
+					double fractionValue = (double) n / d;
+					var key = new Tuple<int, int>(n, d);
+					fractionValues[key] = fractionValue;
+				}
+			}
+
+			IOrderedEnumerable<KeyValuePair<Tuple<int, int>, double>> orderedDictionary = fractionValues.OrderBy(pair => pair.Value);
+
+			int index = 0;
+			foreach (KeyValuePair<Tuple<int, int>, double> pair in orderedDictionary)
+			{
+				if (pair.Key.Item1 == 3 && pair.Key.Item2 == 7)
+					break;
+
+				index++;
+			}
+
+			return orderedDictionary.ToList()[index - 1].Key;
 		}
 	}
 }
