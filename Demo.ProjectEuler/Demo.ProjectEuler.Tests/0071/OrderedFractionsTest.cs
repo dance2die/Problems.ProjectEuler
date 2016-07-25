@@ -29,7 +29,7 @@ namespace Demo.ProjectEuler.Tests._0071
 		[Fact]
 		public void ShowResult()
 		{
-			const int upto = 1000000;
+			const int upto = 1000;
 			Tuple<int, int> actual = _sut.GetPreviousNumberBefore3Over7(upto);
 			_output.WriteLine(actual.ToString());
 		}
@@ -47,10 +47,11 @@ namespace Demo.ProjectEuler.Tests._0071
 
 			for (int n = 1; n < upto; n++)
 			{
-				for (int d = n + 1; d <= upto; d += 2)
+				//for (int d = n + 1; d <= upto; d++)
+				for (int d = upto; d >= n + 1; d--)
 				{
 					double fractionValue = (double)n / d;
-					if (fractionValue > comparisonValue) continue;
+					if (fractionValue > comparisonValue) break;
 					if (previousValue > fractionValue) continue;
 					if (n % d == 0 || d % n == 0) continue;
 
