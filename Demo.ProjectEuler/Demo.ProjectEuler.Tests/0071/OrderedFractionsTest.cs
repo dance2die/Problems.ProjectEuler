@@ -47,7 +47,7 @@ namespace Demo.ProjectEuler.Tests._0071
 
 			for (int n = 1; n < upto; n++)
 			{
-				for (int d = n + 1; d <= upto; d++)
+				for (int d = n + 1; d <= upto; d += 2)
 				{
 					double fractionValue = (double)n / d;
 					if (fractionValue > comparisonValue) continue;
