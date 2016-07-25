@@ -29,7 +29,7 @@ namespace Demo.ProjectEuler.Tests._0071
 		[Fact]
 		public void ShowResult()
 		{
-			const int upto = 1000;
+			const int upto = 100000;
 			Tuple<int, int> actual = _sut.GetPreviousNumberBefore3Over7(upto);
 			_output.WriteLine(actual.ToString());
 		}
