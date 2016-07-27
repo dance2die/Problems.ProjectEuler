@@ -29,7 +29,7 @@ namespace Demo.ProjectEuler.Tests._0071
 		[Fact]
 		public void ShowResult()
 		{
-			const int upto = 1000000;
+			const int upto = 100000;
 			Tuple<int, int> actual = _sut.GetPreviousNumberBefore3Over7(upto);
 			_output.WriteLine(actual.ToString());
 		}
@@ -38,7 +38,6 @@ namespace Demo.ProjectEuler.Tests._0071
 	public class OrderedFractions
 	{
 		private readonly Totient _totient = new Totient();
-		private readonly ESieve _eSieve = new ESieve();
 
 		public Tuple<int, int> GetPreviousNumberBefore3Over7(int upto)
 		{
@@ -46,16 +45,13 @@ namespace Demo.ProjectEuler.Tests._0071
 			double previousValue = 0;
 			Tuple<int, int> previousTuple = new Tuple<int, int>(0, 0);
 
-			var primes1 = _eSieve.GetPrimes(upto).ToList();
-			var primes2 = primes1.ToList();
-
-			foreach (int n in primes1)
+			for (int n = 1; n < upto; n++)
 			{
-				foreach (int d in primes2.Where(num => num > n))
+				for (int d = upto; d >= n + 1; d--)
 				{
-					double fractionValue = (double) n / d;
+					double fractionValue = (double)n / d;
 
-					if (fractionValue > comparisonValue) continue;
+					if (fractionValue > comparisonValue) break;
 					if (previousValue > fractionValue) continue;
 					if (n % d == 0 || d % n == 0) continue;
 
@@ -66,24 +62,6 @@ namespace Demo.ProjectEuler.Tests._0071
 					}
 				}
 			}
-
-			//for (int n = 1; n < upto; n++)
-			//{
-			//	for (int d = upto; d >= n + 1; d--)
-			//	{
-			//		double fractionValue = (double)n / d;
-
-			//		if (fractionValue > comparisonValue) break;
-			//		if (previousValue > fractionValue) continue;
-			//		if (n % d == 0 || d % n == 0) continue;
-
-			//		if ((n != 3 && d != 7) && _totient.GreatestCommonDivisor(n, d) == 1)
-			//		{
-			//			previousValue = fractionValue;
-			//			previousTuple = new Tuple<int, int>(n, d);
-			//		}
-			//	}
-			//}
 
 			return previousTuple;
 		}
