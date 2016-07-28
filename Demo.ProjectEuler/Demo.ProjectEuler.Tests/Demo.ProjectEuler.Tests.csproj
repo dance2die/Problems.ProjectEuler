@@ -134,6 +134,7 @@
     <Compile Include="0069-2\TotientMaximumTest.cs" />
     <Compile Include="0070_NeedImprovement\TotientPermutationTest.cs" />
     <Compile Include="0071_unsolved\OrderedFractionsTest.cs" />
+    <Compile Include="0076\CountingSummationsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
