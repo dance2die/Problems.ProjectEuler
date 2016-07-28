@@ -196,6 +196,7 @@
     <Content Include="0069-2\README.txt" />
     <Content Include="0070_NeedImprovement\README.txt" />
     <Content Include="0071_unsolved\README.txt" />
+    <Content Include="0076\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
