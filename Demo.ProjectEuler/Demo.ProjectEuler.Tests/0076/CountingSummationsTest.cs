@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Demo.ProjectEuler.Core;
+﻿using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -47,12 +46,11 @@ namespace Demo.ProjectEuler.Tests._0076
 
 		private int GetParitionCount(int n, int k)
 		{
-			if (n == 1 || k == 1) return 1;
-			if (n == 0) return 1;
 			if (k == 0) return 0;
-			if (k > n) return 0;
+			if (n == 0) return 1;
+			if (n < 0) return 0;
 
-			return GetParitionCount(n - 1, k - 1) + GetParitionCount(n - k, k);
+			return GetParitionCount(n, k - 1) + GetParitionCount(n - k, k);
 		}
 	}
 }
