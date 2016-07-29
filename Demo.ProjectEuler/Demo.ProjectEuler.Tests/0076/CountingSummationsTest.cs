@@ -18,6 +18,7 @@ namespace Demo.ProjectEuler.Tests._0076
 		[InlineData(3, 2)]
 		[InlineData(4, 4)]
 		[InlineData(5, 6)]
+		[InlineData(100, 190569291)]
 		public void TestSummationCounting(int n, int expected)
 		{
 			int actual = _sut.GetSummationCount(n);
