@@ -17,8 +17,8 @@ namespace Demo.ProjectEuler.Tests._0076
 		[Theory]
 		[InlineData(2, 1)]
 		[InlineData(3, 2)]
+		[InlineData(4, 4)]
 		[InlineData(5, 6)]
-		[InlineData(100, 100)]
 		public void TestSummationCounting(int n, int expected)
 		{
 			int actual = _sut.GetSummationCount(n);
@@ -31,10 +31,28 @@ namespace Demo.ProjectEuler.Tests._0076
 	{
 		private readonly Permutation _permutation = new Permutation();
 
+		/// <summary>
+		/// Get summation count using Partition function algorithm
+		/// </summary>
+		/// <remarks>
+		/// Refer to graph on <see cref="http://math.stackexchange.com/q/411901"/>
+		/// 
+		/// Math World <see cref="http://mathworld.wolfram.com/PartitionFunctionP.html"/>
+		///  P(n,k) = P(n-1,k-1) + P(n-k,k) 
+		/// </remarks>
 		public int GetSummationCount(int n)
 		{
-			var permutations = _permutation.GetPermutations(Enumerable.Range(1, n).ToList());
-			return permutations.Count();
+			return GetParitionCount(n, n) - 1;
+		}
+
+		private int GetParitionCount(int n, int k)
+		{
+			if (n == 1 || k == 1) return 1;
+			if (n == 0) return 1;
+			if (k == 0) return 0;
+			if (k > n) return 0;
+
+			return GetParitionCount(n - 1, k - 1) + GetParitionCount(n - k, k);
 		}
 	}
 }
