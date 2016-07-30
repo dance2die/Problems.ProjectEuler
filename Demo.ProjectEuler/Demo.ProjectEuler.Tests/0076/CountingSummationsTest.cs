@@ -1,5 +1,4 @@
-﻿using Demo.ProjectEuler.Core;
-using Demo.ProjectEuler.Tests.Core;
+﻿using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -29,8 +28,6 @@ namespace Demo.ProjectEuler.Tests._0076
 
 	public class CountingSummations
 	{
-		private readonly Permutation _permutation = new Permutation();
-
 		/// <summary>
 		/// Get summation count using Partition function algorithm
 		/// </summary>
