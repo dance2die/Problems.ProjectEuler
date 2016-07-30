@@ -136,6 +136,7 @@
     <Compile Include="0071_unsolved\OrderedFractionsTest.cs" />
     <Compile Include="0076\CountingSummationsTest.cs" />
     <Compile Include="0077_unsolved\PrimeSummationsTest.cs" />
+    <Compile Include="0081\PathSumTwoWaysTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -200,6 +201,7 @@
     <Content Include="0071_unsolved\README.txt" />
     <Content Include="0076\README.txt" />
     <Content Include="0077_unsolved\README.txt" />
+    <Content Include="0081\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
