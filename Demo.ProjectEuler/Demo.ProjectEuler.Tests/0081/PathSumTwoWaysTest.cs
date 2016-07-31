@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
@@ -48,6 +49,16 @@ namespace Demo.ProjectEuler.Tests._0081
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			string input = File.ReadAllText("./0081/p081_matrix.txt");
+
+			BigInteger actual = _sut.GetPathSumTwoWays(input);
+
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class PathSumTwoWays
@@ -56,36 +67,31 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			int[,] matrix = ParseInput(input);
 
-			int rowIndex = 0;
-			int colIndex = 0;
+			int rowIndex = matrix.GetLength(0) - 1;
+			int colIndex = matrix.GetLength(1) - 1;
 			BigInteger sum = matrix[rowIndex, colIndex];
 
-			while (rowIndex < matrix.GetLength(0) &&
-				   colIndex < matrix.GetLength(1) - 1)
+			// Start from Bottom up.
+			while (rowIndex >= 0 && colIndex > 0)
 			{
-				// Get "Right" value
-				var rightValue = matrix[rowIndex, colIndex + 1];
+				// Get "Left" value
+				var leftValue = matrix[rowIndex, colIndex - 1];
+				// Get "Up" value
+				var upValue = matrix[rowIndex - 1, colIndex];
 
-				if (rowIndex + 1 == matrix.GetLength(0))
+				if (leftValue < upValue)
 				{
-					sum += rightValue;
-					return sum;
-				}
-
-				// Get "Bottom" value
-				var bottomValue = matrix[rowIndex + 1, colIndex];
-
-				if (bottomValue < rightValue || colIndex + 2 == matrix.GetLength(1))
-				{
-					sum += bottomValue;
-					rowIndex++;
+					sum += leftValue;
+					colIndex--;
 				}
 				else
 				{
-					sum += rightValue;
-					colIndex++;
+					sum += upValue;
+					rowIndex--;
 				}
 			}
+
+			sum += matrix[0, 0];
 
 			return sum;
 		}
