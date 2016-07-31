@@ -60,15 +60,22 @@ namespace Demo.ProjectEuler.Tests._0081
 			int colIndex = 0;
 			BigInteger sum = matrix[rowIndex, colIndex];
 
-			while (rowIndex < matrix.GetLength(0) - 1 &&
+			while (rowIndex < matrix.GetLength(0) &&
 				   colIndex < matrix.GetLength(1) - 1)
 			{
 				// Get "Right" value
 				var rightValue = matrix[rowIndex, colIndex + 1];
+
+				if (rowIndex + 1 == matrix.GetLength(0))
+				{
+					sum += rightValue;
+					return sum;
+				}
+
 				// Get "Bottom" value
 				var bottomValue = matrix[rowIndex + 1, colIndex];
 
-				if (bottomValue < rightValue)
+				if (bottomValue < rightValue || colIndex + 2 == matrix.GetLength(1))
 				{
 					sum += bottomValue;
 					rowIndex++;
