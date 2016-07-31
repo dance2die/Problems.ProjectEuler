@@ -91,7 +91,25 @@ namespace Demo.ProjectEuler.Tests._0081
 				}
 			}
 
-			sum += matrix[0, 0];
+			if (colIndex == 0)
+			{
+				do
+				{
+					var value = matrix[rowIndex - 1, colIndex];
+					sum += value;
+					rowIndex--;
+				} while (rowIndex > 0);
+			}
+
+			if (rowIndex == 0 && colIndex > 0)
+			{
+				do
+				{
+					var value = matrix[rowIndex, colIndex - 1];
+					sum += value;
+					colIndex--;
+				} while (colIndex > 0);
+			}
 
 			return sum;
 		}
