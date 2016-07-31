@@ -201,6 +201,9 @@
     <Content Include="0071_unsolved\README.txt" />
     <Content Include="0076\README.txt" />
     <Content Include="0077_unsolved\README.txt" />
+    <Content Include="0081\p081_matrix.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="0081\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
