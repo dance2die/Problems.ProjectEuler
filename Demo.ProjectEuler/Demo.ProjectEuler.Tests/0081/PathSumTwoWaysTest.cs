@@ -45,7 +45,7 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			BigInteger expected = 2427;	// from the problem descripton.
 
-			BigInteger actual = _sut.GetPathSumTwoWays(SAMPLE_DATA);
+			BigInteger actual = _sut.GetPathSumTwoWays2(SAMPLE_DATA);
 
 			Assert.Equal(expected, actual);
 		}
@@ -55,7 +55,7 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			string input = File.ReadAllText("./0081/p081_matrix.txt");
 
-			BigInteger actual = _sut.GetPathSumTwoWays(input);
+			BigInteger actual = _sut.GetPathSumTwoWays2(input);
 
 			_output.WriteLine(actual.ToString());
 		}
@@ -65,6 +65,74 @@ namespace Demo.ProjectEuler.Tests._0081
 	{
 		// @ToDo: Reimplement this using idea found 
 		// in http://www.mathblog.dk/project-euler-81-find-the-minimal-path-sum-from-the-top-left-to-the-bottom-right-by-moving-right-and-down/
+		public BigInteger GetPathSumTwoWays2(string input)
+		{
+			int[,] matrix = ParseInput(input);
+
+			int rowLength = matrix.GetLength(0);
+			int colLength = matrix.GetLength(1);
+			BigInteger sum = matrix[rowLength - 1, colLength - 1];
+
+			// Start from Bottom up.
+			int rowIndex = rowLength - 1;
+			int colIndex = colLength - 1;
+			while (rowIndex >= 0)
+			{
+				Tuple<Tuple<int, int>, BigInteger> sumIndex = GetLowestSum(matrix, rowIndex, colIndex);
+				sum += sumIndex.Item2;
+
+				rowIndex = sumIndex.Item1.Item1;
+				colIndex = sumIndex.Item1.Item2;
+			}
+
+			return sum;
+		}
+
+		/// <returns>
+		/// Tuple
+		/// 1. new rowIndex
+		/// 2. new colIndex
+		/// 3. Sum
+		/// </returns>
+		private Tuple<Tuple<int, int>, BigInteger> GetLowestSum(int[,] matrix, int rowIndex, int colIndex)
+		{
+			Tuple<int, int> position = new Tuple<int, int>(rowIndex, colIndex);
+
+			BigInteger previousSum = int.MaxValue;
+			for (int currentColIndex = colIndex - 1; currentColIndex >= 0; currentColIndex--)
+			{
+				int leftValue;
+				if (currentColIndex > 0)
+					leftValue = matrix[rowIndex, currentColIndex - 1];
+				else
+					leftValue = matrix[rowIndex, currentColIndex];
+
+
+				int upValue;
+				if (rowIndex > 0)
+					upValue = matrix[rowIndex - 1, currentColIndex];
+				else
+					upValue = matrix[rowIndex, currentColIndex];
+
+				var currentValue = matrix[rowIndex, currentColIndex];
+
+				BigInteger currentSum;
+				if (leftValue < upValue)
+					currentSum = currentValue + leftValue;
+				else
+					currentSum = currentValue + upValue;
+
+				if (currentSum < previousSum)
+				{
+					position = Tuple.Create(rowIndex, currentColIndex);
+					previousSum = currentSum;
+				}
+			}
+
+			return Tuple.Create(position, previousSum);
+		}
+
+
 		public BigInteger GetPathSumTwoWays(string input)
 		{
 			int[,] matrix = ParseInput(input);
