@@ -63,6 +63,8 @@ namespace Demo.ProjectEuler.Tests._0081
 
 	public class PathSumTwoWays
 	{
+		// @ToDo: Reimplement this using idea found 
+		// in http://www.mathblog.dk/project-euler-81-find-the-minimal-path-sum-from-the-top-left-to-the-bottom-right-by-moving-right-and-down/
 		public BigInteger GetPathSumTwoWays(string input)
 		{
 			int[,] matrix = ParseInput(input);
