@@ -45,7 +45,7 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			BigInteger expected = 2427;	// from the problem descripton.
 
-			BigInteger actual = _sut.GetPathSumTwoWays2(SAMPLE_DATA);
+			BigInteger actual = _sut.GetPathSumTwoWays3(SAMPLE_DATA);
 
 			Assert.Equal(expected, actual);
 		}
@@ -55,7 +55,7 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			string input = File.ReadAllText("./0081/p081_matrix.txt");
 
-			BigInteger actual = _sut.GetPathSumTwoWays2(input);
+			BigInteger actual = _sut.GetPathSumTwoWays3(input);
 
 			_output.WriteLine(actual.ToString());
 		}
@@ -63,6 +63,12 @@ namespace Demo.ProjectEuler.Tests._0081
 
 	public class PathSumTwoWays
 	{
+		public BigInteger GetPathSumTwoWays3(string input)
+		{
+			return -1;
+		}
+
+
 		// @ToDo: Reimplement this using idea found 
 		// in http://www.mathblog.dk/project-euler-81-find-the-minimal-path-sum-from-the-top-left-to-the-bottom-right-by-moving-right-and-down/
 		public BigInteger GetPathSumTwoWays2(string input)
