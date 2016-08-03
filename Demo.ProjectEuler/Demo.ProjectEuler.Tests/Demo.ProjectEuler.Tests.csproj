@@ -205,6 +205,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="0081\README.txt" />
+    <Content Include="0087\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
