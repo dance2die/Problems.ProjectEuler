@@ -51,6 +51,21 @@ namespace Demo.ProjectEuler.Tests._0081
 		}
 
 		[Fact]
+		public void TestMatrixSumOfSampleData()
+		{
+			int[,] matrix = _sut.ParseInput(SAMPLE_DATA);
+
+			int[,] summedMatrix = _sut.GetSummedMatrix(matrix);
+			_output.WriteLine(summedMatrix.ToString());
+
+			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
+			_output.WriteLine(actual.ToString());
+
+			BigInteger expected = 2427; // from the problem descripton.
+			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
 		public void ShowResult()
 		{
 			string input = File.ReadAllText("./0081/p081_matrix.txt");
@@ -61,18 +76,6 @@ namespace Demo.ProjectEuler.Tests._0081
 			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
 			_output.WriteLine(actual.ToString());
 
-			_output.WriteLine(actual.ToString());
-		}
-
-		[Fact]
-		public void TestMatrixSumOfSampleData()
-		{
-			int[,] matrix = _sut.ParseInput(SAMPLE_DATA);
-
-			int[,] summedMatrix = _sut.GetSummedMatrix(matrix);
-			_output.WriteLine(summedMatrix.ToString());
-
-			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
 			_output.WriteLine(actual.ToString());
 		}
 	}
