@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -56,13 +58,25 @@ namespace Demo.ProjectEuler.Tests._0081
 			int[,] matrix = _sut.ParseInput(SAMPLE_DATA);
 
 			int[,] summedMatrix = _sut.GetSummedMatrix(matrix);
-			_output.WriteLine(summedMatrix.ToString());
+			for (int i = 0; i < summedMatrix.GetLength(0); i++)
+			{
+				string line = "";
+				for (int j = 0; j < summedMatrix.GetLength(1); j++)
+				{
+					line += summedMatrix[i, j] + " ";
+				}
+				_output.WriteLine(line);
+			}
 
-			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
-			_output.WriteLine(actual.ToString());
 
-			BigInteger expected = 2427; // from the problem descripton.
-			Assert.Equal(expected, actual);
+			List<Tuple<int, int>> shortestPath = _sut.GetShortedPath(summedMatrix).ToList();
+
+
+			//BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
+			//_output.WriteLine(actual.ToString());
+
+			//BigInteger expected = 2427; // from the problem descripton.
+			//Assert.Equal(expected, actual);
 		}
 
 		[Fact]
@@ -90,6 +104,33 @@ namespace Demo.ProjectEuler.Tests._0081
 
 		// @ToDo: Reimplement this using idea found 
 		// in http://www.mathblog.dk/project-euler-81-find-the-minimal-path-sum-from-the-top-left-to-the-bottom-right-by-moving-right-and-down/
+		public IEnumerable<Tuple<int, int>> GetShortedPath(int[,] summedMatrix)
+		{
+			int rowIndex = summedMatrix.GetLength(0) - 1;
+			int colIndex = summedMatrix.GetLength(1) - 1;
+
+			yield return Tuple.Create(rowIndex, colIndex);
+
+			// Start from Bottom up.
+			while (rowIndex > 0 && colIndex > 0)
+			{
+				var leftValue = summedMatrix[rowIndex, colIndex - 1];
+				var upValue = summedMatrix[rowIndex - 1, colIndex];
+
+				if (leftValue < upValue)
+				{
+					colIndex--;
+				}
+				else
+				{
+					rowIndex--;
+				}
+				yield return Tuple.Create(rowIndex, colIndex);
+			}
+
+			yield return Tuple.Create(0, 0);
+		}
+
 		public int[,] GetSummedMatrix(int[,] matrix)
 		{
 			int rowLength = matrix.GetLength(0);
