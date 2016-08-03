@@ -70,13 +70,13 @@ namespace Demo.ProjectEuler.Tests._0081
 
 
 			List<Tuple<int, int>> shortestPath = _sut.GetShortedPath(summedMatrix).ToList();
-
+			BigInteger actual = _sut.GetShortedPathSum(matrix, shortestPath);
 
 			//BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
-			//_output.WriteLine(actual.ToString());
+			_output.WriteLine(actual.ToString());
 
-			//BigInteger expected = 2427; // from the problem descripton.
-			//Assert.Equal(expected, actual);
+			BigInteger expected = 2427; // from the problem descripton.
+			Assert.Equal(expected, actual);
 		}
 
 		[Fact]
@@ -96,39 +96,65 @@ namespace Demo.ProjectEuler.Tests._0081
 
 	public class PathSumTwoWays
 	{
-		//public BigInteger GetPathSumTwoWays3(string input)
-		//{
-			
-		//}
-
-
 		// @ToDo: Reimplement this using idea found 
 		// in http://www.mathblog.dk/project-euler-81-find-the-minimal-path-sum-from-the-top-left-to-the-bottom-right-by-moving-right-and-down/
+		public BigInteger GetShortedPathSum(int[,] matrix, List<Tuple<int, int>> shortestPath)
+		{
+			BigInteger result = BigInteger.Zero;
+			foreach (Tuple<int, int> path in shortestPath)
+			{
+				result += matrix[path.Item1, path.Item2];
+			}
+
+			return result;
+		}
+
 		public IEnumerable<Tuple<int, int>> GetShortedPath(int[,] summedMatrix)
 		{
-			int rowIndex = summedMatrix.GetLength(0) - 1;
-			int colIndex = summedMatrix.GetLength(1) - 1;
+			int rowLength = summedMatrix.GetLength(0) - 1;
+			int colLength = summedMatrix.GetLength(1) - 1;
+
+			//yield return Tuple.Create(rowIndex, colIndex);
+
+			//// Start from Bottom up.
+			//while (rowIndex > 0 && colIndex > 0)
+			//{
+			//	var leftValue = summedMatrix[rowIndex, colIndex - 1];
+			//	var upValue = summedMatrix[rowIndex - 1, colIndex];
+
+			//	if (leftValue < upValue)
+			//	{
+			//		colIndex--;
+			//	}
+			//	else
+			//	{
+			//		rowIndex--;
+			//	}
+			//	yield return Tuple.Create(rowIndex, colIndex);
+			//}
+
+			//yield return Tuple.Create(0, 0);
+
+			int rowIndex = 0;
+			int colIndex = 0;
 
 			yield return Tuple.Create(rowIndex, colIndex);
 
-			// Start from Bottom up.
-			while (rowIndex > 0 && colIndex > 0)
+			// Start from Top to bottom.
+			while (rowIndex < rowLength && colIndex < colLength)
 			{
-				var leftValue = summedMatrix[rowIndex, colIndex - 1];
-				var upValue = summedMatrix[rowIndex - 1, colIndex];
+				var rightValue = summedMatrix[rowIndex, colIndex + 1];
+				var bottomValue = summedMatrix[rowIndex + 1, colIndex];
 
-				if (leftValue < upValue)
-				{
-					colIndex--;
-				}
+				if (rightValue < bottomValue)
+					colIndex++;
 				else
-				{
-					rowIndex--;
-				}
+					rowIndex++;
+
 				yield return Tuple.Create(rowIndex, colIndex);
 			}
 
-			yield return Tuple.Create(0, 0);
+			yield return Tuple.Create(rowLength, colLength);
 		}
 
 		public int[,] GetSummedMatrix(int[,] matrix)
