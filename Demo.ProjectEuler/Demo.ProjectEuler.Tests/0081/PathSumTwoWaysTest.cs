@@ -84,12 +84,11 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			string input = File.ReadAllText("./0081/p081_matrix.txt");
 
-			int[,] summedMatrix = _sut.GetSummedMatrix(_sut.ParseInput(input));
-			_output.WriteLine(summedMatrix.ToString());
+			int[,] matrix = _sut.ParseInput(input);
+			int[,] summedMatrix = _sut.GetSummedMatrix(matrix);
+			List<Tuple<int, int>> shortestPath = _sut.GetShortedPath(summedMatrix).ToList();
 
-			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
-			_output.WriteLine(actual.ToString());
-
+			BigInteger actual = _sut.GetShortedPathSum(matrix, shortestPath);
 			_output.WriteLine(actual.ToString());
 		}
 	}
