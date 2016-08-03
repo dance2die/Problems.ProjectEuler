@@ -45,7 +45,7 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			BigInteger expected = 2427;	// from the problem descripton.
 
-			BigInteger actual = _sut.GetPathSumTwoWays3(SAMPLE_DATA);
+			BigInteger actual = _sut.GetPathSumTwoWays(SAMPLE_DATA);
 
 			Assert.Equal(expected, actual);
 		}
@@ -55,22 +55,60 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			string input = File.ReadAllText("./0081/p081_matrix.txt");
 
-			BigInteger actual = _sut.GetPathSumTwoWays3(input);
+			int[,] summedMatrix = _sut.GetSummedMatrix(_sut.ParseInput(input));
+			_output.WriteLine(summedMatrix.ToString());
 
+			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
+			_output.WriteLine(actual.ToString());
+
+			_output.WriteLine(actual.ToString());
+		}
+
+		[Fact]
+		public void TestMatrixSumOfSampleData()
+		{
+			int[,] matrix = _sut.ParseInput(SAMPLE_DATA);
+
+			int[,] summedMatrix = _sut.GetSummedMatrix(matrix);
+			_output.WriteLine(summedMatrix.ToString());
+
+			BigInteger actual = _sut.GetPathSumTwoWays(summedMatrix);
 			_output.WriteLine(actual.ToString());
 		}
 	}
 
 	public class PathSumTwoWays
 	{
-		public BigInteger GetPathSumTwoWays3(string input)
-		{
-			return -1;
-		}
+		//public BigInteger GetPathSumTwoWays3(string input)
+		//{
+			
+		//}
 
 
 		// @ToDo: Reimplement this using idea found 
 		// in http://www.mathblog.dk/project-euler-81-find-the-minimal-path-sum-from-the-top-left-to-the-bottom-right-by-moving-right-and-down/
+		public int[,] GetSummedMatrix(int[,] matrix)
+		{
+			int rowLength = matrix.GetLength(0);
+			int[,] summedMatrix = (int[,]) matrix.Clone();
+
+			for (int i = rowLength - 2; i >= 0; i--)
+			{
+				summedMatrix[rowLength - 1, i] += summedMatrix[rowLength - 1, i + 1];
+				summedMatrix[i, rowLength - 1] += summedMatrix[i + 1, rowLength - 1];
+			}
+
+			for (int i = rowLength - 2; i >= 0; i--)
+			{
+				for (int j = rowLength - 2; j >= 0; j--)
+				{
+					summedMatrix[i, j] += Math.Min(summedMatrix[i + 1, j], summedMatrix[i, j + 1]);
+				}
+			}
+
+			return summedMatrix;
+		}
+
 		public BigInteger GetPathSumTwoWays2(string input)
 		{
 			int[,] matrix = ParseInput(input);
@@ -138,17 +176,19 @@ namespace Demo.ProjectEuler.Tests._0081
 			return Tuple.Create(position, previousSum);
 		}
 
-
 		public BigInteger GetPathSumTwoWays(string input)
 		{
-			int[,] matrix = ParseInput(input);
+			return GetPathSumTwoWays(ParseInput(input));
+		}
 
+		public BigInteger GetPathSumTwoWays(int[,] matrix)
+		{
 			int rowIndex = matrix.GetLength(0) - 1;
 			int colIndex = matrix.GetLength(1) - 1;
 			BigInteger sum = matrix[rowIndex, colIndex];
 
 			// Start from Bottom up.
-			while (rowIndex >= 0 && colIndex > 0)
+			while (rowIndex > 0 && colIndex > 0)
 			{
 				// Get "Left" value
 				var leftValue = matrix[rowIndex, colIndex - 1];
