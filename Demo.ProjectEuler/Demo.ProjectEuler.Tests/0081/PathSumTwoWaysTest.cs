@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,9 +44,14 @@ namespace Demo.ProjectEuler.Tests._0081
 		[Fact]
 		public void TestGettingResultUsingSampleData()
 		{
-			BigInteger expected = 2427;	// from the problem descripton.
+			BigInteger expected = 2427; // from the problem descripton.
 
-			BigInteger actual = _sut.GetPathSumTwoWays(SAMPLE_DATA);
+			int[,] matrix = _sut.ParseInput(SAMPLE_DATA);
+			int[,] summedMatrix = _sut.GetSummedMatrix(matrix);
+			List<Tuple<int, int>> shortestPath = _sut.GetShortedPath(summedMatrix).ToList();
+
+			BigInteger actual = _sut.GetShortedPathSum(matrix, shortestPath);
+			_output.WriteLine(actual.ToString());
 
 			Assert.Equal(expected, actual);
 		}
@@ -112,27 +116,6 @@ namespace Demo.ProjectEuler.Tests._0081
 		{
 			int rowLength = summedMatrix.GetLength(0) - 1;
 			int colLength = summedMatrix.GetLength(1) - 1;
-
-			//yield return Tuple.Create(rowIndex, colIndex);
-
-			//// Start from Bottom up.
-			//while (rowIndex > 0 && colIndex > 0)
-			//{
-			//	var leftValue = summedMatrix[rowIndex, colIndex - 1];
-			//	var upValue = summedMatrix[rowIndex - 1, colIndex];
-
-			//	if (leftValue < upValue)
-			//	{
-			//		colIndex--;
-			//	}
-			//	else
-			//	{
-			//		rowIndex--;
-			//	}
-			//	yield return Tuple.Create(rowIndex, colIndex);
-			//}
-
-			//yield return Tuple.Create(0, 0);
 
 			int rowIndex = 0;
 			int colIndex = 0;
