@@ -137,7 +137,6 @@
     <Compile Include="0076\CountingSummationsTest.cs" />
     <Compile Include="0077_unsolved\PrimeSummationsTest.cs" />
     <Compile Include="0081\PathSumTwoWaysTest.cs" />
-    <Compile Include="0089\RomanNumeralsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -206,7 +205,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="0081\README.txt" />
-    <Content Include="0089\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
