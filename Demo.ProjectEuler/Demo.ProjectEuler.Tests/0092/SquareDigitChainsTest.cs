@@ -74,7 +74,17 @@ namespace Demo.ProjectEuler.Tests._0092
 
 		private long MapSquare(long n)
 		{
-			return n.ToString().ToCharArray().Select(c => Square(Convert.ToInt64(c.ToString()))).Sum();
+			//return n.ToString().ToCharArray().Select(c => Square(Convert.ToInt64(c.ToString()))).Sum();
+
+			long result = 0;
+			while (n > 0)
+			{
+				long digit = n % 10;
+				result += Square(digit);
+				n /= 10;
+			}
+
+			return result;
 		}
 
 		private long Square(long n)
