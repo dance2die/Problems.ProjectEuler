@@ -29,9 +29,24 @@ namespace Demo.ProjectEuler.Tests._0092
 		[InlineData(1000, true)]
 		public void TestHappyNumberCheck(long n, bool expected)
 		{
-			bool actual = _sut.IsHappyNumber(n);
+			bool actual = _sut.IsHappyNumber(n, new HashSet<long>());
 
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int upto = 10000000;
+
+			HashSet<long> happyNumber = new HashSet<long>();
+			for (int i = 1; i <= upto; i++)
+			{
+				if (_sut.IsHappyNumber(i, happyNumber))
+					happyNumber.Add(i);
+			}
+
+			_output.WriteLine("Result: {0}", upto - happyNumber.Count);
 		}
 	}
 
@@ -40,11 +55,16 @@ namespace Demo.ProjectEuler.Tests._0092
 		/// <summary>
 		/// Check happy number <see cref="https://en.wikipedia.org/wiki/Happy_number"/>
 		/// </summary>
-		public bool IsHappyNumber(long n)
+		public bool IsHappyNumber(long n, HashSet<long> globalSeenNumbers)
 		{
 			HashSet<long> seenNumbers = new HashSet<long>();
+
+			long startingNumber = n;
 			while (n > 1 && !seenNumbers.Contains(n))
 			{
+				if (globalSeenNumbers.Contains(n))
+					return true;
+
 				seenNumbers.Add(n);
 				n = MapSquare(n);
 			}
