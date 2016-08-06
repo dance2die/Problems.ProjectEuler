@@ -62,8 +62,8 @@ namespace Demo.ProjectEuler.Tests._0092
 			long startingNumber = n;
 			while (n > 1 && !seenNumbers.Contains(n))
 			{
-				if (globalSeenNumbers.Contains(n))
-					return true;
+				if (n == 89) return false;
+				if (globalSeenNumbers.Contains(n)) return true;
 
 				seenNumbers.Add(n);
 				n = MapSquare(n);
