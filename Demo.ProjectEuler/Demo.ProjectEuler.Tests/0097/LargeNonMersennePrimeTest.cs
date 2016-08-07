@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -33,9 +28,23 @@ namespace Demo.ProjectEuler.Tests._0097
 
 			// output 8739992577
 		}
+
+		[Fact]
+		public void ShowResultOptimized()
+		{
+			const long expected = 8739992577;
+
+			long actual = _sut.GetLast10Digits();
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class LargeNonMersennePrime
 	{
+		public long GetLast10Digits()
+		{
+			return -1;
+		}
 	}
 }
