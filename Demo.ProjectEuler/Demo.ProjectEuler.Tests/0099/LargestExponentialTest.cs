@@ -41,8 +41,8 @@ namespace Demo.ProjectEuler.Tests._0099
 	{
 		public Tuple<long, int> CompareValues(Tuple<long, int> leftValue, Tuple<long, int> rightValue)
 		{
-			double log1 = Math.Log(leftValue.Item1);
-			double log2 = Math.Log(rightValue.Item1);
+			double log1 = Math.Log10(leftValue.Item1);
+			double log2 = Math.Log10(rightValue.Item1);
 
 			BigInteger poweredValue1 = GetPoweredValue(log1, leftValue.Item2);
 			BigInteger poweredValue2 = GetPoweredValue(log2, rightValue.Item2);
