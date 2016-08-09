@@ -139,6 +139,7 @@
     <Compile Include="0081\PathSumTwoWaysTest.cs" />
     <Compile Include="0092\SquareDigitChainsTest.cs" />
     <Compile Include="0097\LargeNonMersennePrimeTest.cs" />
+    <Compile Include="0099\LargestExponentialTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -209,6 +210,7 @@
     <Content Include="0081\README.txt" />
     <Content Include="0092\README.txt" />
     <Content Include="0097\README.txt" />
+    <Content Include="0099\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
