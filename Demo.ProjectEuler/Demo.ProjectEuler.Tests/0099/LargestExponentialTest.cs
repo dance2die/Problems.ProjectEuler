@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -25,21 +28,59 @@ namespace Demo.ProjectEuler.Tests._0099
 			Tuple<long, int> leftValue = new Tuple<long, int>(base1, exponent1);
 			Tuple<long, int> rightValue = new Tuple<long, int>(base2, exponent2);
 
-			Tuple<long, int> max = _sut.CompareValues(leftValue, rightValue);
+			Tuple<long, int> max = _sut.GetMax(leftValue, rightValue);
 
 			Assert.Equal(leftValue, max);
+		}
 
-			//BigInteger value1 = _sut.GetPoweredValue(base1, exponent1);
-			//BigInteger value2 = _sut.GetPoweredValue(base2, exponent2);
+		[Fact]
+		public void ShowResult()
+		{
+			string input = File.ReadAllText("./0099/p099_base_exp.txt");
 
-			//Assert.True(value1 > value2);
+			int actual = _sut.GetMaxLine(input);
+			_output.WriteLine(actual.ToString());
 
+			const int expected = 709;
+			Assert.Equal(expected, actual);
 		}
 	}
 
 	public class LargestExponential
 	{
-		public Tuple<long, int> CompareValues(Tuple<long, int> leftValue, Tuple<long, int> rightValue)
+		public int GetMaxLine(string input)
+		{
+			List<Tuple<long, int>> values = ParseInput(input).ToList();
+
+			Tuple<long, int> maxValue = values.First();
+			int currLineNumber = 1;
+			int maxLineNumber = 1;
+			foreach (Tuple<long, int> value in values)
+			{
+				Tuple<long, int> tempMax = GetMax(maxValue, value);
+				if (!tempMax.Equals(maxValue))
+				{
+					maxValue = tempMax;
+					maxLineNumber = currLineNumber;
+				}
+
+				currLineNumber++;
+			}
+
+			return maxLineNumber;
+		}
+
+		private IEnumerable<Tuple<long, int>> ParseInput(string input)
+		{
+			var lines = input.Split(new[] {Environment.NewLine, "\n", "\r"}, StringSplitOptions.RemoveEmptyEntries);
+			foreach (string line in lines)
+			{
+				string[] splitted = line.Split(',');
+				yield return new Tuple<long, int>(Convert.ToInt64(splitted[0]), Convert.ToInt32(splitted[1]));
+			}
+		}
+
+		public Tuple<long, int> GetMax(Tuple<long, int> leftValue, Tuple<long, int> rightValue)
 		{
 			double log1 = Math.Log10(leftValue.Item1);
 			double log2 = Math.Log10(rightValue.Item1);
