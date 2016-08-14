@@ -215,6 +215,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="0099\README.txt" />
+    <Content Include="0102\p102_triangles.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="0102\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>

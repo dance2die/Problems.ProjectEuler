@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -22,10 +25,49 @@ namespace Demo.ProjectEuler.Tests._0102
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			string input = File.ReadAllText("./0102/p102_triangles.txt");
+
+			int actual = _sut.GetNumberOfTrianglesContainingOrigin(input);
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class TriangleContainment
 	{
+		public int GetNumberOfTrianglesContainingOrigin(string input)
+		{
+			List<int[]> parsed = ParseInput(input).ToList();
+			int result = 0;
+
+			foreach (int[] points in parsed)
+			{
+				if (ContainsOrigin(points))
+					result++;
+			}
+
+			return result;
+		}
+
+		private IEnumerable<int[]> ParseInput(string input)
+		{
+			var lines = input.Split(new[] { Environment.NewLine, "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
+			foreach (string line in lines)
+			{
+				string[] splitted = line.Split(',');
+
+				Func<string, int> valueOf = Convert.ToInt32;
+				yield return new[]
+				{
+					valueOf(splitted[0]), valueOf(splitted[1]), valueOf(splitted[2]),
+					valueOf(splitted[3]), valueOf(splitted[4]), valueOf(splitted[5])
+				};
+			}
+		}
+
 		/// <summary>
 		/// Find if the triangle specified by the given points contains origin or not
 		/// using algorithm found here. <see cref="http://stackoverflow.com/a/2049593/4035"/>
