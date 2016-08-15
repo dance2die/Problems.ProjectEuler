@@ -142,6 +142,7 @@
     <Compile Include="0099\LargestExponentialTest.cs" />
     <Compile Include="0102\TriangleContainment.cs" />
     <Compile Include="0102\TriangleContainmentTest.cs" />
+    <Compile Include="0112\BouncyNumbersTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -220,6 +221,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="0102\README.txt" />
+    <Content Include="0112\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
