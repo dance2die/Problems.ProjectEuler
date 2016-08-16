@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -23,23 +23,9 @@ namespace Demo.ProjectEuler.Tests.LibraryTests
 		[InlineData(9876, new [] {9,8,7,6})]
 		public void TestNumberToSequence(long input, int[] expected)
 		{
-			int[] actual = _sut.ToSequence(input).ToArray();
+			int[] actual = _sut.ToReverseSequence(input).Reverse().ToArray();
 
 			Assert.True(expected.SequenceEqual(actual));
-		}
-	}
-
-	public class NumberUtil
-	{
-		public IEnumerable<int> ToSequence(long number)
-		{
-			while (number > 0)
-			{
-				int digit = (int)number % 10;
-				yield return digit;
-
-				number /= 10;
-			}
 		}
 	}
 }
