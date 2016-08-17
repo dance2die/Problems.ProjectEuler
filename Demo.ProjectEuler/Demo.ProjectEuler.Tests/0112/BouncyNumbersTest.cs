@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -36,9 +34,24 @@ namespace Demo.ProjectEuler.Tests._0112
 
 	public class BouncyNumbers
 	{
+		private readonly NumberUtil _numberUtil = new NumberUtil();
+
 		public bool IsIncreasingNumber(int input)
 		{
-			return false;
+			if (input < 100) return false;	// by definition
+
+			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input).Reverse();
+			int previousNumber = 0;
+
+			foreach (int number in numbers)
+			{
+				if (previousNumber > number)
+					return false;
+
+				previousNumber = number;
+			}
+
+			return true;
 		}
 
 
