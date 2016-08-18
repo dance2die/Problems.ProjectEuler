@@ -48,11 +48,29 @@ namespace Demo.ProjectEuler.Tests._0112
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(155349, true)]
+		[InlineData(88778, true)]
+		[InlineData(12321, true)]
+		[InlineData(12345, false)]
+		[InlineData(5311, false)]
+		public void TestBouncyNumber(int input, bool expected)
+		{
+			bool actual = _sut.IsBouncyNumber(input);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class BouncyNumbers
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
+
+		public bool IsBouncyNumber(int input)
+		{
+			return !IsIncreasingNumber(input) && !IsDecreasingNumber(input);
+		}
 
 		public bool IsDecreasingNumber(int input)
 		{
