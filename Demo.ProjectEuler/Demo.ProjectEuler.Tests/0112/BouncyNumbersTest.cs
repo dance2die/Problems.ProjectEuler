@@ -84,6 +84,17 @@ namespace Demo.ProjectEuler.Tests._0112
 			const int expected = 525;    // percentage
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestBouncyNumberPercentage()
+		{
+			const int upto = 538;
+			var bouncyNumberCount = _sut.GetBouncyNumberCount(upto);
+
+			const int expected = 50;	// 50 percent.
+			int actual = bouncyNumberCount * 100 / upto;
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class BouncyNumbers
