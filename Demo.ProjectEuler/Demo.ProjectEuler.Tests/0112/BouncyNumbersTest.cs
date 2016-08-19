@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -65,10 +66,10 @@ namespace Demo.ProjectEuler.Tests._0112
 		[Fact]
 		public void TestPercentageUpto538()
 		{
-			const int upto = 538;
-			int actual = _sut.GetBouncyNumberPercentage(upto);
+			const int upto = 1000;
+			int actual = _sut.GetBouncyNumberCount(upto);
 
-			const int expected = 50;    // percentage
+			const int expected = 525;    // percentage
 			Assert.Equal(expected, actual);
 		}
 	}
@@ -77,9 +78,17 @@ namespace Demo.ProjectEuler.Tests._0112
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
 
-		public int GetBouncyNumberPercentage(int upto)
+		public int GetBouncyNumberCount(int upto)
 		{
-			return -1;
+			int bouncyNumberCount = 0;
+			var numbers = Enumerable.Range(100, upto).ToList();
+			foreach (var number in numbers)
+			{
+				if (IsBouncyNumber(number))
+					bouncyNumberCount++;
+			}
+
+			return bouncyNumberCount;
 		}
 
 		public bool IsBouncyNumber(int input)
