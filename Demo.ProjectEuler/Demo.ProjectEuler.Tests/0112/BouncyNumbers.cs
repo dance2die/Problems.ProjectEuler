@@ -65,16 +65,16 @@ namespace Demo.ProjectEuler.Tests._0112
 		public bool IsDecreasingNumber(int input)
 		{
 			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input);
-			return IsNotBouncyNumber(input, numbers);
+			return IsNotBouncyNumber(numbers);
 		}
 
 		public bool IsIncreasingNumber(int input)
 		{
 			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input).Reverse();
-			return IsNotBouncyNumber(input, numbers);
+			return IsNotBouncyNumber(numbers);
 		}
 
-		private bool IsNotBouncyNumber(int input, IEnumerable<int> numberSequence)
+		private bool IsNotBouncyNumber(IEnumerable<int> numberSequence)
 		{
 			int previousNumber = 0;
 
