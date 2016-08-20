@@ -85,13 +85,14 @@ namespace Demo.ProjectEuler.Tests._0112
 			Assert.Equal(expected, actual);
 		}
 
-		[Fact]
-		public void TestBouncyNumberPercentage()
+		/// <param name="upto">Check for bouncy number upto "upto" number</param>
+		/// <param name="expected">Percentage of bouncy number upto a certain number</param>
+		[Theory]
+		[InlineData(538, 50)]
+		[InlineData(21780, 90)]
+		public void TestBouncyNumberPercentage(int upto, int expected)
 		{
-			const int upto = 538;
 			var bouncyNumberCount = _sut.GetBouncyNumberCount(upto);
-
-			const int expected = 50;	// 50 percent.
 			int actual = bouncyNumberCount * 100 / upto;
 			Assert.Equal(expected, actual);
 		}
