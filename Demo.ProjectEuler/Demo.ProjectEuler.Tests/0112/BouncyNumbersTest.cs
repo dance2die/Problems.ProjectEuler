@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Demo.ProjectEuler.Core;
@@ -69,6 +70,11 @@ namespace Demo.ProjectEuler.Tests._0112
 		[InlineData(21780, true)]
 		[InlineData(12345, false)]
 		[InlineData(5311, false)]
+		[InlineData(1, false)]
+		[InlineData(2, false)]
+		[InlineData(10, false)]
+		[InlineData(20, false)]
+		[InlineData(99, false)]
 		public void TestBouncyNumber(int input, bool expected)
 		{
 			bool actual = _sut.IsBouncyNumber(input);
@@ -114,6 +120,9 @@ namespace Demo.ProjectEuler.Tests._0112
 			const int uptoPercentage = 99;
 			int actual = _sut.GetBouncyNumberPercentageUpto(uptoPercentage);
 			_output.WriteLine(actual.ToString());
+
+			const int expected = 1587000;
+			Assert.Equal(expected, actual);
 		}
 	}
 
@@ -123,22 +132,36 @@ namespace Demo.ProjectEuler.Tests._0112
 
 		public int GetBouncyNumberPercentageUpto(int uptoPercentage)
 		{
-			int bouncyNumberCount;
-			int i = 100;
+			int bouncyNumberCountTotal = 0;
+			int from = 1;
 
 			do
 			{
-				bouncyNumberCount = GetBouncyNumberCount(i);
+				int bouncyNumberCount = GetBouncyNumberCountBetween(from, 1);
+				bouncyNumberCountTotal += bouncyNumberCount;
+				if (bouncyNumberCountTotal*100/from == 99)
+					return from;
 
-				i++;
-			} while (bouncyNumberCount * 100 / i < 99);
-
-			return i;
+				from++;
+			} while (true);
 		}
 
 		public int GetBouncyNumberPercentage(int upto)
 		{
 			return GetBouncyNumberCount(upto) * 100 / upto;
+		}
+
+		public int GetBouncyNumberCountBetween(int from, int count)
+		{
+			int bouncyNumberCount = 0;
+			var numbers = Enumerable.Range(from, count);
+			foreach (var number in numbers)
+			{
+				if (IsBouncyNumber(number))
+					bouncyNumberCount++;
+			}
+
+			return bouncyNumberCount;
 		}
 
 		public int GetBouncyNumberCount(int upto)
