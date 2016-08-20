@@ -64,12 +64,12 @@ namespace Demo.ProjectEuler.Tests._0112
 
 		public bool IsDecreasingNumber(int input)
 		{
-			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input).Reverse();
-			int previousNumber = 9;
+			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input);
+			int previousNumber = 0;
 
 			foreach (int number in numbers)
 			{
-				if (previousNumber < number)
+				if (previousNumber > number)
 					return false;
 
 				previousNumber = number;
