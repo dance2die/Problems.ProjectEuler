@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
@@ -96,11 +97,59 @@ namespace Demo.ProjectEuler.Tests._0112
 			int actual = bouncyNumberCount * 100 / upto;
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(538, 50)]
+		[InlineData(21780, 90)]
+		public void TestBouncyNumberPercentage2(int upto, int expected)
+		{
+			int actual = _sut.GetBouncyNumberPercentage(upto);
+
+			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int uptoPercentage = 99;
+			int actual = _sut.GetBouncyNumberPercentageUpto(uptoPercentage);
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class BouncyNumbers
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
+
+		public int GetBouncyNumberPercentage(int upto)
+		{
+			return GetBouncyNumberCount(upto) * 100 / upto;
+		}
+
+		public int GetBouncyNumberPercentageUpto(int uptoPercentage)
+		{
+			int bouncyNumberCount = 0;
+			int i = 1000;
+
+			//do
+			//{
+			//	if (IsBouncyNumber(i))
+			//		bouncyNumberCount++;
+
+			//	i++;
+			//} while (bouncyNumberCount * 100 / i == 99);
+
+			//return i;
+
+			do
+			{
+				bouncyNumberCount = GetBouncyNumberCount(i);
+
+				i++;
+			} while (bouncyNumberCount * 100 / i == 99);
+
+			return i;
+		}
 
 		public int GetBouncyNumberCount(int upto)
 		{
