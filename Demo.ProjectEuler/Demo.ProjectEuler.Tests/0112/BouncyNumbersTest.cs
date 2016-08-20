@@ -121,34 +121,24 @@ namespace Demo.ProjectEuler.Tests._0112
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
 
-		public int GetBouncyNumberPercentage(int upto)
-		{
-			return GetBouncyNumberCount(upto) * 100 / upto;
-		}
-
 		public int GetBouncyNumberPercentageUpto(int uptoPercentage)
 		{
-			int bouncyNumberCount = 0;
-			int i = 1000;
-
-			//do
-			//{
-			//	if (IsBouncyNumber(i))
-			//		bouncyNumberCount++;
-
-			//	i++;
-			//} while (bouncyNumberCount * 100 / i == 99);
-
-			//return i;
+			int bouncyNumberCount;
+			int i = 100;
 
 			do
 			{
 				bouncyNumberCount = GetBouncyNumberCount(i);
 
 				i++;
-			} while (bouncyNumberCount * 100 / i == 99);
+			} while (bouncyNumberCount * 100 / i < 99);
 
 			return i;
+		}
+
+		public int GetBouncyNumberPercentage(int upto)
+		{
+			return GetBouncyNumberCount(upto) * 100 / upto;
 		}
 
 		public int GetBouncyNumberCount(int upto)
