@@ -41,12 +41,16 @@ namespace Demo.ProjectEuler.Tests._0119
 			Assert.Equal(expected, actual);
 		}
 
-		[Fact]
-		public void ShowResult()
+		[Theory]
+		[InlineData(2, 512)]
+		[InlineData(10, 614656)]
+		[InlineData(30, 248155780267521)]
+		public void ShowResult(int position, long expected)
 		{
-			const int position = 30;
-			BigInteger number = _sut.GetNthPowerDigitSum(position);
-			_output.WriteLine(number.ToString());
+			BigInteger actual = _sut.GetNthPowerDigitSum(position);
+			_output.WriteLine(actual.ToString());
+
+			Assert.Equal(expected, actual);
 		}
 	}
 
@@ -61,7 +65,7 @@ namespace Demo.ProjectEuler.Tests._0119
 			// Calculate upto 10th power for numbers
 			for (int power = 2; power <= 8; power++)
 			{
-				// Calculate up to 100,000 (random number)
+				// Calculate up to 10000 (random number)
 				for (int number = 1; number < 10000; number++)
 				{
 					if (number % 10 == 0) continue;
@@ -76,14 +80,12 @@ namespace Demo.ProjectEuler.Tests._0119
 			foreach (Tuple<int, BigInteger, int> poweredValue in poweredValues)
 			{
 				var numberList = _numberUtil.ToReverseSequence(poweredValue.Item2).ToList();
-				if (numberList.Count == 0)
-					Console.WriteLine(numberList.Count);
-
 				BigInteger numberSequenceSum = numberList.Aggregate((currentSum, item) => currentSum + item);
-				if (numberSequenceSum == poweredValue.Item1)
+
+				if (numberSequenceSum != 1 && numberSequenceSum == poweredValue.Item1)
 					counter++;
 
-				if (counter == 30)
+				if (counter == position)
 					return poweredValue.Item2;
 			}
 
