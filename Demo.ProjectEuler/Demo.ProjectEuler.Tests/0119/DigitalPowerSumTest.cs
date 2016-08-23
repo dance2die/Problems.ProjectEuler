@@ -45,7 +45,7 @@ namespace Demo.ProjectEuler.Tests._0119
 		public void ShowResult()
 		{
 			const int position = 30;
-			long number = _sut.GetNthPowerDigitSum(position);
+			BigInteger number = _sut.GetNthPowerDigitSum(position);
 			_output.WriteLine(number.ToString());
 		}
 	}
@@ -54,9 +54,9 @@ namespace Demo.ProjectEuler.Tests._0119
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
 
-		public long GetNthPowerDigitSum(int position)
+		public BigInteger GetNthPowerDigitSum(int position)
 		{
-			List<Tuple<int, BigInteger>> poweredValues = new List<Tuple<int, BigInteger>>();
+			List<Tuple<int, BigInteger, int>> poweredValues = new List<Tuple<int, BigInteger, int>>();
 
 			// Calculate upto 10th power for numbers
 			for (int power = 2; power <= 8; power++)
@@ -67,13 +67,13 @@ namespace Demo.ProjectEuler.Tests._0119
 					if (number % 10 == 0) continue;
 
 					BigInteger powered = power == 1 ? number : BigInteger.Pow(number, power);
-					var value = new Tuple<int, BigInteger>(number, powered);
+					var value = new Tuple<int, BigInteger, int>(number, powered, power);
 					poweredValues.Add(value);
 				}
 			}
 
 			int counter = 0;
-			foreach (Tuple<int, BigInteger> poweredValue in poweredValues)
+			foreach (Tuple<int, BigInteger, int> poweredValue in poweredValues)
 			{
 				var numberList = _numberUtil.ToReverseSequence(poweredValue.Item2).ToList();
 				if (numberList.Count == 0)
@@ -84,7 +84,7 @@ namespace Demo.ProjectEuler.Tests._0119
 					counter++;
 
 				if (counter == 30)
-					return poweredValue.Item1;
+					return poweredValue.Item2;
 			}
 
 			return counter++;
