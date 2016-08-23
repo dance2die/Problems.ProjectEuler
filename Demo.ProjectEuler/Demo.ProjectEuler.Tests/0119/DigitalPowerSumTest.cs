@@ -26,11 +26,37 @@ namespace Demo.ProjectEuler.Tests._0119
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Theory]
+		[InlineData(512, 2)]
+		[InlineData(614656, 10)]
+		public void TestNthDigitPowerSum(long number, int expected)
+		{
+			int actual = _sut.GetNthDigitPowerSum(number);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class DigitalPowerSum
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
+
+		public int GetNthDigitPowerSum(long number)
+		{
+			int count = 0;
+
+			for (int i = 10; i <= number; i++)
+			{
+				if (i == 512)
+					Console.WriteLine(i);
+
+				if (IsDigitPower(i))
+					count++;
+			}
+
+			return count;
+		}
 
 		public bool IsDigitPower(long number)
 		{
@@ -43,6 +69,7 @@ namespace Demo.ProjectEuler.Tests._0119
 			{
 				long powered = (long) Math.Pow(numberSequenceSum, power);
 				if (powered == number) return true;
+				if (powered == 1) return false;
 				if (powered > number) return false;
 
 				power++;
