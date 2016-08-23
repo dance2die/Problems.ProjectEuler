@@ -40,7 +40,9 @@ namespace Demo.ProjectEuler.Tests._0119
 		[Fact]
 		public void ShowResult()
 		{
-			
+			const int position = 30;
+			long number = _sut.GetNthPowerDigitSum(position);
+			_output.WriteLine(number.ToString());
 		}
 	}
 
@@ -48,15 +50,28 @@ namespace Demo.ProjectEuler.Tests._0119
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
 
+		public long GetNthPowerDigitSum(int position)
+		{
+			int count = 0;
+			int i = 1;
+
+			do
+			{
+				if (IsDigitPower(i))
+					count++;
+
+				i++;
+			} while (count <= 30);
+
+			return count;
+		}
+
 		public int GetPowerDigitSumIndex(long number)
 		{
 			int count = 0;
 
 			for (int i = 10; i <= number; i++)
 			{
-				if (i == 512)
-					Console.WriteLine(i);
-
 				if (IsDigitPower(i))
 					count++;
 			}
