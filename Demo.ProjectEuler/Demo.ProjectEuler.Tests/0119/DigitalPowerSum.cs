@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Demo.ProjectEuler.Core;
@@ -12,8 +11,9 @@ namespace Demo.ProjectEuler.Tests._0119
 
 		public BigInteger GetNthPowerDigitSum(int position)
 		{
-			List<Tuple<int, BigInteger, int>> poweredValues = new List<Tuple<int, BigInteger, int>>();
+			//List<Tuple<int, BigInteger, int>> poweredValues = new List<Tuple<int, BigInteger, int>>();
 
+			int counter = 0;
 			// Calculate upto 10th power for numbers
 			for (int power = 2; power <= 8; power++)
 			{
@@ -23,25 +23,18 @@ namespace Demo.ProjectEuler.Tests._0119
 					if (number % 10 == 0) continue;
 
 					BigInteger powered = power == 1 ? number : BigInteger.Pow(number, power);
-					var value = new Tuple<int, BigInteger, int>(number, powered, power);
-					poweredValues.Add(value);
+					var numberList = _numberUtil.ToReverseSequence(powered).ToList();
+					BigInteger numberSequenceSum = numberList.Aggregate((currentSum, item) => currentSum + item);
+
+					if (numberSequenceSum != 1 && numberSequenceSum == number)
+						counter++;
+
+					if (counter == position)
+						return powered;
 				}
 			}
 
-			int counter = 0;
-			foreach (Tuple<int, BigInteger, int> poweredValue in poweredValues)
-			{
-				var numberList = _numberUtil.ToReverseSequence(poweredValue.Item2).ToList();
-				BigInteger numberSequenceSum = numberList.Aggregate((currentSum, item) => currentSum + item);
-
-				if (numberSequenceSum != 1 && numberSequenceSum == poweredValue.Item1)
-					counter++;
-
-				if (counter == position)
-					return poweredValue.Item2;
-			}
-
-			return counter++;
+			throw new Exception("Could not find the value at the position!");
 		}
 
 		public long GetNthPowerDigitSum2(int position)
