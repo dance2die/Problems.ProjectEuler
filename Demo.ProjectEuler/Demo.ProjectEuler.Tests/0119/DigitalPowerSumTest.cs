@@ -32,9 +32,15 @@ namespace Demo.ProjectEuler.Tests._0119
 		[InlineData(614656, 10)]
 		public void TestNthDigitPowerSum(long number, int expected)
 		{
-			int actual = _sut.GetNthDigitPowerSum(number);
+			int actual = _sut.GetPowerDigitSumIndex(number);
 
 			Assert.Equal(expected, actual);
+		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			
 		}
 	}
 
@@ -42,7 +48,7 @@ namespace Demo.ProjectEuler.Tests._0119
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
 
-		public int GetNthDigitPowerSum(long number)
+		public int GetPowerDigitSumIndex(long number)
 		{
 			int count = 0;
 
