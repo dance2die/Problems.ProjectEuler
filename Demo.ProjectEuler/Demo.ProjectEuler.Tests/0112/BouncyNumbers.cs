@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Demo.ProjectEuler.Core;
 
 namespace Demo.ProjectEuler.Tests._0112
@@ -64,21 +65,21 @@ namespace Demo.ProjectEuler.Tests._0112
 
 		public bool IsDecreasingNumber(int input)
 		{
-			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input);
+			IEnumerable<long> numbers = _numberUtil.ToReverseSequence(input);
 			return IsNotBouncyNumber(numbers);
 		}
 
 		public bool IsIncreasingNumber(int input)
 		{
-			IEnumerable<int> numbers = _numberUtil.ToReverseSequence(input).Reverse();
+			IEnumerable<long> numbers = _numberUtil.ToReverseSequence(input).Reverse();
 			return IsNotBouncyNumber(numbers);
 		}
 
-		private bool IsNotBouncyNumber(IEnumerable<int> numberSequence)
+		private bool IsNotBouncyNumber(IEnumerable<long> numberSequence)
 		{
-			int previousNumber = 0;
+			BigInteger previousNumber = 0;
 
-			foreach (int number in numberSequence)
+			foreach (BigInteger number in numberSequence)
 			{
 				if (previousNumber > number)
 					return false;

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
+using Demo.ProjectEuler.Tests._0042;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -52,6 +56,55 @@ namespace Demo.ProjectEuler.Tests._0119
 
 		public long GetNthPowerDigitSum(int position)
 		{
+			List<Tuple<int, BigInteger>> poweredValues = new List<Tuple<int, BigInteger>>();
+
+			// Calculate upto 10th power for numbers
+			for (int power = 2; power <= 5; power++)
+			{
+				// Calculate up to 100,000 (random number)
+				for (int number = 1; number < 10000; number++)
+				{
+					if (number % 10 == 0) continue;
+
+					long powered = power == 1 ? number : (long)Math.Pow(number, power);
+					var value = new Tuple<int, BigInteger>(number, powered);
+					poweredValues.Add(value);
+				}
+			}
+
+			int counter = 0;
+			foreach (Tuple<int, BigInteger> poweredValue in poweredValues)
+			{
+				//try
+				//{
+				//	var numberSequenceSum = _numberUtil
+				//		.ToReverseSequence(poweredValue.Item2)
+				//		.Aggregate((currentSum, item) => currentSum + item);
+				//	if (numberSequenceSum == poweredValue.Item1)
+				//		counter++;
+				//}
+				//catch (Exception e)
+				//{
+				//	Console.WriteLine(e);
+				//}
+
+				IEnumerable<long> sequence = _numberUtil
+					.ToReverseSequence(poweredValue.Item2);
+				BigInteger numberSequenceSum = sequence
+					.Aggregate((currentSum, item) => currentSum + item);
+				if (numberSequenceSum == poweredValue.Item1)
+					counter++;
+
+
+				if (counter == 30)
+					return poweredValue.Item1;
+			}
+
+			return counter++;
+		}
+
+		public long GetNthPowerDigitSum2(int position)
+		{
 			int count = 0;
 			int i = 1;
 
@@ -81,16 +134,18 @@ namespace Demo.ProjectEuler.Tests._0119
 
 		public bool IsDigitPower(long number)
 		{
-			if (number < 10) return false;	// by definition
+			if (number < 10) return false;  // by definition
 
-			var numberSequenceSum = _numberUtil.ToReverseSequence(number).Sum();
+			var numberSequenceSum = _numberUtil
+				.ToReverseSequence(number)
+				.Aggregate((currentSum, item) => currentSum + item);
 			int power = 1;
 
 			do
 			{
 				if (numberSequenceSum == 1) return false;
 
-				long powered = (long) Math.Pow(numberSequenceSum, power);
+				BigInteger powered = BigInteger.Pow(numberSequenceSum, power);
 				if (powered == number) return true;
 				if (powered > number) return false;
 
