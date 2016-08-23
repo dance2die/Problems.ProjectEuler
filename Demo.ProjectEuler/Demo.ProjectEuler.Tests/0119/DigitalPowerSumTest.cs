@@ -20,7 +20,7 @@ namespace Demo.ProjectEuler.Tests._0119
 		[InlineData(9, false)]
 		[InlineData(512, true)]
 		[InlineData(614656, true)]
-		public void TestDigitPowerSum(int number, bool expected)
+		public void TestDigitPowerSum(long number, bool expected)
 		{
 			bool actual = _sut.IsDigitPower(number);
 
@@ -32,7 +32,7 @@ namespace Demo.ProjectEuler.Tests._0119
 	{
 		private readonly NumberUtil _numberUtil = new NumberUtil();
 
-		public bool IsDigitPower(int number)
+		public bool IsDigitPower(long number)
 		{
 			if (number < 10) return false;	// by definition
 
