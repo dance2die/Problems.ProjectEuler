@@ -1,4 +1,7 @@
-﻿using Demo.ProjectEuler.Tests.Core;
+﻿using System;
+using System.Linq;
+using Demo.ProjectEuler.Core;
+using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -27,11 +30,23 @@ namespace Demo.ProjectEuler.Tests._0119
 
 	public class DigitalPowerSum
 	{
+		private readonly NumberUtil _numberUtil = new NumberUtil();
+
 		public bool IsDigitPower(int number)
 		{
 			if (number < 10) return false;	// by definition
 
-			return false;
+			var numberSequenceSum = _numberUtil.ToReverseSequence(number).Sum();
+			int power = 1;
+
+			do
+			{
+				long powered = (long) Math.Pow(numberSequenceSum, power);
+				if (powered == number) return true;
+				if (powered > number) return false;
+
+				power++;
+			} while (true);
 		}
 	}
 }
