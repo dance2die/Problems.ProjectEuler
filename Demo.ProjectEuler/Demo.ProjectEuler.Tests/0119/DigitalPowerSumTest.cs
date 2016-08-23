@@ -59,14 +59,14 @@ namespace Demo.ProjectEuler.Tests._0119
 			List<Tuple<int, BigInteger>> poweredValues = new List<Tuple<int, BigInteger>>();
 
 			// Calculate upto 10th power for numbers
-			for (int power = 2; power <= 5; power++)
+			for (int power = 2; power <= 8; power++)
 			{
 				// Calculate up to 100,000 (random number)
 				for (int number = 1; number < 10000; number++)
 				{
 					if (number % 10 == 0) continue;
 
-					long powered = power == 1 ? number : (long)Math.Pow(number, power);
+					BigInteger powered = power == 1 ? number : BigInteger.Pow(number, power);
 					var value = new Tuple<int, BigInteger>(number, powered);
 					poweredValues.Add(value);
 				}
@@ -75,26 +75,13 @@ namespace Demo.ProjectEuler.Tests._0119
 			int counter = 0;
 			foreach (Tuple<int, BigInteger> poweredValue in poweredValues)
 			{
-				//try
-				//{
-				//	var numberSequenceSum = _numberUtil
-				//		.ToReverseSequence(poweredValue.Item2)
-				//		.Aggregate((currentSum, item) => currentSum + item);
-				//	if (numberSequenceSum == poweredValue.Item1)
-				//		counter++;
-				//}
-				//catch (Exception e)
-				//{
-				//	Console.WriteLine(e);
-				//}
+				var numberList = _numberUtil.ToReverseSequence(poweredValue.Item2).ToList();
+				if (numberList.Count == 0)
+					Console.WriteLine(numberList.Count);
 
-				IEnumerable<long> sequence = _numberUtil
-					.ToReverseSequence(poweredValue.Item2);
-				BigInteger numberSequenceSum = sequence
-					.Aggregate((currentSum, item) => currentSum + item);
+				BigInteger numberSequenceSum = numberList.Aggregate((currentSum, item) => currentSum + item);
 				if (numberSequenceSum == poweredValue.Item1)
 					counter++;
-
 
 				if (counter == 30)
 					return poweredValue.Item1;
