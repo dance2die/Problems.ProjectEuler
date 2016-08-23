@@ -144,6 +144,7 @@
     <Compile Include="0102\TriangleContainmentTest.cs" />
     <Compile Include="0112\BouncyNumbers.cs" />
     <Compile Include="0112\BouncyNumbersTest.cs" />
+    <Compile Include="0119\DigitalPowerSum.cs" />
     <Compile Include="0119\DigitalPowerSumTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
