@@ -88,9 +88,10 @@ namespace Demo.ProjectEuler.Tests._0119
 
 			do
 			{
+				if (numberSequenceSum == 1) return false;
+
 				long powered = (long) Math.Pow(numberSequenceSum, power);
 				if (powered == number) return true;
-				if (powered == 1) return false;
 				if (powered > number) return false;
 
 				power++;
