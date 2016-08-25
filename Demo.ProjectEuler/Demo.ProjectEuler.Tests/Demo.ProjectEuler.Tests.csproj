@@ -146,7 +146,6 @@
     <Compile Include="0112\BouncyNumbersTest.cs" />
     <Compile Include="0119\DigitalPowerSum.cs" />
     <Compile Include="0119\DigitalPowerSumTest.cs" />
-    <Compile Include="0120\SquareRemaindersTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -228,7 +227,6 @@
     <Content Include="0102\README.txt" />
     <Content Include="0112\README.txt" />
     <Content Include="0119\README.txt" />
-    <Content Include="0120\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
