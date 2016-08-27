@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -15,15 +14,22 @@ namespace Demo.ProjectEuler.Tests._0124
 		{
 		}
 
-		[Fact]
-		public void TestGettingRadValue()
+		[Theory]
+		[InlineData(504, 42)]
+		[InlineData(1, 1)]
+		[InlineData(2, 2)]
+		[InlineData(4, 2)]
+		[InlineData(8, 2)]
+		[InlineData(3, 3)]
+		[InlineData(9, 3)]
+		[InlineData(5, 5)]
+		[InlineData(6, 6)]
+		[InlineData(7, 7)]
+		[InlineData(10, 10)]
+		public void TestGettingRadValue(int n, int expected)
 		{
-			// example given on ProjectEuler.net
-			const int n = 504;
 			long actual = _sut.GetRadValue(n);
 
-			// expected value given on ProjectEuler.net
-			const long expected = 42;
 			Assert.Equal(expected, actual);
 		}
 	}
