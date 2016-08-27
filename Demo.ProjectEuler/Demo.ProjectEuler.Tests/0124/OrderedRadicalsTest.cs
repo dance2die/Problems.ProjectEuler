@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -32,11 +34,35 @@ namespace Demo.ProjectEuler.Tests._0124
 
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const int upto = 100000;
+			const int resultPosition = 10000;
+			long actual = _sut.GetOrderedRadValue(upto, resultPosition);
+			_output.WriteLine(actual.ToString());
+		}
 	}
 
 	public class OrderedRadicals
 	{
 		private readonly Prime _primeManager = new Prime();
+
+		public long GetOrderedRadValue(int upto, int resultPosition)
+		{
+			List<Tuple<int, long>> radValues = new List<Tuple<int, long>>(upto);
+			for (int n = 1; n <= upto; n++)
+			{
+				Tuple<int, long> radValue = Tuple.Create(n, GetRadValue(n));
+				radValues.Add(radValue);
+			}
+
+			IComparer<Tuple<int, long>> radTupleComparer = new RadTupleComparer();
+			radValues.Sort(radTupleComparer);
+
+			return radValues[resultPosition - 1].Item1;
+		}
 
 		public long GetRadValue(int n)
 		{
@@ -47,6 +73,15 @@ namespace Demo.ProjectEuler.Tests._0124
 				.Select(value => (int)value)
 				.Aggregate(1, (x, y) => x * y);
 			return result;
+		}
+	}
+
+	public class RadTupleComparer : IComparer<Tuple<int, long>>
+	{
+		public int Compare(Tuple<int, long> x, Tuple<int, long> y)
+		{
+			var result = x.Item2.CompareTo(y.Item2);
+			return result == 0 ? x.Item1.CompareTo(y.Item1) : result;
 		}
 	}
 }
