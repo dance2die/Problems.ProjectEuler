@@ -29,23 +29,28 @@ namespace Demo.ProjectEuler.Core
 				return result;
 			}
 
+			int upto = (int) value / 2;
+			ESieve eSieve = new ESieve();
+			var primes = eSieve.GetPrimes(upto);
+
 			double dividedValue = value;
-			for (int i = 2; i <= value / 2; i++)
+			//for (int i = 2; i <= upto; i++)
+			foreach (var prime in primes)
 			{
-				if (IsPrimeNumber(i))
+				//if (IsPrimeNumber(prime))
+				//{
+				int remainder;
+				do
 				{
-					int remainder;
-					do
+					remainder = (int)(dividedValue % prime);
+					double tempDividedValue = dividedValue / prime;
+					if (remainder == 0)
 					{
-						remainder = (int)(dividedValue % i);
-						double tempDividedValue = dividedValue / i;
-						if (remainder == 0)
-						{
-							result.Add(i);
-							dividedValue = tempDividedValue;
-						}
-					} while (remainder == 0 && dividedValue > 1);
-				}
+						result.Add(prime);
+						dividedValue = tempDividedValue;
+					}
+				} while (remainder == 0 && dividedValue > 1);
+				//}
 
 				if (dividedValue <= 1)
 					break;

@@ -42,6 +42,9 @@ namespace Demo.ProjectEuler.Tests._0124
 			const int resultPosition = 10000;
 			long actual = _sut.GetOrderedRadValue(upto, resultPosition);
 			_output.WriteLine(actual.ToString());
+
+			const int expected = 21417;
+			Assert.Equal(expected, actual);
 		}
 	}
 
@@ -66,6 +69,8 @@ namespace Demo.ProjectEuler.Tests._0124
 
 		public long GetRadValue(int n)
 		{
+			if (n == 1) return 1;
+
 			var result = _primeManager
 				.GetPrimeFactors(n)
 				.Distinct()
