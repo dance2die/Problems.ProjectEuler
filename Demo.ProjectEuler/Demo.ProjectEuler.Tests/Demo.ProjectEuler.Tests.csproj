@@ -147,6 +147,7 @@
     <Compile Include="0119\DigitalPowerSum.cs" />
     <Compile Include="0119\DigitalPowerSumTest.cs" />
     <Compile Include="0124\OrderedRadicalsTest.cs" />
+    <Compile Include="0125\PalindromicSumsTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
@@ -229,6 +230,7 @@
     <Content Include="0112\README.txt" />
     <Content Include="0119\README.txt" />
     <Content Include="0124\README.txt" />
+    <Content Include="0125\README.txt" />
     <Content Include="0501_unsolved\README.txt" />
   </ItemGroup>
   <ItemGroup>
