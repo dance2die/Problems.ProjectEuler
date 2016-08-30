@@ -30,19 +30,26 @@ namespace Demo.ProjectEuler.Tests._0125
 
 		public bool IsPalindromicSum(int n)
 		{
-			//int i = 2;
+			const int startingValue = 2;
+			int i = startingValue;
+			int currentValue = 0;
 
-			//do
-			//{
-			//	int offset = 0;
-			//	int currentValue = 0;
-			//	while (currentValue <= n)
-			//	{
-					
-			//	}
+			do
+			{
+				currentValue = 0;
+				int j = startingValue;
 
-			//	i++;
-			//} while (true);
+				while (currentValue <= n)
+				{
+					currentValue += j * j;
+					if (currentValue == n)
+						return true;
+					j++;
+				}
+
+				i++;
+			} while (currentValue < n);
+
 			return false;
 		}
 	}
