@@ -42,7 +42,7 @@ namespace Demo.ProjectEuler.Tests._0125
 				while (currentValue <= n)
 				{
 					currentValue += j * j;
-					if (currentValue == n)
+					if (currentValue == n && _palindrome.IsPalindrome(currentValue.ToString()))
 						return true;
 					j++;
 				}
