@@ -1,4 +1,7 @@
-﻿using Demo.ProjectEuler.Core;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
 using Xunit.Abstractions;
@@ -17,10 +20,17 @@ namespace Demo.ProjectEuler.Tests._0125
 		public void TestPalindromicSumForTestData()
 		{
 			const int input = 595;
-			bool actual = _sut.IsPalindromicSum(595);
+			var actual = _sut.GetPalindromicSums(595);
 
-			const bool expected = true;
-			Assert.Equal(expected, actual);
+			foreach (long value in actual)
+			{
+				_output.WriteLine("value = {0}", value);
+			}
+
+			//const long expected = input;
+			//Assert.Equal(expected, actual);
+
+			Assert.False(true);
 		}
 	}
 
@@ -28,29 +38,28 @@ namespace Demo.ProjectEuler.Tests._0125
 	{
 		private readonly Palindrome _palindrome = new Palindrome();
 
-		public bool IsPalindromicSum(int n)
+		public IEnumerable<long> GetPalindromicSums(int n)
 		{
-			const int startingValue = 2;
-			int i = startingValue;
-			int currentValue = 0;
-
-			do
+			for (int i = 1; i <= n; i++)
 			{
-				currentValue = 0;
-				int j = startingValue;
+				if (i == 595)
+					Console.WriteLine(i);
 
-				while (currentValue <= n)
-				{
-					currentValue += j * j;
-					if (currentValue == n && _palindrome.IsPalindrome(currentValue.ToString()))
-						return true;
-					j++;
-				}
+				var currentValue = GetPoweredValuesBetween(i, n);
+				if (currentValue == n && _palindrome.IsPalindrome(currentValue.ToString()))
+					yield return currentValue;
+			}
+		}
 
-				i++;
-			} while (currentValue < n);
+		private long GetPoweredValuesBetween(int from, int to)
+		{
+			long sum = 0;
+			for (int i = from; i <= to; i++)
+			{
+				sum += i * i;
+			}
 
-			return false;
+			return sum;
 		}
 	}
 }
