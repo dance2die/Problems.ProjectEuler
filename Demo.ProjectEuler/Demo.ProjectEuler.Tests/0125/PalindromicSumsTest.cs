@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Demo.ProjectEuler.Core;
 using Demo.ProjectEuler.Tests.Core;
 using Xunit;
@@ -27,10 +28,8 @@ namespace Demo.ProjectEuler.Tests._0125
 				_output.WriteLine("value = {0}", value);
 			}
 
-			//const long expected = input;
-			//Assert.Equal(expected, actual);
-
-			Assert.False(true);
+			const long expected = input;
+			Assert.Equal(expected, actual.First());
 		}
 	}
 
@@ -57,6 +56,8 @@ namespace Demo.ProjectEuler.Tests._0125
 			for (int i = from; i <= to; i++)
 			{
 				sum += i * i;
+				if (sum >= to)
+					return sum;
 			}
 
 			return sum;
