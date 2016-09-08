@@ -21,7 +21,7 @@ namespace Demo.ProjectEuler.Tests._0125
 		public void TestPalindromicSumForTestData()
 		{
 			const long input = 595;
-			var actual = _sut.GetPalindromicSums(595);
+			var actual = _sut.GetPalindromicSums(595).ToList();
 
 			foreach (long value in actual)
 			{
@@ -50,14 +50,24 @@ namespace Demo.ProjectEuler.Tests._0125
 
 		public IEnumerable<long> GetPalindromicSums(long n)
 		{
-			for (int i = 1; i <= n; i++)
-			{
-				if (i == 595)
-					Console.WriteLine(i);
+			List<long> palindromes = new List<long>();
 
-				var currentValue = GetPoweredValuesBetween(i, n);
-				if (currentValue == n && _palindrome.IsPalindrome(currentValue.ToString()))
-					yield return currentValue;
+			for (int i = 1; i < n; i++)
+			{
+				for (int j = i + 1; j <= n; j++)
+				{
+					if (i == 6 && j == 595)
+						Console.WriteLine(j);
+
+					var currentValue = GetPoweredValuesBetween(i, j);
+					if (palindromes.Contains(currentValue)) continue;
+
+					if (_palindrome.IsPalindrome(currentValue.ToString()))
+					{
+						palindromes.Add(currentValue);
+						yield return currentValue;
+					}
+				}
 			}
 		}
 
@@ -67,6 +77,9 @@ namespace Demo.ProjectEuler.Tests._0125
 			for (long i = from; i <= to; i++)
 			{
 				sum += i * i;
+				if (sum == 595)
+					Console.WriteLine(sum);
+
 				if (sum >= to)
 					return sum;
 			}
