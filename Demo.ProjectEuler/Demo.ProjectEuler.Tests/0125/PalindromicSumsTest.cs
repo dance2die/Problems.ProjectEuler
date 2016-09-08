@@ -20,7 +20,7 @@ namespace Demo.ProjectEuler.Tests._0125
 		[Fact]
 		public void TestPalindromicSumForTestData()
 		{
-			const long input = 595;
+			const long input = 5;
 			var actual = _sut.GetPalindromicSums(595).ToList();
 
 			foreach (long value in actual)
@@ -52,23 +52,27 @@ namespace Demo.ProjectEuler.Tests._0125
 		{
 			List<long> palindromes = new List<long>();
 
-			for (int i = 1; i < n; i++)
+			var limit = Math.Sqrt(n);
+			for (int i = 1; i < limit; i++)
 			{
-				for (int j = i + 1; j <= n; j++)
+				for (int j = i + 1; j <= limit; j++)
 				{
-					if (i == 6 && j == 595)
+					if (i == 6 && j == 12)
 						Console.WriteLine(j);
 
 					var currentValue = GetPoweredValuesBetween(i, j);
 					if (palindromes.Contains(currentValue)) continue;
+					if (currentValue > n) continue;
 
 					if (_palindrome.IsPalindrome(currentValue.ToString()))
 					{
 						palindromes.Add(currentValue);
-						yield return currentValue;
+						//yield return currentValue;
 					}
 				}
 			}
+
+			return palindromes;
 		}
 
 		private long GetPoweredValuesBetween(int from, long to)
@@ -77,11 +81,11 @@ namespace Demo.ProjectEuler.Tests._0125
 			for (long i = from; i <= to; i++)
 			{
 				sum += i * i;
-				if (sum == 595)
-					Console.WriteLine(sum);
+				//if (sum == 595)
+				//	Console.WriteLine(sum);
 
-				if (sum >= to)
-					return sum;
+				//if (sum >= to)
+				//	return sum;
 			}
 
 			return sum;
