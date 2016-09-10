@@ -42,6 +42,19 @@ namespace Demo.ProjectEuler.Tests._0125
 			const long expected = 4164;
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void ShowResult()
+		{
+			const long input = 10000000;
+			var palindromicSums = _sut.GetPalindromicSums(input).ToList();
+			long actual = palindromicSums.Sum();
+
+			_output.WriteLine(actual.ToString());
+
+			//const long expected = 4164;
+			//Assert.Equal(expected, actual);
+		}
 	}
 
 	public class PalindromicSums
