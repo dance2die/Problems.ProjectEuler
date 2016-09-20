@@ -27,11 +27,48 @@ namespace Demo.ProjectEuler.Tests._0127
 			const int expected = 42;
 			Assert.Equal(expected, actual);
 		}
+
+		[Fact]
+		public void TestAbcHit()
+		{
+			int a = 5, b = 27, c = 32;
+
+			const bool expected = true;
+			bool actual = _sut.IsAbcHit(a, b, c);
+
+			Assert.Equal(expected, actual);
+		}
 	}
 
 	public class AbcHits
 	{
 		private readonly Prime _prime = new Prime();
+		private readonly Totient _totient = new	Totient();
+
+		public bool IsAbcHit(int a, int b, int c)
+		{
+			bool gcdEqual = AreGcdEqual(a, b, c);
+			bool aLessThanB = a < b;
+			bool cValue = a + b == c;
+			bool rad = IsRadLessThanC(a * b * c, c);
+
+			return gcdEqual && aLessThanB && cValue && rad;
+		}
+
+		private bool IsRadLessThanC(int product, int c)
+		{
+			long rad = GetRad(product);
+			return rad < c;
+		}
+
+		private bool AreGcdEqual(int a, int b, int c)
+		{
+			var gcd1 = _totient.GreatestCommonDivisor(a, b);
+			var gcd2 = _totient.GreatestCommonDivisor(a, c);
+			var gcd3 = _totient.GreatestCommonDivisor(b, c);
+
+			return (gcd1 == gcd2 && gcd2 == gcd3);
+		}
 
 		public long GetRad(int n)
 		{
