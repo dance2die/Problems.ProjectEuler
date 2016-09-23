@@ -21,6 +21,15 @@ namespace Demo.ProjectEuler.Core
 
 		public List<double> GetPrimeFactors(double value)
 		{
+			ESieve eSieve = new ESieve();
+			int upto = (int)value / 2;
+			IEnumerable<int> primes = eSieve.GetPrimes(upto);
+
+			return GetPrimeFactors(value, primes);
+		}
+
+		public List<double> GetPrimeFactors(double value, IEnumerable<int> primes)
+		{
 			var result = new List<double>();
 
 			if (IsPrimeNumber(value))
@@ -30,8 +39,8 @@ namespace Demo.ProjectEuler.Core
 			}
 
 			int upto = (int) value / 2;
-			ESieve eSieve = new ESieve();
-			var primes = eSieve.GetPrimes(upto);
+			//ESieve eSieve = new ESieve();
+			//IEnumerable<int> primes = eSieve.GetPrimes(upto);
 
 			double dividedValue = value;
 			//for (int i = 2; i <= upto; i++)
