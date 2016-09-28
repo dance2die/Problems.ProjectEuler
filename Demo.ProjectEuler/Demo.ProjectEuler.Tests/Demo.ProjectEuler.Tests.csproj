@@ -149,6 +149,7 @@
     <Compile Include="0124\OrderedRadicalsTest.cs" />
     <Compile Include="0125_unresolved\PalindromicSumsTest.cs" />
     <Compile Include="0127_unresolved\AbcHitsTest.cs" />
+    <Compile Include="0129\RepunitDivisibilityTest.cs" />
     <Compile Include="0501_unsolved\EightDivisorsTest.cs" />
     <Compile Include="Core\BaseTest.cs" />
     <Compile Include="LibraryTests\ESieveTest.cs" />
