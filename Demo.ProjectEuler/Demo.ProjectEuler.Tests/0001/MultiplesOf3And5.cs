@@ -7,13 +7,7 @@ namespace Demo.ProjectEuler.Tests._0001
 	{
 		public int CalculateBelow(int below)
 		{
-			//if (below <= 0) return 0;
-			//if (below == 3) return 3;
-
-			//return 23;
-
-			var set = GetMultiplesOf3And5Set(below);
-			return set.Sum();
+			return GetMultiplesOf3And5Set(below).Sum();
 		}
 
 		public HashSet<int> GetMultiplesOf3And5Set(int below)
