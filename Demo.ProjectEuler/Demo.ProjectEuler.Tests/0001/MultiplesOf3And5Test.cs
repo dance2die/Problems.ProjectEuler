@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -19,16 +19,16 @@ namespace Demo.ProjectEuler.Tests._0001
 			const int below1 = 11;
 			const int below2 = 16;
 
-			HashSet<int> expectedSet1 = new HashSet<int> {3, 5, 6, 9, 10};
-			HashSet<int> expectedSet2 = new HashSet<int> {3, 5, 6, 9, 10, 12, 15};
+			var expected1 = new[] { 3, 5, 6, 9, 10};
+			var expected2 = new [] {3, 5, 6, 9, 10, 12, 15};
 
 			var sut = new MultiplesOf3And5();
 
-			HashSet<int> actualSet1 = sut.GetMultiplesOf3And5Set(below1);
-			HashSet<int> actualSet2 = sut.GetMultiplesOf3And5Set(below2);
+			var actual1 = sut.GetMultiplesOf3And5Set(below1);
+			var actual2 = sut.GetMultiplesOf3And5Set(below2);
 
-			Assert.True(actualSet1.SetEquals(expectedSet1));
-			Assert.True(actualSet2.SetEquals(expectedSet2));
+			Assert.True(actual1.SequenceEqual(expected1));
+			Assert.True(actual2.SequenceEqual(expected2));
 		}
 
 		[Theory]
@@ -50,7 +50,7 @@ namespace Demo.ProjectEuler.Tests._0001
 		{
 			var sut = new MultiplesOf3And5();
 			var actualResult = sut.CalculateBelow(1000);
-			_output.WriteLine(string.Format("Result Under 1000: {0}", actualResult));
+			_output.WriteLine($"Result Under 1000: {actualResult}");
 		}
 	}
 }
